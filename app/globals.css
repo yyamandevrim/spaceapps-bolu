@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-primary: #07173f;
+  --text-white: #ffffff;
+  --accent-blue: #2e96f5;
+  --accent-yellow: #eafe07;
+  --accent-red: #e43700;
+}
+
+body {
+  font-family: "Overpass", sans-serif;
+}
+
+.font-fira-black {
+  font-family: "Fira Sans", sans-serif;
+  font-weight: 900;
+}
+
+.font-fira-bold {
+  font-family: "Fira Sans", sans-serif;
+  font-weight: 700;
+}
+
+.font-overpass-bold {
+  font-family: "Overpass", sans-serif;
+  font-weight: 700;
+}
+
+.font-overpass-regular {
+  font-family: "Overpass", sans-serif;
+  font-weight: 400;
+}
+
+.font-overpass-italic {
+  font-family: "Overpass", sans-serif;
+  font-style: italic;
+}
