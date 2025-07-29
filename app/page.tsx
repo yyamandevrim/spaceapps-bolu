@@ -101,9 +101,9 @@ export default function Page() {
         {/* Logo */}
         <div className="flex items-center">
           <Image
-            src="/placeholder.svg?height=50&width=120"
-            alt="DISCO CONF 2024"
-            width={120}
+            src="/placeholder.svg?height=50&width=190"
+            alt="SpaceApps Challenge Bolu"
+            width={190}
             height={50}
             className="text-white"
           />

@@ -6,9 +6,7 @@ import "./globals.css"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "DISCO CONF 2024",
-  description: "The global research and discovery conference by Maze",
-    generator: 'v0.dev'
+  title: "SpaceApps Challenge Bolu"
 }
 
 export default function RootLayout({
