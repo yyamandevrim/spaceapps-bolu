@@ -6,7 +6,8 @@ import "./globals.css"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "SpaceApps Challenge Bolu"
+  title: "SpaceApps Challenge Bolu",
+    generator: 'v0.dev'
 }
 
 export default function RootLayout({
