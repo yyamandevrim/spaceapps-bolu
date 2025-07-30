@@ -20,6 +20,7 @@ export default function Page() {
   const [openMonth, setOpenMonth] = useState<number | null>(null)
   const [heroBackground, setHeroBackground] = useState<string>("")
   const [showLocation, setShowLocation] = useState<boolean>(false)
+  const [showAwards, setShowAwards] = useState<boolean>(true) // Add this state for awards visibility
   const t = translations[language]
 
   const toggleFaq = (index: number) => {
@@ -562,30 +563,124 @@ export default function Page() {
         </div>
       </section>
 
-      {/* FAQs Section */}
-      <section id="faqs" className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8">
+      {/* Awards Section - Conditional */}
+      {showAwards && (
+        <section id="awards" className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden" style={{ backgroundColor: "var(--bg-primary)" }}>
+          {/* Background Pattern */}
+          <div
+            className="absolute inset-0 opacity-10"
+            style={{
+              backgroundImage: `
+                radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(255,255,255,0.1) 0%, transparent 50%)
+              `,
+            }}
+          />
+
+          <div className="max-w-6xl mx-auto relative z-10">
+            <h2 className="text-4xl sm:text-5xl md:text-6xl font-fira-black text-center mb-4 text-white">
+              {language === "tr" ? "Ödüller" : "Awards"}
+            </h2>
+            <p className="text-lg sm:text-xl text-white/90 text-center mb-12 sm:mb-16 font-overpass-regular">
+              {language === "tr" 
+                ? "Kazanan takımlar için büyük ödüller sizi bekliyor!" 
+                : "Great prizes await the winning teams!"}
+            </p>
+
+            {/* Podium Design */}
+            <div className="flex items-end justify-center gap-4 sm:gap-8 max-w-4xl mx-auto">
+              {/* 2nd Place */}
+              <div className="text-center">
+                <div className="bg-gradient-to-t from-gray-400 to-gray-300 rounded-t-lg p-6 sm:p-8 mb-4 shadow-lg transform hover:scale-105 transition-transform duration-300">
+                  <div className="text-3xl sm:text-4xl mb-2">🥈</div>
+                  <div className="text-lg sm:text-xl font-fira-bold text-gray-800 mb-2">
+                    {language === "tr" ? "2. Takım" : "2nd Team"}
+                  </div>
+                  <div className="text-2xl sm:text-3xl font-fira-black text-gray-900">20.000₺</div>
+                </div>
+                <div className="bg-gray-300 h-24 sm:h-32 w-full rounded-b-lg shadow-md"></div>
+              </div>
+
+              {/* 1st Place - Highest */}
+              <div className="text-center">
+                <div className="bg-gradient-to-t from-yellow-500 to-yellow-400 rounded-t-lg p-6 sm:p-8 mb-4 shadow-lg transform hover:scale-105 transition-transform duration-300">
+                  <div className="text-4xl sm:text-5xl mb-2">🥇</div>
+                  <div className="text-xl sm:text-2xl font-fira-bold text-gray-800 mb-2">
+                    {language === "tr" ? "1. Takım" : "1st Team"}
+                  </div>
+                  <div className="text-3xl sm:text-4xl font-fira-black text-gray-900">30.000₺</div>
+                </div>
+                <div className="bg-yellow-400 h-32 sm:h-40 w-full rounded-b-lg shadow-md"></div>
+              </div>
+
+              {/* 3rd Place */}
+              <div className="text-center">
+                <div className="bg-gradient-to-t from-amber-600 to-amber-500 rounded-t-lg p-6 sm:p-8 mb-4 shadow-lg transform hover:scale-105 transition-transform duration-300">
+                  <div className="text-3xl sm:text-4xl mb-2">🥉</div>
+                  <div className="text-lg sm:text-xl font-fira-bold text-gray-800 mb-2">
+                    {language === "tr" ? "3. Takım" : "3rd Team"}
+                  </div>
+                  <div className="text-2xl sm:text-3xl font-fira-black text-gray-900">10.000₺</div>
+                </div>
+                <div className="bg-amber-500 h-20 sm:h-28 w-full rounded-b-lg shadow-md"></div>
+              </div>
+            </div>
+
+            {/* Additional Info */}
+            <div className="text-center mt-12">
+              <p className="text-white/80 font-overpass-regular text-sm sm:text-base mb-6">
+                {language === "tr" 
+                  ? "Ödüller kazanan takımlar arasında eşit olarak paylaştırılacaktır" 
+                  : "Awards will be shared equally among winning team members"}
+              </p>
+              
+              {/* Sponsor Thank You Note */}
+              <button
+                onClick={() => document.getElementById('supporters')?.scrollIntoView({ behavior: 'smooth' })}
+                className="text-white/70 font-overpass-regular text-sm hover:text-white transition-colors cursor-pointer underline decoration-dotted underline-offset-4"
+              >
+                {language === "tr" 
+                  ? "Ödül sponsoru XX Şirketine teşekkürler →" 
+                  : "Thanks to award sponsor XX Company →"}
+              </button>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* FAQs Section - Modified background color based on awards visibility */}
+      <section id="faqs" className={`py-16 sm:py-20 px-4 sm:px-6 lg:px-8 ${showAwards ? 'bg-white' : ''}`}>
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl sm:text-5xl md:text-6xl font-fira-black text-center mb-12 sm:mb-16">{t.faqsTitle}</h2>
+          <h2 className={`text-4xl sm:text-5xl md:text-6xl font-fira-black text-center mb-12 sm:mb-16 ${showAwards ? 'text-gray-900' : 'text-white'}`}>
+            {t.faqsTitle}
+          </h2>
 
           <div className="space-y-4">
             {faqs.map((faq, index) => (
-              <div key={index} className="border border-gray-700 rounded-lg overflow-hidden">
+              <div key={index} className={`border rounded-lg overflow-hidden ${showAwards ? 'border-gray-300 bg-white' : 'border-gray-700'}`}>
                 <button
                   onClick={() => toggleFaq(index)}
-                  className="w-full px-4 sm:px-6 py-4 sm:py-5 text-left flex items-center justify-between hover:bg-gray-800/50 transition-colors"
+                  className={`w-full px-4 sm:px-6 py-4 sm:py-5 text-left flex items-center justify-between transition-colors ${
+                    showAwards 
+                      ? 'hover:bg-gray-50 text-gray-900' 
+                      : 'hover:bg-gray-800/50 text-white'
+                  }`}
                 >
-                  <h3 className="text-lg sm:text-xl font-fira-bold pr-4">
+                  <h3 className={`text-lg sm:text-xl font-fira-bold pr-4 ${showAwards ? 'text-gray-900' : 'text-white'}`}>
                     {language === "tr" ? faq.question : faq.questionEn}
                   </h3>
                   {openFaq === index ? (
-                    <ChevronUp className="w-5 h-5 text-gray-400 flex-shrink-0" />
+                    <ChevronUp className={`w-5 h-5 flex-shrink-0 ${showAwards ? 'text-gray-600' : 'text-gray-400'}`} />
                   ) : (
-                    <ChevronDown className="w-5 h-5 text-gray-400 flex-shrink-0" />
+                    <ChevronDown className={`w-5 h-5 flex-shrink-0 ${showAwards ? 'text-gray-600' : 'text-gray-400'}`} />
                   )}
                 </button>
                 {openFaq === index && (
                   <div className="px-4 sm:px-6 pb-4 sm:pb-5">
-                    <p className="text-gray-300 font-overpass-regular leading-relaxed text-sm sm:text-base">
+                    <p className={`font-overpass-regular leading-relaxed text-sm sm:text-base ${
+                      showAwards ? 'text-gray-700' : 'text-gray-300'
+                    }`}>
                       {language === "tr" ? faq.answer : faq.answerEn}
                     </p>
                   </div>
