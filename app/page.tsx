@@ -20,7 +20,7 @@ export default function Page() {
   const [openMonth, setOpenMonth] = useState<number | null>(null)
   const [heroBackground, setHeroBackground] = useState<string>("")
   const [showLocation, setShowLocation] = useState<boolean>(false)
-  const [showAwards, setShowAwards] = useState<boolean>(true) // Add this state for awards visibility
+  const [showAwards, setShowAwards] = useState<boolean>(false) // Add this state for awards visibility
   const t = translations[language]
 
   const toggleFaq = (index: number) => {
@@ -629,21 +629,21 @@ export default function Page() {
 
             {/* Additional Info */}
             <div className="text-center mt-12">
-              <p className="text-white/80 font-overpass-regular text-sm sm:text-base mb-6">
-                {language === "tr" 
-                  ? "Ödüller kazanan takımlar arasında eşit olarak paylaştırılacaktır" 
-                  : "Awards will be shared equally among winning team members"}
-              </p>
-              
               {/* Sponsor Thank You Note */}
               <button
                 onClick={() => document.getElementById('supporters')?.scrollIntoView({ behavior: 'smooth' })}
-                className="text-white/70 font-overpass-regular text-sm hover:text-white transition-colors cursor-pointer underline decoration-dotted underline-offset-4"
+                className="text-white/80 font-overgipass-regular text-sm hover:text-white transition-colors cursor-pointer underline decoration-dotted underline-offset-4"
               >
                 {language === "tr" 
-                  ? "Ödül sponsoru XX Şirketine teşekkürler →" 
+                  ? "Ödül sponsoru XX Şirketine teşekkür ederiz. →" 
                   : "Thanks to award sponsor XX Company →"}
               </button>
+
+                <p className="text-white/70 font-overpass-regular text-sm sm:text-base mt-6">
+                {language === "tr" 
+                  ? "Ödüller kazanan takım üyeleri arasında eşit olarak paylaştırılacaktır." 
+                  : "Awards will be shared equally among winning team members."}
+              </p>
             </div>
           </div>
         </section>
