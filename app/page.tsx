@@ -7,17 +7,17 @@
 
 import type React from "react"
 import { useState, useEffect } from "react"
-import { useRouter } from "next/navigation"
 
 import { Button } from "@/components/ui/button"
 import { Header } from "@/components/Header"
 import { Footer } from "@/components/Footer"
+import { ConfigMenu } from "@/components/ConfigMenu"
 import { translations, type Language } from "@/lib/translations"
 import { agendaItems } from "@/lib/agenda"
 import { judges } from "@/lib/judges"
 import { faqs } from "@/lib/faqs"
 import Image from "next/image"
-import { ChevronDown, ChevronUp, Settings, X } from "lucide-react"
+import { ChevronDown, ChevronUp } from "lucide-react"
 import Link from "next/link"
 
 export default function Page() {
@@ -28,6 +28,12 @@ export default function Page() {
   const [showLocation, setShowLocation] = useState<boolean>(false)
   const [showAwards, setShowAwards] = useState<boolean>(false)
   const [showCookieNotice, setShowCookieNotice] = useState<boolean>(false)
+  
+  // Add new section toggles
+  const [showSponsors, setShowSponsors] = useState<boolean>(true)
+  const [showAgenda, setShowAgenda] = useState<boolean>(true)
+  const [showJudges, setShowJudges] = useState<boolean>(true)
+  const [showFaqs, setShowFaqs] = useState<boolean>(true)
   
   // Config menu states
   const [showConfigMenu, setShowConfigMenu] = useState<boolean>(false)
@@ -81,40 +87,6 @@ export default function Page() {
     localStorage.setItem('cookieNoticeDismissed', 'true')
   }
 
-  // Config menu functions
-  const saveConfig = () => {
-    const config = {
-      language,
-      showLocation,
-      showAwards,
-      showCookieNotice
-    }
-    localStorage.setItem('siteConfig', JSON.stringify(config))
-    alert('Configuration saved!')
-  }
-
-  const loadConfig = () => {
-    const savedConfig = localStorage.getItem('siteConfig')
-    if (savedConfig) {
-      const config = JSON.parse(savedConfig)
-      setLanguage(config.language || 'tr')
-      setShowLocation(config.showLocation || false)
-      setShowAwards(config.showAwards || false)
-      setShowCookieNotice(config.showCookieNotice || false)
-      alert('Configuration loaded!')
-    }
-  }
-
-  const resetConfig = () => {
-    setLanguage('tr')
-    setShowLocation(false)
-    setShowAwards(false)
-    setShowCookieNotice(false)
-    localStorage.removeItem('siteConfig')
-    localStorage.removeItem('cookieNoticeDismissed')
-    alert('Configuration reset!')
-  }
-
   const toggleFaq = (index: number) => {
     setOpenFaq(openFaq === index ? null : index)
   }
@@ -136,108 +108,28 @@ export default function Page() {
 
   return (
     <div className="min-h-screen text-white" style={{ backgroundColor: "var(--bg-primary)" }}>
-      {/* Config Menu Modal */}
-      {showConfigMenu && (
-        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[100] flex items-center justify-center p-4">
-          <div className="bg-gray-900 rounded-lg border border-gray-700 p-6 w-full max-w-md">
-            <div className="flex items-center justify-between mb-6">
-              <div className="flex items-center gap-2">
-                <Settings className="w-5 h-5 text-blue-400" />
-                <h2 className="text-xl font-fira-bold text-white">Admin Config</h2>
-              </div>
-              <button
-                onClick={() => setShowConfigMenu(false)}
-                className="p-1 hover:bg-gray-800 rounded transition-colors"
-              >
-                <X className="w-5 h-5 text-gray-400" />
-              </button>
-            </div>
-
-            <div className="space-y-6">
-              {/* Language Selection */}
-              <div>
-                <label className="block text-sm font-medium text-gray-300 mb-2">
-                  Language / Dil
-                </label>
-                <select
-                  value={language}
-                  onChange={(e) => setLanguage(e.target.value as Language)}
-                  className="w-full bg-gray-800 border border-gray-700 rounded-lg px-3 py-2 text-white"
-                >
-                  <option value="tr">Türkçe</option>
-                  <option value="en">English</option>
-                </select>
-              </div>
-
-              {/* Toggle Options */}
-              <div className="space-y-4">
-                <h3 className="text-sm font-medium text-gray-300">Toggle Sections</h3>
-                
-                <label className="flex items-center justify-between">
-                  <span className="text-sm text-gray-300">Show Location Section</span>
-                  <input
-                    type="checkbox"
-                    checked={showLocation}
-                    onChange={(e) => setShowLocation(e.target.checked)}
-                    className="w-4 h-4 text-blue-600 bg-gray-800 border-gray-600 rounded focus:ring-blue-500"
-                  />
-                </label>
-
-                <label className="flex items-center justify-between">
-                  <span className="text-sm text-gray-300">Show Awards Section</span>
-                  <input
-                    type="checkbox"
-                    checked={showAwards}
-                    onChange={(e) => setShowAwards(e.target.checked)}
-                    className="w-4 h-4 text-blue-600 bg-gray-800 border-gray-600 rounded focus:ring-blue-500"
-                  />
-                </label>
-
-                <label className="flex items-center justify-between">
-                  <span className="text-sm text-gray-300">Show Cookie Notice</span>
-                  <input
-                    type="checkbox"
-                    checked={showCookieNotice}
-                    onChange={(e) => setShowCookieNotice(e.target.checked)}
-                    className="w-4 h-4 text-blue-600 bg-gray-800 border-gray-600 rounded focus:ring-blue-500"
-                  />
-                </label>
-              </div>
-
-              {/* Action Buttons */}
-              <div className="space-y-2 pt-4 border-t border-gray-700">
-                <button
-                  onClick={saveConfig}
-                  className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg transition-colors"
-                >
-                  Save Configuration
-                </button>
-                
-                <div className="flex gap-2">
-                  <button
-                    onClick={loadConfig}
-                    className="flex-1 bg-gray-700 hover:bg-gray-600 text-white py-2 px-4 rounded-lg transition-colors"
-                  >
-                    Load Saved
-                  </button>
-                  <button
-                    onClick={resetConfig}
-                    className="flex-1 bg-red-600 hover:bg-red-700 text-white py-2 px-4 rounded-lg transition-colors"
-                  >
-                    Reset All
-                  </button>
-                </div>
-              </div>
-
-              {/* Info */}
-              <div className="text-xs text-gray-500 bg-gray-800 p-3 rounded">
-                <p><strong>Access Command:</strong> Type "config2025" anywhere on the page</p>
-                <p><strong>Current Sequence:</strong> {commandSequence || 'None'}</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
+      {/* Config Menu */}
+      <ConfigMenu
+        showConfigMenu={showConfigMenu}
+        setShowConfigMenu={setShowConfigMenu}
+        language={language}
+        setLanguage={setLanguage}
+        showLocation={showLocation}
+        setShowLocation={setShowLocation}
+        showAwards={showAwards}
+        setShowAwards={setShowAwards}
+        showCookieNotice={showCookieNotice}
+        setShowCookieNotice={setShowCookieNotice}
+        showSponsors={showSponsors}
+        setShowSponsors={setShowSponsors}
+        showAgenda={showAgenda}
+        setShowAgenda={setShowAgenda}
+        showJudges={showJudges}
+        setShowJudges={setShowJudges}
+        showFaqs={showFaqs}
+        setShowFaqs={setShowFaqs}
+        commandSequence={commandSequence}
+      />
 
       {/* Header */}
       <Header translations={t} />
@@ -417,309 +309,333 @@ export default function Page() {
         </div>
       </main>
 
-      {/* Sponsors Section */}
-      <section className="bg-white py-6 sm:py-8 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-6xl mx-auto">
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-6">
-            {/* NASA Logo and Text */}
-            <div className="flex items-center space-x-4 sm:space-x-6 flex-shrink-0">
-              {/* Mobile logo */}
-              <Image
-                src="/logo-dark.svg?height=220&width=220"
-                alt="NASA"
-                width={220}
-                height={220}
-                className="w-32 h-32 sm:w-20 sm:h-20 block sm:hidden"
-              />
-              {/* Desktop logo */}
-              <Image
-                src="/logo-circular-dark.svg?height=220&width=220"
-                alt="NASA"
-                width={220}
-                height={220}
-                className="rounded-full w-16 h-16 sm:w-20 sm:h-20 hidden sm:block"
-              />
-              <div className="h-20 sm:h-16 w-px bg-gray-300"></div>
-              <span className="text-gray-700 font-overpass-regular text-base sm:text-lg whitespace-nowrap">
-                {t.inPartnershipWith}
-              </span>
-            </div>
+      {/* Sponsors Section - Conditional */}
+      {showSponsors && (
+        <section className="bg-white py-6 sm:py-8 px-4 sm:px-6 lg:px-8">
+          <div className="max-w-6xl mx-auto">
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-6">
+              {/* NASA Logo and Text */}
+              <div className="flex items-center space-x-4 sm:space-x-6 flex-shrink-0">
+                {/* Mobile logo */}
+                <Image
+                  src="/logo-dark.svg?height=220&width=220"
+                  alt="NASA"
+                  width={220}
+                  height={220}
+                  className="w-32 h-32 sm:w-20 sm:h-20 block sm:hidden"
+                />
+                {/* Desktop logo */}
+                <Image
+                  src="/logo-circular-dark.svg?height=220&width=220"
+                  alt="NASA"
+                  width={220}
+                  height={220}
+                  className="rounded-full w-16 h-16 sm:w-20 sm:h-20 hidden sm:block"
+                />
+                <div className="h-20 sm:h-16 w-px bg-gray-300"></div>
+                <span className="text-gray-700 font-overpass-regular text-base sm:text-lg whitespace-nowrap">
+                  {t.inPartnershipWith}
+                </span>
+              </div>
 
-            {/* Sliding Sponsors Carousel */}
-            <div className="flex-1 overflow-hidden ml-0 sm:ml-8 w-full sm:w-auto mt-4 sm:mt-0">
-              <div className="flex animate-slide space-x-8 sm:space-x-12 items-center">
-                {/* First set of logos */}
-                <Image
-                  src="/logo-dark.svg?height=60&width=120"
-                  alt="CONAE"
-                  width={120}
-                  height={60}
-                  className="flex-shrink-0 h-12 sm:h-15 w-auto"
-                />
-                <Image
-                  src="/logo-dark.svg?height=60&width=120"
-                  alt="Agencia Espacial del Paraguay"
-                  width={120}
-                  height={60}
-                  className="flex-shrink-0 h-12 sm:h-15 w-auto"
-                />
-                <Image
-                  src="/logo-dark.svg?height=60&width=120"
-                  alt="SANSA"
-                  width={120}
-                  height={60}
-                  className="flex-shrink-0 h-12 sm:h-15 w-auto"
-                />
-                <Image
-                  src="/logo-dark.svg?height=60&width=120"
-                  alt="AEB"
-                  width={120}
-                  height={60}
-                  className="flex-shrink-0 h-12 sm:h-15 w-auto"
-                />
-                <Image
-                  src="/logo-dark.svg?height=60&width=120"
-                  alt="Turkish Space Agency"
-                  width={120}
-                  height={60}
-                  className="flex-shrink-0 h-12 sm:h-15 w-auto"
-                />
-                <Image
-                  src="/logo-dark.svg?height=60&width=120"
-                  alt="ESA"
-                  width={120}
-                  height={60}
-                  className="flex-shrink-0 h-12 sm:h-15 w-auto"
-                />
-                <Image
-                  src="/logo-dark.svg?height=60&width=120"
-                  alt="JAXA"
-                  width={120}
-                  height={60}
-                  className="flex-shrink-0 h-12 sm:h-15 w-auto"
-                />
-                <Image
-                  src="/logo-dark.svg?height=60&width=120"
-                  alt="CSA"
-                  width={120}
-                  height={60}
-                  className="flex-shrink-0 h-12 sm:h-15 w-auto"
-                />
+              {/* Sliding Sponsors Carousel */}
+              <div className="flex-1 overflow-hidden ml-0 sm:ml-8 w-full sm:w-auto mt-4 sm:mt-0">
+                <div className="flex animate-slide space-x-8 sm:space-x-12 items-center">
+                  {/* First set of logos */}
+                  <Image
+                    src="/logo-dark.svg?height=60&width=120"
+                    alt="CONAE"
+                    width={120}
+                    height={60}
+                    className="flex-shrink-0 h-12 sm:h-15 w-auto"
+                  />
+                  <Image
+                    src="/logo-dark.svg?height=60&width=120"
+                    alt="Agencia Espacial del Paraguay"
+                    width={120}
+                    height={60}
+                    className="flex-shrink-0 h-12 sm:h-15 w-auto"
+                  />
+                  <Image
+                    src="/logo-dark.svg?height=60&width=120"
+                    alt="SANSA"
+                    width={120}
+                    height={60}
+                    className="flex-shrink-0 h-12 sm:h-15 w-auto"
+                  />
+                  <Image
+                    src="/logo-dark.svg?height=60&width=120"
+                    alt="AEB"
+                    width={120}
+                    height={60}
+                    className="flex-shrink-0 h-12 sm:h-15 w-auto"
+                  />
+                  <Image
+                    src="/logo-dark.svg?height=60&width=120"
+                    alt="Turkish Space Agency"
+                    width={120}
+                    height={60}
+                    className="flex-shrink-0 h-12 sm:h-15 w-auto"
+                  />
+                  <Image
+                    src="/logo-dark.svg?height=60&width=120"
+                    alt="ESA"
+                    width={120}
+                    height={60}
+                    className="flex-shrink-0 h-12 sm:h-15 w-auto"
+                  />
+                  <Image
+                    src="/logo-dark.svg?height=60&width=120"
+                    alt="JAXA"
+                    width={120}
+                    height={60}
+                    className="flex-shrink-0 h-12 sm:h-15 w-auto"
+                  />
+                  <Image
+                    src="/logo-dark.svg?height=60&width=120"
+                    alt="CSA"
+                    width={120}
+                    height={60}
+                    className="flex-shrink-0 h-12 sm:h-15 w-auto"
+                  />
 
-                {/* Duplicate set for seamless loop */}
-                <Image
-                  src="/logo-dark.svg?height=60&width=120"
-                  alt="CONAE"
-                  width={120}
-                  height={60}
-                  className="flex-shrink-0 h-12 sm:h-15 w-auto"
-                />
-                <Image
-                  src="/logo-dark.svg?height=60&width=120"
-                  alt="Agencia Espacial del Paraguay"
-                  width={120}
-                  height={60}
-                  className="flex-shrink-0 h-12 sm:h-15 w-auto"
-                />
-                <Image
-                  src="/logo-dark.svg?height=60&width=120"
-                  alt="SANSA"
-                  width={120}
-                  height={60}
-                  className="flex-shrink-0 h-12 sm:h-15 w-auto"
-                />
-                <Image
-                  src="/logo-dark.svg?height=60&width=120"
-                  alt="AEB"
-                  width={120}
-                  height={60}
-                  className="flex-shrink-0 h-12 sm:h-15 w-auto"
-                />
-                <Image
-                  src="/logo-dark.svg?height=60&width=120"
-                  alt="Turkish Space Agency"
-                  width={120}
-                  height={60}
-                  className="flex-shrink-0 h-12 sm:h-15 w-auto"
-                />
-                <Image
-                  src="/logo-dark.svg?height=60&width=120"
-                  alt="ESA"
-                  width={120}
-                  height={60}
-                  className="flex-shrink-0 h-12 sm:h-15 w-auto"
-                />
-                <Image
-                  src="/logo-dark.svg?height=60&width=120"
-                  alt="JAXA"
-                  width={120}
-                  height={60}
-                  className="flex-shrink-0 h-12 sm:h-15 w-auto"
-                />
-                <Image
-                  src="/logo-dark.svg?height=60&width=120"
-                  alt="CSA"
-                  width={120}
-                  height={60}
-                  className="flex-shrink-0 h-12 sm:h-15 w-auto"
-                />
+                  {/* Duplicate set for seamless loop */}
+                  <Image
+                    src="/logo-dark.svg?height=60&width=120"
+                    alt="CONAE"
+                    width={120}
+                    height={60}
+                    className="flex-shrink-0 h-12 sm:h-15 w-auto"
+                  />
+                  <Image
+                    src="/logo-dark.svg?height=60&width=120"
+                    alt="Agencia Espacial del Paraguay"
+                    width={120}
+                    height={60}
+                    className="flex-shrink-0 h-12 sm:h-15 w-auto"
+                  />
+                  <Image
+                    src="/logo-dark.svg?height=60&width=120"
+                    alt="SANSA"
+                    width={120}
+                    height={60}
+                    className="flex-shrink-0 h-12 sm:h-15 w-auto"
+                  />
+                  <Image
+                    src="/logo-dark.svg?height=60&width=120"
+                    alt="AEB"
+                    width={120}
+                    height={60}
+                    className="flex-shrink-0 h-12 sm:h-15 w-auto"
+                  />
+                  <Image
+                    src="/logo-dark.svg?height=60&width=120"
+                    alt="Turkish Space Agency"
+                    width={120}
+                    height={60}
+                    className="flex-shrink-0 h-12 sm:h-15 w-auto"
+                  />
+                  <Image
+                    src="/logo-dark.svg?height=60&width=120"
+                    alt="ESA"
+                    width={120}
+                    height={60}
+                    className="flex-shrink-0 h-12 sm:h-15 w-auto"
+                  />
+                  <Image
+                    src="/logo-dark.svg?height=60&width=120"
+                    alt="JAXA"
+                    width={120}
+                    height={60}
+                    className="flex-shrink-0 h-12 sm:h-15 w-auto"
+                  />
+                  <Image
+                    src="/logo-dark.svg?height=60&width=120"
+                    alt="CSA"
+                    width={120}
+                    height={60}
+                    className="flex-shrink-0 h-12 sm:h-15 w-auto"
+                  />
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
-      {/* Agenda Section */}
-      <section id="agenda" className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl sm:text-5xl md:text-6xl font-fira-black text-center mb-4">{t.agendaTitle}</h2>
-          <p className="text-lg sm:text-xl text-gray-300 text-center mb-12 sm:mb-16 font-overpass-regular">
-            {t.agendaSubtitle}
-          </p>
+      {/* Agenda Section - Conditional */}
+      {showAgenda && (
+        <section id="agenda" className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8">
+          <div className="max-w-6xl mx-auto">
+            <h2 className="text-4xl sm:text-5xl md:text-6xl font-fira-black text-center mb-4">{t.agendaTitle}</h2>
+            <p className="text-lg sm:text-xl text-gray-300 text-center mb-12 sm:mb-16 font-overpass-regular">
+              {t.agendaSubtitle}
+            </p>
 
-          <div className="space-y-4">
-            {agendaItems.map((monthItem, monthIndex) => (
-              <div key={monthIndex} className="border border-gray-700 rounded-lg overflow-hidden">
-                {/* Month Header - Clickable */}
-                <button
-                  onClick={() => toggleMonth(monthIndex)}
-                  className="w-full px-4 sm:px-6 py-4 sm:py-5 text-left flex items-center justify-between hover:bg-gray-800/50 transition-colors"
-                >
-                  <h3 className="text-xl sm:text-2xl font-fira-bold" style={{ color: "white" }}>
-                    {language === "tr" ? monthItem.month : monthItem.monthEn}
-                  </h3>
-                  {openMonth === monthIndex ? (
-                    <ChevronUp className="w-5 h-5 text-gray-400 flex-shrink-0" />
-                  ) : (
-                    <ChevronDown className="w-5 h-5 text-gray-400 flex-shrink-0" />
+            <div className="space-y-4">
+              {agendaItems.map((monthItem, monthIndex) => (
+                <div key={monthIndex} className="border border-gray-700 rounded-lg overflow-hidden">
+                  {/* Month Header - Clickable */}
+                  <button
+                    onClick={() => toggleMonth(monthIndex)}
+                    className="w-full px-4 sm:px-6 py-4 sm:py-5 text-left flex items-center justify-between hover:bg-gray-800/50 transition-colors"
+                  >
+                    <h3 className="text-xl sm:text-2xl font-fira-bold" style={{ color: "white" }}>
+                      {language === "tr" ? monthItem.month : monthItem.monthEn}
+                    </h3>
+                    {openMonth === monthIndex ? (
+                      <ChevronUp className="w-5 h-5 text-gray-400 flex-shrink-0" />
+                    ) : (
+                      <ChevronDown className="w-5 h-5 text-gray-400 flex-shrink-0" />
+                    )}
+                  </button>
+
+                  {/* Events for this month - Collapsible */}
+                  {openMonth === monthIndex && (
+                    <div className="px-4 sm:px-6 pb-4 sm:pb-6 pt-2 sm:pt-4">
+                      <div className="space-y-4">
+                        {monthItem.events.map((event, eventIndex) => (
+                          <div
+                            key={eventIndex}
+                            className="grid grid-cols-1 sm:grid-cols-12 gap-4 py-3 sm:py-4 border-b border-gray-800 last:border-b-0"
+                          >
+                            <div className="sm:col-span-3 text-gray-300 font-overpass-bold text-sm sm:text-base">
+                              {language === "tr" ? event.date : event.dateEn}
+                            </div>
+                            <div className="sm:col-span-9">
+                              <h4 className="text-lg sm:text-xl font-fira-bold mb-2 sm:mb-3">
+                                {language === "tr" ? event.title : event.titleEn}
+                              </h4>
+                              <p className="text-gray-300 font-overpass-regular leading-relaxed text-sm sm:text-base">
+                                {language === "tr" ? event.description : event.descriptionEn}
+                              </p>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
                   )}
-                </button>
-
-                {/* Events for this month - Collapsible */}
-                {openMonth === monthIndex && (
-                  <div className="px-4 sm:px-6 pb-4 sm:pb-6 pt-2 sm:pt-4">
-                    <div className="space-y-4">
-                      {monthItem.events.map((event, eventIndex) => (
-                        <div
-                          key={eventIndex}
-                          className="grid grid-cols-1 sm:grid-cols-12 gap-4 py-3 sm:py-4 border-b border-gray-800 last:border-b-0"
-                        >
-                          <div className="sm:col-span-3 text-gray-300 font-overpass-bold text-sm sm:text-base">
-                            {language === "tr" ? event.date : event.dateEn}
-                          </div>
-                          <div className="sm:col-span-9">
-                            <h4 className="text-lg sm:text-xl font-fira-bold mb-2 sm:mb-3">
-                              {language === "tr" ? event.title : event.titleEn}
-                            </h4>
-                            <p className="text-gray-300 font-overpass-regular leading-relaxed text-sm sm:text-base">
-                              {language === "tr" ? event.description : event.descriptionEn}
-                            </p>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Judges Section */}
-      <section id="speakers" className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 bg-white relative overflow-hidden">
-        {/* Background Pattern */}
-        <div
-          className="absolute inset-0 opacity-100"
-          style={{
-            backgroundImage: "url('https://assets.spaceappschallenge.org/media/images/rose-pattern.original.png')",
-            backgroundRepeat: "repeat",
-            backgroundSize: "auto",
-          }}
-        />
-
-        <div className="max-w-6xl mx-auto relative z-10">
-          <h2 className="text-4xl sm:text-5xl md:text-6xl font-fira-black text-center mb-4 text-gray-900">
-            {t.speakersTitle}
-          </h2>
-          <p className="text-lg sm:text-xl text-gray-600 text-center mb-12 sm:mb-16 font-overpass-regular">
-            {t.speakersSubtitle}
-          </p>
-
-          <div className="space-y-6 md:space-y-0">
-            {/* Mobile Layout */}
-            <div className="block md:hidden space-y-6">
-              {/* First row - 1 judge (large) */}
-              <div className="flex justify-center">
-                <Link href="/judges/okan-kulkoyluoglu">
-                  <div className="text-center bg-white rounded-xl p-4 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 w-full max-w-xs cursor-pointer hover:scale-105">
-                    <div className="relative mb-4">
-                      <Image
-                        src={judges[0].avatar || "/placeholder.svg"}
-                        alt={judges[0].name}
-                        width={200}
-                        height={200}
-                        className="rounded-2xl mx-auto transition-all duration-300 object-cover w-full max-w-[200px] h-[200px]"
-                      />
-                    </div>
-                    <h3 className="font-fira-bold mb-2 text-gray-900 text-xl">{judges[0].name}</h3>
-                    <p className="text-gray-600 font-overpass-regular text-base">{judges[0].role}</p>
-                    <p className="text-blue-600 font-overpass-regular text-sm mt-2">Detayları Görüntüle →</p>
-                  </div>
-                </Link>
-              </div>
-
-              {/* Second row - 2 judges */}
-              <div className="flex justify-center gap-4">
-                {judges.slice(1, 3).map((judge, index) => (
-                  <div
-                    key={index + 1}
-                    className="text-center bg-white rounded-xl p-4 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 w-full max-w-xs"
-                  >
-                    <div className="relative mb-4">
-                      <Image
-                        src={judge.avatar || "/placeholder.svg"}
-                        alt={judge.name}
-                        width={200}
-                        height={200}
-                        className="rounded-2xl mx-auto transition-all duration-300 object-cover w-full max-w-[120px] h-[120px]"
-                      />
-                    </div>
-                    <h3 className="font-fira-bold mb-2 text-gray-900 text-base">{judge.name}</h3>
-                    <p className="text-gray-600 font-overpass-regular text-xs">{judge.role}</p>
-                  </div>
-                ))}
-              </div>
-
-              {/* Third row - 2 judges */}
-              <div className="flex justify-center gap-4">
-                {judges.slice(3, 5).map((judge, index) => (
-                  <div
-                    key={index + 3}
-                    className="text-center bg-white rounded-xl p-4 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 w-full max-w-xs"
-                  >
-                    <div className="relative mb-4">
-                      <Image
-                        src={judge.avatar || "/placeholder.svg"}
-                        alt={judge.name}
-                        width={200}
-                        height={200}
-                        className="rounded-2xl mx-auto transition-all duration-300 object-cover w-full max-w-[120px] h-[120px]"
-                      />
-                    </div>
-                    <h3 className="font-fira-bold mb-2 text-gray-900 text-base">{judge.name}</h3>
-                    <p className="text-gray-600 font-overpass-regular text-xs">{judge.role}</p>
-                  </div>
-                ))}
-              </div>
+                </div>
+              ))}
             </div>
+          </div>
+        </section>
+      )}
 
-            {/* Desktop Layout - All cards same size */}
-            <div className="hidden md:grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
-              {judges.map((judge, index) => (
-                index === 0 ? (
-                  <Link href="/judges/okan-kulkoyluoglu" key={index}>
-                    <div className="text-center bg-white rounded-xl p-4 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 cursor-pointer hover:scale-105">
+      {/* Judges Section - Conditional */}
+      {showJudges && (
+        <section id="speakers" className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 bg-white relative overflow-hidden">
+          {/* Background Pattern */}
+          <div
+            className="absolute inset-0 opacity-100"
+            style={{
+              backgroundImage: "url('https://assets.spaceappschallenge.org/media/images/rose-pattern.original.png')",
+              backgroundRepeat: "repeat",
+              backgroundSize: "auto",
+            }}
+          />
+
+          <div className="max-w-6xl mx-auto relative z-10">
+            <h2 className="text-4xl sm:text-5xl md:text-6xl font-fira-black text-center mb-4 text-gray-900">
+              {t.speakersTitle}
+            </h2>
+            <p className="text-lg sm:text-xl text-gray-600 text-center mb-12 sm:mb-16 font-overpass-regular">
+              {t.speakersSubtitle}
+            </p>
+
+            <div className="space-y-6 md:space-y-0">
+              {/* Mobile Layout */}
+              <div className="block md:hidden space-y-6">
+                {/* First row - 1 judge (large) */}
+                <div className="flex justify-center">
+                  <Link href="/judges/okan-kulkoyluoglu">
+                    <div className="text-center bg-white rounded-xl p-4 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 w-full max-w-xs cursor-pointer hover:scale-105">
+                      <div className="relative mb-4">
+                        <Image
+                          src={judges[0].avatar || "/placeholder.svg"}
+                          alt={judges[0].name}
+                          width={200}
+                          height={200}
+                          className="rounded-2xl mx-auto transition-all duration-300 object-cover w-full max-w-[200px] h-[200px]"
+                        />
+                      </div>
+                      <h3 className="font-fira-bold mb-2 text-gray-900 text-xl">{judges[0].name}</h3>
+                      <p className="text-gray-600 font-overpass-regular text-base">{judges[0].role}</p>
+                      <p className="text-blue-600 font-overpass-regular text-sm mt-2">Detayları Görüntüle →</p>
+                    </div>
+                  </Link>
+                </div>
+
+                {/* Second row - 2 judges */}
+                <div className="flex justify-center gap-4">
+                  {judges.slice(1, 3).map((judge, index) => (
+                    <div
+                      key={index + 1}
+                      className="text-center bg-white rounded-xl p-4 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 w-full max-w-xs"
+                    >
+                      <div className="relative mb-4">
+                        <Image
+                          src={judge.avatar || "/placeholder.svg"}
+                          alt={judge.name}
+                          width={200}
+                          height={200}
+                          className="rounded-2xl mx-auto transition-all duration-300 object-cover w-full max-w-[120px] h-[120px]"
+                        />
+                      </div>
+                      <h3 className="font-fira-bold mb-2 text-gray-900 text-base">{judge.name}</h3>
+                      <p className="text-gray-600 font-overpass-regular text-xs">{judge.role}</p>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Third row - 2 judges */}
+                <div className="flex justify-center gap-4">
+                  {judges.slice(3, 5).map((judge, index) => (
+                    <div
+                      key={index + 3}
+                      className="text-center bg-white rounded-xl p-4 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 w-full max-w-xs"
+                    >
+                      <div className="relative mb-4">
+                        <Image
+                          src={judge.avatar || "/placeholder.svg"}
+                          alt={judge.name}
+                          width={200}
+                          height={200}
+                          className="rounded-2xl mx-auto transition-all duration-300 object-cover w-full max-w-[120px] h-[120px]"
+                        />
+                      </div>
+                      <h3 className="font-fira-bold mb-2 text-gray-900 text-base">{judge.name}</h3>
+                      <p className="text-gray-600 font-overpass-regular text-xs">{judge.role}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Desktop Layout - All cards same size */}
+              <div className="hidden md:grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
+                {judges.map((judge, index) => (
+                  index === 0 ? (
+                    <Link href="/judges/okan-kulkoyluoglu" key={index}>
+                      <div className="text-center bg-white rounded-xl p-4 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 cursor-pointer hover:scale-105">
+                        <div className="relative mb-4">
+                          <Image
+                            src={judge.avatar || "/placeholder.svg"}
+                            alt={judge.name}
+                            width={200}
+                            height={200}
+                            className="rounded-2xl mx-auto transition-all duration-300 object-cover w-full max-w-[120px] h-[120px]"
+                          />
+                        </div>
+                        <h3 className="font-fira-bold mb-2 text-gray-900 text-lg">{judge.name}</h3>
+                        <p className="text-gray-600 font-overpass-regular text-sm">{judge.role}</p>
+                        <p className="text-blue-600 font-overpass-regular text-xs mt-2">Detayları Görüntüle →</p>
+                      </div>
+                    </Link>
+                  ) : (
+                    <div
+                      key={index}
+                      className="text-center bg-white rounded-xl p-4 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100"
+                    >
                       <div className="relative mb-4">
                         <Image
                           src={judge.avatar || "/placeholder.svg"}
@@ -731,32 +647,14 @@ export default function Page() {
                       </div>
                       <h3 className="font-fira-bold mb-2 text-gray-900 text-lg">{judge.name}</h3>
                       <p className="text-gray-600 font-overpass-regular text-sm">{judge.role}</p>
-                      <p className="text-blue-600 font-overpass-regular text-xs mt-2">Detayları Görüntüle →</p>
                     </div>
-                  </Link>
-                ) : (
-                  <div
-                    key={index}
-                    className="text-center bg-white rounded-xl p-4 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100"
-                  >
-                    <div className="relative mb-4">
-                      <Image
-                        src={judge.avatar || "/placeholder.svg"}
-                        alt={judge.name}
-                        width={200}
-                        height={200}
-                        className="rounded-2xl mx-auto transition-all duration-300 object-cover w-full max-w-[120px] h-[120px]"
-                      />
-                    </div>
-                    <h3 className="font-fira-bold mb-2 text-gray-900 text-lg">{judge.name}</h3>
-                    <p className="text-gray-600 font-overpass-regular text-sm">{judge.role}</p>
-                  </div>
-                )
-              ))}
+                  )
+                ))}
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* Awards Section - Conditional */}
       {showAwards && (
@@ -844,52 +742,54 @@ export default function Page() {
         </section>
       )}
 
-      {/* FAQs Section - Modified background color based on awards visibility */}
-      <section id="faqs" className={`py-16 sm:py-20 px-4 sm:px-6 lg:px-8 ${showAwards ? 'bg-white' : ''}`}>
-        <div className="max-w-6xl mx-auto">
-          <h2 className={`text-4xl sm:text-5xl md:text-6xl font-fira-black text-center mb-12 sm:mb-16 ${showAwards ? 'text-gray-900' : 'text-white'}`}>
-            {t.faqsTitle}
-          </h2>
+      {/* FAQs Section - Conditional */}
+      {showFaqs && (
+        <section id="faqs" className={`py-16 sm:py-20 px-4 sm:px-6 lg:px-8 ${showAwards ? 'bg-white' : ''}`}>
+          <div className="max-w-6xl mx-auto">
+            <h2 className={`text-4xl sm:text-5xl md:text-6xl font-fira-black text-center mb-12 sm:mb-16 ${showAwards ? 'text-gray-900' : 'text-white'}`}>
+              {t.faqsTitle}
+            </h2>
 
-          <div className="space-y-4">
-            {faqs.map((faq, index) => (
-              <div key={index} className={`border rounded-lg overflow-hidden ${showAwards ? 'border-gray-300 bg-white' : 'border-gray-700'}`}>
-                <button
-                  onClick={() => toggleFaq(index)}
-                  className={`w-full px-4 sm:px-6 py-4 sm:py-5 text-left flex items-center justify-between transition-colors ${
-                    showAwards 
-                      ? 'hover:bg-gray-50 text-gray-900' 
-                      : 'hover:bg-gray-800/50 text-white'
-                  }`}
-                >
-                  <h3 className={`text-lg sm:text-xl font-fira-bold pr-4 ${showAwards ? 'text-gray-900' : 'text-white'}`}>
-                    {language === "tr" ? faq.question : faq.questionEn}
-                  </h3>
-                  {openFaq === index ? (
-                    <ChevronUp className={`w-5 h-5 flex-shrink-0 ${showAwards ? 'text-gray-600' : 'text-gray-400'}`} />
-                  ) : (
-                    <ChevronDown className={`w-5 h-5 flex-shrink-0 ${showAwards ? 'text-gray-600' : 'text-gray-400'}`} />
+            <div className="space-y-4">
+              {faqs.map((faq, index) => (
+                <div key={index} className={`border rounded-lg overflow-hidden ${showAwards ? 'border-gray-300 bg-white' : 'border-gray-700'}`}>
+                  <button
+                    onClick={() => toggleFaq(index)}
+                    className={`w-full px-4 sm:px-6 py-4 sm:py-5 text-left flex items-center justify-between transition-colors ${
+                      showAwards 
+                        ? 'hover:bg-gray-50 text-gray-900' 
+                        : 'hover:bg-gray-800/50 text-white'
+                    }`}
+                  >
+                    <h3 className={`text-lg sm:text-xl font-fira-bold pr-4 ${showAwards ? 'text-gray-900' : 'text-white'}`}>
+                      {language === "tr" ? faq.question : faq.questionEn}
+                    </h3>
+                    {openFaq === index ? (
+                      <ChevronUp className={`w-5 h-5 flex-shrink-0 ${showAwards ? 'text-gray-600' : 'text-gray-400'}`} />
+                    ) : (
+                      <ChevronDown className={`w-5 h-5 flex-shrink-0 ${showAwards ? 'text-gray-600' : 'text-gray-400'}`} />
+                    )}
+                  </button>
+                  {openFaq === index && (
+                    <div className="px-4 sm:px-6 pb-4 sm:pb-5">
+                      <p className={`font-overpass-regular leading-relaxed text-sm sm:text-base ${
+                        showAwards ? 'text-gray-700' : 'text-gray-300'
+                      }`}>
+                        {language === "tr" ? faq.answer : faq.answerEn}
+                      </p>
+                    </div>
                   )}
-                </button>
-                {openFaq === index && (
-                  <div className="px-4 sm:px-6 pb-4 sm:pb-5">
-                    <p className={`font-overpass-regular leading-relaxed text-sm sm:text-base ${
-                      showAwards ? 'text-gray-700' : 'text-gray-300'
-                    }`}>
-                      {language === "tr" ? faq.answer : faq.answerEn}
-                    </p>
-                  </div>
-                )}
-              </div>
-            ))}
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* Footer */}
       <Footer translations={t} language={language} setLanguage={setLanguage} />
       
-      {/* Cookie Notice - Fixed to bottom */}
+      {/* Cookie Notice - Conditional */}
       {showCookieNotice && (
         <div className="fixed inset-x-0 w-11/12 p-4 mx-auto space-y-1 rounded-lg shadow-lg select-none bottom-4 lg:w-1/4 ring-1 ring-white/20 lg:mx-0 lg:left-4 bg-white/10 backdrop-blur-xl z-50">
           <div className="flex items-center justify-between gap-2">
