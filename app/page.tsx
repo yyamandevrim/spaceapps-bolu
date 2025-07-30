@@ -186,7 +186,7 @@ const agendaItems = [
 
 const judges = [
   {
-    name: "Dr. Amanda Rodriguez",
+    name: "Prof. Dr. Okan Külköylüoğlu",
     role: "NASA Ames Research Center",
     avatar: "https://picsum.photos/id/1005/200/200",
   },
@@ -243,9 +243,9 @@ const faqs = [
     question: "Kimler katılabilir?",
     questionEn: "Who can participate?",
     answer:
-      "Space Apps Challenge, yazılım geliştiriciler, tasarımcılar, mühendisler ve uzay teknolojisi ile ilgilenen herkes için uygundur.",
+      "Space Apps Challenge, 7'den 70'e meraklılar, yazılım geliştiriciler, tasarımcılar, mühendisler ve uzay teknolojisi ile ilgilenen herkes için uygundur.",
     answerEn:
-      "Space Apps Challenge is perfect for software developers, designers, engineers, and anyone interested in space technology.",
+      "Space Apps Challenge is perfect for everyone without age limits who are curious, software developers, designers, engineers, and anyone interested in space technology.",
   },
 ]
 
@@ -682,30 +682,77 @@ export default function Page() {
             {t.speakersSubtitle}
           </p>
 
-          <div className="space-y-6">
-            {/* First row - 1 judge */}
-            <div className="flex justify-center">
-              <div className="text-center bg-white rounded-xl p-4 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 w-full max-w-xs">
-                <div className="relative mb-4">
-                  <Image
-                    src={judges[0].avatar || "/placeholder.svg"}
-                    alt={judges[0].name}
-                    width={200}
-                    height={200}
-                    className="rounded-2xl mx-auto transition-all duration-300 object-cover w-full max-w-[200px] h-[200px] sm:max-w-[120px] sm:h-[120px]"
-                  />
+          <div className="space-y-6 md:space-y-0">
+            {/* Mobile Layout */}
+            <div className="block md:hidden space-y-6">
+              {/* First row - 1 judge (large) */}
+              <div className="flex justify-center">
+                <div className="text-center bg-white rounded-xl p-4 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 w-full max-w-xs">
+                  <div className="relative mb-4">
+                    <Image
+                      src={judges[0].avatar || "/placeholder.svg"}
+                      alt={judges[0].name}
+                      width={200}
+                      height={200}
+                      className="rounded-2xl mx-auto transition-all duration-300 object-cover w-full max-w-[200px] h-[200px]"
+                    />
+                  </div>
+                  <h3 className="font-fira-bold mb-2 text-gray-900 text-xl">{judges[0].name}</h3>
+                  <p className="text-gray-600 font-overpass-regular text-base">{judges[0].role}</p>
                 </div>
-                <h3 className="font-fira-bold mb-2 text-gray-900 text-xl sm:text-lg">{judges[0].name}</h3>
-                <p className="text-gray-600 font-overpass-regular text-base sm:text-sm">{judges[0].role}</p>
+              </div>
+
+              {/* Second row - 2 judges */}
+              <div className="flex justify-center gap-4">
+                {judges.slice(1, 3).map((judge, index) => (
+                  <div
+                    key={index + 1}
+                    className="text-center bg-white rounded-xl p-4 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 w-full max-w-xs"
+                  >
+                    <div className="relative mb-4">
+                      <Image
+                        src={judge.avatar || "/placeholder.svg"}
+                        alt={judge.name}
+                        width={200}
+                        height={200}
+                        className="rounded-2xl mx-auto transition-all duration-300 object-cover w-full max-w-[120px] h-[120px]"
+                      />
+                    </div>
+                    <h3 className="font-fira-bold mb-2 text-gray-900 text-base">{judge.name}</h3>
+                    <p className="text-gray-600 font-overpass-regular text-xs">{judge.role}</p>
+                  </div>
+                ))}
+              </div>
+
+              {/* Third row - 2 judges */}
+              <div className="flex justify-center gap-4">
+                {judges.slice(3, 5).map((judge, index) => (
+                  <div
+                    key={index + 3}
+                    className="text-center bg-white rounded-xl p-4 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 w-full max-w-xs"
+                  >
+                    <div className="relative mb-4">
+                      <Image
+                        src={judge.avatar || "/placeholder.svg"}
+                        alt={judge.name}
+                        width={200}
+                        height={200}
+                        className="rounded-2xl mx-auto transition-all duration-300 object-cover w-full max-w-[120px] h-[120px]"
+                      />
+                    </div>
+                    <h3 className="font-fira-bold mb-2 text-gray-900 text-base">{judge.name}</h3>
+                    <p className="text-gray-600 font-overpass-regular text-xs">{judge.role}</p>
+                  </div>
+                ))}
               </div>
             </div>
 
-            {/* Second row - 2 judges */}
-            <div className="flex justify-center gap-4 sm:gap-6">
-              {judges.slice(1, 3).map((judge, index) => (
+            {/* Desktop Layout - All cards same size */}
+            <div className="hidden md:grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
+              {judges.map((judge, index) => (
                 <div
-                  key={index + 1}
-                  className="text-center bg-white rounded-xl p-4 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 w-full max-w-xs"
+                  key={index}
+                  className="text-center bg-white rounded-xl p-4 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100"
                 >
                   <div className="relative mb-4">
                     <Image
@@ -716,30 +763,8 @@ export default function Page() {
                       className="rounded-2xl mx-auto transition-all duration-300 object-cover w-full max-w-[120px] h-[120px]"
                     />
                   </div>
-                  <h3 className="font-fira-bold mb-2 text-gray-900 text-base sm:text-lg">{judge.name}</h3>
-                  <p className="text-gray-600 font-overpass-regular text-xs sm:text-sm">{judge.role}</p>
-                </div>
-              ))}
-            </div>
-
-            {/* Third row - 2 judges */}
-            <div className="flex justify-center gap-4 sm:gap-6">
-              {judges.slice(3, 5).map((judge, index) => (
-                <div
-                  key={index + 3}
-                  className="text-center bg-white rounded-xl p-4 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 w-full max-w-xs"
-                >
-                  <div className="relative mb-4">
-                    <Image
-                      src={judge.avatar || "/placeholder.svg"}
-                      alt={judge.name}
-                      width={200}
-                      height={200}
-                      className="rounded-2xl mx-auto transition-all duration-300 object-cover w-full max-w-[120px] h-[120px]"
-                    />
-                  </div>
-                  <h3 className="font-fira-bold mb-2 text-gray-900 text-base sm:text-lg">{judge.name}</h3>
-                  <p className="text-gray-600 font-overpass-regular text-xs sm:text-sm">{judge.role}</p>
+                  <h3 className="font-fira-bold mb-2 text-gray-900 text-lg">{judge.name}</h3>
+                  <p className="text-gray-600 font-overpass-regular text-sm">{judge.role}</p>
                 </div>
               ))}
             </div>
