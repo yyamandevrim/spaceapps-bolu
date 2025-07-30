@@ -20,7 +20,8 @@ export default function Page() {
   const [openMonth, setOpenMonth] = useState<number | null>(null)
   const [heroBackground, setHeroBackground] = useState<string>("")
   const [showLocation, setShowLocation] = useState<boolean>(false)
-  const [showAwards, setShowAwards] = useState<boolean>(false) // Add this state for awards visibility
+  const [showAwards, setShowAwards] = useState<boolean>(false)
+  const [showCookieNotice, setShowCookieNotice] = useState<boolean>(true) // Add this state
   const t = translations[language]
 
   const toggleFaq = (index: number) => {
@@ -693,6 +694,30 @@ export default function Page() {
 
       {/* Footer */}
       <Footer translations={t} language={language} setLanguage={setLanguage} />
+      
+      {/* Cookie Notice - Fixed to bottom */}
+      {showCookieNotice && (
+        <div className="fixed inset-x-0 w-11/12 p-4 mx-auto space-y-1 rounded-xl shadow-lg select-none bottom-4 lg:w-1/4 ring-1 ring-white/20 lg:mx-0 lg:left-4 bg-white/10 backdrop-blur-xl z-50">
+          <div className="flex items-center justify-between gap-2">
+            <h3 className="font-medium leading-tight text-white font-fira-bold">
+              {language === "tr" ? "Çerezler 🍪" : "Cookies 🍪"}
+            </h3>
+            <button 
+              onClick={() => setShowCookieNotice(false)}
+              className="p-1 transition-colors rounded-xl hover:bg-white/20 bg-white/10 text-white"
+            >
+              <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
+              </svg>
+            </button>
+          </div>
+          <p className="text-sm text-white/80 font-overpass-regular">
+            {language === "tr" 
+              ? "Deneyiminizi daha da iyi hale getirmek için çerezler kullanıyoruz." 
+              : "We use cookies to make your experience here even better."}
+          </p>
+        </div>
+      )}
     </div>
   )
 }
