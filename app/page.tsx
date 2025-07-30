@@ -732,3 +732,5 @@ export default function Page() {
     </div>
   )
 }
+
+// COPYRIGHT 2025
