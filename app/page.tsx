@@ -7,6 +7,7 @@
 
 import type React from "react"
 import { useState, useEffect } from "react"
+import { useRouter } from "next/navigation"
 
 import { Button } from "@/components/ui/button"
 import { Header } from "@/components/Header"
@@ -16,7 +17,7 @@ import { agendaItems } from "@/lib/agenda"
 import { judges } from "@/lib/judges"
 import { faqs } from "@/lib/faqs"
 import Image from "next/image"
-import { ChevronDown, ChevronUp } from "lucide-react"
+import { ChevronDown, ChevronUp, Settings, X } from "lucide-react"
 import Link from "next/link"
 
 export default function Page() {
@@ -26,8 +27,45 @@ export default function Page() {
   const [heroBackground, setHeroBackground] = useState<string>("")
   const [showLocation, setShowLocation] = useState<boolean>(false)
   const [showAwards, setShowAwards] = useState<boolean>(false)
-  const [showCookieNotice, setShowCookieNotice] = useState<boolean>(false) // Start with false
+  const [showCookieNotice, setShowCookieNotice] = useState<boolean>(false)
+  
+  // Config menu states
+  const [showConfigMenu, setShowConfigMenu] = useState<boolean>(false)
+  const [commandSequence, setCommandSequence] = useState<string>("")
+  
   const t = translations[language]
+
+  // Command sequence detection
+  useEffect(() => {
+    const handleKeyPress = (event: KeyboardEvent) => {
+      const newSequence = commandSequence + event.key.toLowerCase()
+      setCommandSequence(newSequence)
+      
+      // Check for config command: "config2025"
+      if (newSequence.includes("config2025")) {
+        setShowConfigMenu(true)
+        setCommandSequence("")
+      }
+      
+      // Reset sequence if it gets too long
+      if (newSequence.length > 20) {
+        setCommandSequence("")
+      }
+    }
+
+    window.addEventListener('keydown', handleKeyPress)
+    return () => window.removeEventListener('keydown', handleKeyPress)
+  }, [commandSequence])
+
+  // Reset command sequence after 3 seconds of inactivity
+  useEffect(() => {
+    if (commandSequence.length > 0) {
+      const timer = setTimeout(() => {
+        setCommandSequence("")
+      }, 3000)
+      return () => clearTimeout(timer)
+    }
+  }, [commandSequence])
 
   // Check if cookie notice was previously dismissed
   useEffect(() => {
@@ -41,6 +79,40 @@ export default function Page() {
   const dismissCookieNotice = () => {
     setShowCookieNotice(false)
     localStorage.setItem('cookieNoticeDismissed', 'true')
+  }
+
+  // Config menu functions
+  const saveConfig = () => {
+    const config = {
+      language,
+      showLocation,
+      showAwards,
+      showCookieNotice
+    }
+    localStorage.setItem('siteConfig', JSON.stringify(config))
+    alert('Configuration saved!')
+  }
+
+  const loadConfig = () => {
+    const savedConfig = localStorage.getItem('siteConfig')
+    if (savedConfig) {
+      const config = JSON.parse(savedConfig)
+      setLanguage(config.language || 'tr')
+      setShowLocation(config.showLocation || false)
+      setShowAwards(config.showAwards || false)
+      setShowCookieNotice(config.showCookieNotice || false)
+      alert('Configuration loaded!')
+    }
+  }
+
+  const resetConfig = () => {
+    setLanguage('tr')
+    setShowLocation(false)
+    setShowAwards(false)
+    setShowCookieNotice(false)
+    localStorage.removeItem('siteConfig')
+    localStorage.removeItem('cookieNoticeDismissed')
+    alert('Configuration reset!')
   }
 
   const toggleFaq = (index: number) => {
@@ -64,6 +136,109 @@ export default function Page() {
 
   return (
     <div className="min-h-screen text-white" style={{ backgroundColor: "var(--bg-primary)" }}>
+      {/* Config Menu Modal */}
+      {showConfigMenu && (
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[100] flex items-center justify-center p-4">
+          <div className="bg-gray-900 rounded-lg border border-gray-700 p-6 w-full max-w-md">
+            <div className="flex items-center justify-between mb-6">
+              <div className="flex items-center gap-2">
+                <Settings className="w-5 h-5 text-blue-400" />
+                <h2 className="text-xl font-fira-bold text-white">Admin Config</h2>
+              </div>
+              <button
+                onClick={() => setShowConfigMenu(false)}
+                className="p-1 hover:bg-gray-800 rounded transition-colors"
+              >
+                <X className="w-5 h-5 text-gray-400" />
+              </button>
+            </div>
+
+            <div className="space-y-6">
+              {/* Language Selection */}
+              <div>
+                <label className="block text-sm font-medium text-gray-300 mb-2">
+                  Language / Dil
+                </label>
+                <select
+                  value={language}
+                  onChange={(e) => setLanguage(e.target.value as Language)}
+                  className="w-full bg-gray-800 border border-gray-700 rounded-lg px-3 py-2 text-white"
+                >
+                  <option value="tr">Türkçe</option>
+                  <option value="en">English</option>
+                </select>
+              </div>
+
+              {/* Toggle Options */}
+              <div className="space-y-4">
+                <h3 className="text-sm font-medium text-gray-300">Toggle Sections</h3>
+                
+                <label className="flex items-center justify-between">
+                  <span className="text-sm text-gray-300">Show Location Section</span>
+                  <input
+                    type="checkbox"
+                    checked={showLocation}
+                    onChange={(e) => setShowLocation(e.target.checked)}
+                    className="w-4 h-4 text-blue-600 bg-gray-800 border-gray-600 rounded focus:ring-blue-500"
+                  />
+                </label>
+
+                <label className="flex items-center justify-between">
+                  <span className="text-sm text-gray-300">Show Awards Section</span>
+                  <input
+                    type="checkbox"
+                    checked={showAwards}
+                    onChange={(e) => setShowAwards(e.target.checked)}
+                    className="w-4 h-4 text-blue-600 bg-gray-800 border-gray-600 rounded focus:ring-blue-500"
+                  />
+                </label>
+
+                <label className="flex items-center justify-between">
+                  <span className="text-sm text-gray-300">Show Cookie Notice</span>
+                  <input
+                    type="checkbox"
+                    checked={showCookieNotice}
+                    onChange={(e) => setShowCookieNotice(e.target.checked)}
+                    className="w-4 h-4 text-blue-600 bg-gray-800 border-gray-600 rounded focus:ring-blue-500"
+                  />
+                </label>
+              </div>
+
+              {/* Action Buttons */}
+              <div className="space-y-2 pt-4 border-t border-gray-700">
+                <button
+                  onClick={saveConfig}
+                  className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg transition-colors"
+                >
+                  Save Configuration
+                </button>
+                
+                <div className="flex gap-2">
+                  <button
+                    onClick={loadConfig}
+                    className="flex-1 bg-gray-700 hover:bg-gray-600 text-white py-2 px-4 rounded-lg transition-colors"
+                  >
+                    Load Saved
+                  </button>
+                  <button
+                    onClick={resetConfig}
+                    className="flex-1 bg-red-600 hover:bg-red-700 text-white py-2 px-4 rounded-lg transition-colors"
+                  >
+                    Reset All
+                  </button>
+                </div>
+              </div>
+
+              {/* Info */}
+              <div className="text-xs text-gray-500 bg-gray-800 p-3 rounded">
+                <p><strong>Access Command:</strong> Type "config2025" anywhere on the page</p>
+                <p><strong>Current Sequence:</strong> {commandSequence || 'None'}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Header */}
       <Header translations={t} />
 
