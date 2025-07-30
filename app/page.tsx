@@ -72,7 +72,7 @@ const translations = {
     contentHub: "Content Hub",
     collections: "Collections",
     guidesReports: "Guides & Reports",
-    copyright: "© 2025 Space Apps Challenge. All rights reserved.",
+    copyright: "© 2025 NASA Space Apps Bolu. All rights reserved. NASA Space Apps Challenge is a trademark of NASA.",
     language: "Language",
     turkish: "Türkçe",
     english: "English",
