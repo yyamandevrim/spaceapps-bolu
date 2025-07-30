@@ -62,31 +62,29 @@ export default function OkanKulkoyluogluPage() {
             <h2 className="text-2xl sm:text-3xl font-fira-black text-white mb-6">
               Biyografi
             </h2>
-            
             <div className="text-white/90 font-overpass-regular space-y-6">
               <p>
-                Prof. Dr. Okan Külköylüoğlu, Bolu Abant İzzet Baysal Üniversitesi Biyoloji Bölümü'nde öğretim üyesi olarak görev yapmaktadır. 
-                Hidrobiyoloji ve Ostrakoda (kabuklu mikroorganizmalar) alanlarında uzmanlaşmış olan Külköylüoğlu, 
-                uluslararası düzeyde tanınan bir bilim insanıdır.
+                Prof. Dr. Okan Külköylüoğlu, tatlı su ekosistemleri bilimi olan limnoloji alanında Türkiye’nin önde gelen bilim insanlarından biridir. Bolu Abant İzzet Baysal Üniversitesi Fen-Edebiyat Fakültesi Biyoloji Bölümü Başkanı olan Külköylüoğlu, özellikle ostrakod (mikroskobik kabuklu canlılar) üzerine yaptığı araştırmalarla ulusal ve uluslararası alanda tanınmaktadır.
               </p>
 
               <p>
-                Akademik kariyeri boyunca su ekosistemleri, biyoçeşitlilik ve çevre bilimleri konularında 
-                çok sayıda araştırma projesine imza atmıştır. Özellikle tatlı su ortamlarındaki mikroorganizmaların 
-                ekolojisi ve sistematik sınıflandırması konularında öncü çalışmalar yapmıştır.
+                Akademik hayatı boyunca TÜBİTAK Proje Performans Ödülü, TEMA Eğitim ve Hizmet Ödülü, Çevre Bilim Ödülü gibi çok sayıda prestijli ödüle layık görülmüştür. 2017–2018 yılları arasında Fulbright bursu ile Texas State University’de araştırmacı profesör olarak görev yapmış; burada yaptığı saha çalışmaları sonucu bilim dünyasına yedi yeni ostrakod türü ve yedi yeni cins kazandırmıştır. Aynı zamanda Türkiye Limnoloji Derneği’nin kurucu başkanıdır.
               </p>
 
               <p>
-                Uluslararası bilimsel dergilerde yayımlanmış 100'den fazla makaleye sahip olan Prof. Dr. Külköylüoğlu, 
-                aynı zamanda birçok bilimsel projenin yürütücülüğünü üstlenmiştir. Çevre koruma ve sürdürülebilir 
-                kalkınma konularındaki hassasiyeti ile tanınan akademisyen, genç bilim insanlarının yetiştirilmesinde 
-                de önemli katkılar sağlamaktadır.
+                Bu yıl 14.sü düzenlenen ve Türkiye’deki limnoloji camiası açısından önemli bir yeri olan SEFS14 (Symposium for European Freshwater Sciences) etkinliğinin ana organizatörü olarak, su bilimine gönül veren pek çok akademisyeni ve öğrenciyi bir araya getirmiştir.
               </p>
 
               <p>
-                NASA Space Apps Challenge Bolu etkinliğinde jüri heyeti başkanlığını üstlenen Prof. Dr. Külköylüoğlu, 
-                uzay bilimleri ve teknolojisi alanındaki projelerin değerlendirilmesinde bilimsel deneyimini 
-                katılımcılarla paylaşmaya devam etmektedir.
+                Su ekosistemleri, biyoçeşitlilik ve çevre bilimleri konularında çok sayıda araştırma projesine imza atmış; özellikle tatlı su ortamlarındaki mikroorganizmaların ekolojisi ve sistematik sınıflandırması üzerine öncü çalışmalar yürütmüştür.
+              </p>
+
+              <p>
+                Uluslararası bilimsel dergilerde yayımlanmış 100'den fazla makaleye sahip olan Prof. Dr. Külköylüoğlu, aynı zamanda birçok bilimsel projenin yürütücülüğünü üstlenmiştir. Çevre koruma ve sürdürülebilir kalkınma konularındaki hassasiyeti ile tanınan akademisyen, genç bilim insanlarının yetiştirilmesinde de önemli katkılar sağlamaktadır.
+              </p>
+
+              <p>
+                NASA Space Apps Challenge Bolu etkinliğinde jüri heyeti başkanlığını üstlenen Prof. Dr. Külköylüoğlu, uzay bilimleri ve teknolojisi alanındaki projelerin değerlendirilmesinde bilimsel deneyimini katılımcılarla paylaşmaya devam etmektedir.
               </p>
 
               <h3 className="text-xl font-overpass-bold text-yellow-400 mt-8 mb-4">
@@ -113,6 +111,7 @@ export default function OkanKulkoyluogluPage() {
               </ul>
             </div>
           </div>
+
 
           {/* Contact Section */}
           <div className="bg-white/10 backdrop-blur-md rounded-2xl p-8 sm:p-12 mt-8">
