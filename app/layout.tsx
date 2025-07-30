@@ -2,6 +2,7 @@ import type React from "react"
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import "./globals.css"
+import { Analytics } from "@vercel/analytics/next"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -24,6 +25,7 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;700;900&family=Overpass:ital,wght@0,400;0,700;1,400&display=swap"
           rel="stylesheet"
         />
+        <Analytics/>
       </head>
       <body className={inter.className}>{children}</body>
     </html>
