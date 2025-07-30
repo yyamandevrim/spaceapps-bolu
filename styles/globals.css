@@ -10,6 +10,26 @@
 
 @layer base {
   :root {
+    --brand-white: #fff;
+    --brand-black: #000;
+    --brand-gray: #eee;
+    --brand-nearblack: #1b1b1b;
+    --brand-nearblack-transparent: #1b1b1bf5;
+    --brand-deepblue: #151622;
+    --brand-electricblue: #1b2b85;
+    --brand-electricblue-a: #1b2b8585;
+    --brand-neonblue: #0050d8;
+    --brand-blueyonder: #2491ff;
+    --brand-neonyellow: #e7f434;
+    --brand-oxideorange: #ff5804;
+    --brand-nasared: #e52207;
+    --brand-martianred: #8b0a03;
+    --brand-slategray: #3d4551;
+    --brand-claygray: #8d9297;
+    --brand-cloudgray: #dfe1e2;
+    --brand-gradiant_blue: linear-gradient(178.97deg,#0050d8 0.88%,#1b2b85 99.12%);
+    --brand-gradiant_darkblue: linear-gradient(97.96deg,#0050d8,#1b2b85);
+    --brand-gradiant_blue_vert: linear-gradient(132.76deg,#0042a6,#0042a5 6.67%,#0040a2 13.33%,#013e9e 20%,#013c97 26.67%,#02388e 33.33%,#023484 40%,#032f78 46.67%,#042a6d 53.33%,#052561 60%,#052157 66.67%,#061d4e 73.33%,#061b47 80%,#071943 86.67%,#071740 93.33%,#07173f);
     --background: 0 0% 100%;
     --foreground: 0 0% 3.9%;
     --card: 0 0% 100%;
