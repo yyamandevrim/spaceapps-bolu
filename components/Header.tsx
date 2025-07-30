@@ -78,7 +78,7 @@ export function Header({ translations }: HeaderProps) {
       <Button 
         className="px-4 sm:px-6 py-2 rounded-lg font-overpass-bold text-black text-sm lg:text-base" 
         style={{ backgroundColor: "var(--accent-yellow)" }}
-        onClick={() => window.open('https://www.spaceappschallenge.org/2025/local-events/bolu/', '_blank')}
+        onClick={() => window.open('https://demo.bolu.spaceapps.tr/redirect/register', '_blank')}
       >
         {t.registerNow}
       </Button>
