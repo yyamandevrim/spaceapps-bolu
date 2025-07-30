@@ -12,6 +12,7 @@ import { faqs } from "@/lib/faqs"
 import Image from "next/image"
 import { useState } from "react"
 import { ChevronDown, ChevronUp } from "lucide-react"
+import Link from "next/link"
 
 export default function Page() {
   const [language, setLanguage] = useState<Language>("tr")
@@ -454,19 +455,22 @@ export default function Page() {
             <div className="block md:hidden space-y-6">
               {/* First row - 1 judge (large) */}
               <div className="flex justify-center">
-                <div className="text-center bg-white rounded-xl p-4 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 w-full max-w-xs">
-                  <div className="relative mb-4">
-                    <Image
-                      src={judges[0].avatar || "/placeholder.svg"}
-                      alt={judges[0].name}
-                      width={200}
-                      height={200}
-                      className="rounded-2xl mx-auto transition-all duration-300 object-cover w-full max-w-[200px] h-[200px]"
-                    />
+                <Link href="/judges/okan-kulkoyluoglu">
+                  <div className="text-center bg-white rounded-xl p-4 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 w-full max-w-xs cursor-pointer hover:scale-105">
+                    <div className="relative mb-4">
+                      <Image
+                        src={judges[0].avatar || "/placeholder.svg"}
+                        alt={judges[0].name}
+                        width={200}
+                        height={200}
+                        className="rounded-2xl mx-auto transition-all duration-300 object-cover w-full max-w-[200px] h-[200px]"
+                      />
+                    </div>
+                    <h3 className="font-fira-bold mb-2 text-gray-900 text-xl">{judges[0].name}</h3>
+                    <p className="text-gray-600 font-overpass-regular text-base">{judges[0].role}</p>
+                    <p className="text-blue-600 font-overpass-regular text-sm mt-2">Detayları Görüntüle →</p>
                   </div>
-                  <h3 className="font-fira-bold mb-2 text-gray-900 text-xl">{judges[0].name}</h3>
-                  <p className="text-gray-600 font-overpass-regular text-base">{judges[0].role}</p>
-                </div>
+                </Link>
               </div>
 
               {/* Second row - 2 judges */}
@@ -517,22 +521,41 @@ export default function Page() {
             {/* Desktop Layout - All cards same size */}
             <div className="hidden md:grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
               {judges.map((judge, index) => (
-                <div
-                  key={index}
-                  className="text-center bg-white rounded-xl p-4 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100"
-                >
-                  <div className="relative mb-4">
-                    <Image
-                      src={judge.avatar || "/placeholder.svg"}
-                      alt={judge.name}
-                      width={200}
-                      height={200}
-                      className="rounded-2xl mx-auto transition-all duration-300 object-cover w-full max-w-[120px] h-[120px]"
-                    />
+                index === 0 ? (
+                  <Link href="/judges/okan-kulkoyluoglu" key={index}>
+                    <div className="text-center bg-white rounded-xl p-4 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 cursor-pointer hover:scale-105">
+                      <div className="relative mb-4">
+                        <Image
+                          src={judge.avatar || "/placeholder.svg"}
+                          alt={judge.name}
+                          width={200}
+                          height={200}
+                          className="rounded-2xl mx-auto transition-all duration-300 object-cover w-full max-w-[120px] h-[120px]"
+                        />
+                      </div>
+                      <h3 className="font-fira-bold mb-2 text-gray-900 text-lg">{judge.name}</h3>
+                      <p className="text-gray-600 font-overpass-regular text-sm">{judge.role}</p>
+                      <p className="text-blue-600 font-overpass-regular text-xs mt-2">Detayları Görüntüle →</p>
+                    </div>
+                  </Link>
+                ) : (
+                  <div
+                    key={index}
+                    className="text-center bg-white rounded-xl p-4 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100"
+                  >
+                    <div className="relative mb-4">
+                      <Image
+                        src={judge.avatar || "/placeholder.svg"}
+                        alt={judge.name}
+                        width={200}
+                        height={200}
+                        className="rounded-2xl mx-auto transition-all duration-300 object-cover w-full max-w-[120px] h-[120px]"
+                      />
+                    </div>
+                    <h3 className="font-fira-bold mb-2 text-gray-900 text-lg">{judge.name}</h3>
+                    <p className="text-gray-600 font-overpass-regular text-sm">{judge.role}</p>
                   </div>
-                  <h3 className="font-fira-bold mb-2 text-gray-900 text-lg">{judge.name}</h3>
-                  <p className="text-gray-600 font-overpass-regular text-sm">{judge.role}</p>
-                </div>
+                )
               ))}
             </div>
           </div>
