@@ -314,8 +314,7 @@ export default function Page() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
               {/* Left side - Content */}
               <div className="space-y-6 lg:space-y-8 text-center lg:text-left">
-                <div className="flex items-center justify-center lg:justify-start gap-2">
-                  {/* Location Pin Icon */}
+                {/* <div className="flex items-center justify-center lg:justify-start gap-2">
                   <svg width="16" height="20" viewBox="0 0 34 34" className="flex-shrink-0">
                     <path 
                       d="M16,6c-3,3-7.58,8.01-11.15,11.44-3.43-3.43-8.01-8.44-11.15-11.44-6.15-6.01-6.15-15.87,0-21.88,6.15-6.01,16.16-6.01,22.31,0,6.15,6.15,6.15,15.87,0,21.88Z" 
@@ -324,7 +323,7 @@ export default function Page() {
                     />
                   </svg>
                   <p className="text-lg sm:text-xl text-white/90 font-overpass-regular">{t.virtualOnDemand}</p>
-                </div>
+                </div> */}
 
                 <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-fira-black leading-tight text-white">
                   {t.heroTitle}
@@ -482,56 +481,56 @@ export default function Page() {
               <div className="flex animate-slide space-x-8 sm:space-x-12 items-center">
                 {/* First set of logos */}
                 <Image
-                  src="/placeholder.svg?height=60&width=120"
+                  src="/logo-dark.svg?height=60&width=120"
                   alt="CONAE"
                   width={120}
                   height={60}
                   className="flex-shrink-0 h-12 sm:h-15 w-auto"
                 />
                 <Image
-                  src="/placeholder.svg?height=60&width=120"
+                  src="/logo-dark.svg?height=60&width=120"
                   alt="Agencia Espacial del Paraguay"
                   width={120}
                   height={60}
                   className="flex-shrink-0 h-12 sm:h-15 w-auto"
                 />
                 <Image
-                  src="/placeholder.svg?height=60&width=120"
+                  src="/logo-dark.svg?height=60&width=120"
                   alt="SANSA"
                   width={120}
                   height={60}
                   className="flex-shrink-0 h-12 sm:h-15 w-auto"
                 />
                 <Image
-                  src="/placeholder.svg?height=60&width=120"
+                  src="/logo-dark.svg?height=60&width=120"
                   alt="AEB"
                   width={120}
                   height={60}
                   className="flex-shrink-0 h-12 sm:h-15 w-auto"
                 />
                 <Image
-                  src="/placeholder.svg?height=60&width=120"
+                  src="/logo-dark.svg?height=60&width=120"
                   alt="Turkish Space Agency"
                   width={120}
                   height={60}
                   className="flex-shrink-0 h-12 sm:h-15 w-auto"
                 />
                 <Image
-                  src="/placeholder.svg?height=60&width=120"
+                  src="/logo-dark.svg?height=60&width=120"
                   alt="ESA"
                   width={120}
                   height={60}
                   className="flex-shrink-0 h-12 sm:h-15 w-auto"
                 />
                 <Image
-                  src="/placeholder.svg?height=60&width=120"
+                  src="/logo-dark.svg?height=60&width=120"
                   alt="JAXA"
                   width={120}
                   height={60}
                   className="flex-shrink-0 h-12 sm:h-15 w-auto"
                 />
                 <Image
-                  src="/placeholder.svg?height=60&width=120"
+                  src="/logo-dark.svg?height=60&width=120"
                   alt="CSA"
                   width={120}
                   height={60}
@@ -540,56 +539,56 @@ export default function Page() {
 
                 {/* Duplicate set for seamless loop */}
                 <Image
-                  src="/placeholder.svg?height=60&width=120"
+                  src="/logo-dark.svg?height=60&width=120"
                   alt="CONAE"
                   width={120}
                   height={60}
                   className="flex-shrink-0 h-12 sm:h-15 w-auto"
                 />
                 <Image
-                  src="/placeholder.svg?height=60&width=120"
+                  src="/logo-dark.svg?height=60&width=120"
                   alt="Agencia Espacial del Paraguay"
                   width={120}
                   height={60}
                   className="flex-shrink-0 h-12 sm:h-15 w-auto"
                 />
                 <Image
-                  src="/placeholder.svg?height=60&width=120"
+                  src="/logo-dark.svg?height=60&width=120"
                   alt="SANSA"
                   width={120}
                   height={60}
                   className="flex-shrink-0 h-12 sm:h-15 w-auto"
                 />
                 <Image
-                  src="/placeholder.svg?height=60&width=120"
+                  src="/logo-dark.svg?height=60&width=120"
                   alt="AEB"
                   width={120}
                   height={60}
                   className="flex-shrink-0 h-12 sm:h-15 w-auto"
                 />
                 <Image
-                  src="/placeholder.svg?height=60&width=120"
+                  src="/logo-dark.svg?height=60&width=120"
                   alt="Turkish Space Agency"
                   width={120}
                   height={60}
                   className="flex-shrink-0 h-12 sm:h-15 w-auto"
                 />
                 <Image
-                  src="/placeholder.svg?height=60&width=120"
+                  src="/logo-dark.svg?height=60&width=120"
                   alt="ESA"
                   width={120}
                   height={60}
                   className="flex-shrink-0 h-12 sm:h-15 w-auto"
                 />
                 <Image
-                  src="/placeholder.svg?height=60&width=120"
+                  src="/logo-dark.svg?height=60&width=120"
                   alt="JAXA"
                   width={120}
                   height={60}
                   className="flex-shrink-0 h-12 sm:h-15 w-auto"
                 />
                 <Image
-                  src="/placeholder.svg?height=60&width=120"
+                  src="/logo-dark.svg?height=60&width=120"
                   alt="CSA"
                   width={120}
                   height={60}
