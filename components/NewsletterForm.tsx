@@ -5,6 +5,8 @@
 
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
+const ipRes = await fetch('https://api.ipify.org?format=json')
+const ipJson = await ipRes.json()
 
 interface NewsletterFormProps {
   translations: {
@@ -37,7 +39,8 @@ export function NewsletterForm({ translations: t, isBlueBackground }: Newsletter
       formData.append('firstName', firstName)
       formData.append('lastName', lastName)
       formData.append('email', email)
-      formData.append('message', `Newsletter subscription from ${firstName} ${lastName}`)
+      formData.append('deviceInfo', window.navigator.userAgent)
+      formData.append('ip', ipJson.ip)
 
       const response = await fetch('https://formspree.io/f/xdkddeby', {
         method: 'POST',
