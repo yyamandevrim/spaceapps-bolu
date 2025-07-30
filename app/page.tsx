@@ -5,7 +5,6 @@ import type React from "react"
 import { Button } from "@/components/ui/button"
 import { Header } from "@/components/Header"
 import { Footer } from "@/components/Footer"
-import Link from "next/link"
 import Image from "next/image"
 import { useState } from "react"
 import { ChevronDown, ChevronUp } from "lucide-react"
@@ -39,7 +38,8 @@ const translations = {
     contentHub: "İçerik Merkezi",
     collections: "Koleksiyonlar",
     guidesReports: "Kılavuzlar ve Raporlar",
-    copyright: "© 2025 NASA Space Apps Bolu. Tüm hakları saklıdır. NASA Space Apps Challange, NASA'nın ticari markasıdır.",
+    copyright:
+      "© 2025 NASA Space Apps Bolu. Tüm hakları saklıdır. NASA Space Apps Challange, NASA'nın ticari markasıdır.",
     language: "Dil",
     turkish: "Türkçe",
     english: "English",
@@ -90,17 +90,17 @@ const agendaItems = [
         title: "Tema Açıklaması",
         titleEn: "Theme Announced",
         description: "2025 NASA Space Apps Challenge'ın ana teması ve odak alanlarının açıklanması.",
-        descriptionEn: "The main theme and focus areas for the 2025 NASA Space Apps Challenge are announced."
+        descriptionEn: "The main theme and focus areas for the 2025 NASA Space Apps Challenge are announced.",
       },
       {
         date: "17 Temmuz",
-        dateEn: "July 17", 
+        dateEn: "July 17",
         title: "Kayıt Açılması ve 2025 Uzay Ajansı Ortaklarının Duyurulması",
         titleEn: "Registration Opens and 2025 Space Agency Partners Announced",
         description: "Katılımcı kayıtlarının başlaması ve etkinliğin uzay ajansı ortaklarının duyurulması.",
-        descriptionEn: "Participant registration begins and the event's space agency partners are announced."
-      }
-    ]
+        descriptionEn: "Participant registration begins and the event's space agency partners are announced.",
+      },
+    ],
   },
   {
     month: "Ağustos",
@@ -112,9 +112,9 @@ const agendaItems = [
         title: "Zorluk Özetlerinin Yayınlanması ve Takım Oluşturmanın Başlaması",
         titleEn: "Challenge Summaries Available and Team Formation Opens",
         description: "Yarışma zorluklarının özetlerinin yayınlanması ve takım oluşturma sürecinin başlaması.",
-        descriptionEn: "Challenge summaries are published and the team formation process begins."
-      }
-    ]
+        descriptionEn: "Challenge summaries are published and the team formation process begins.",
+      },
+    ],
   },
   {
     month: "Eylül",
@@ -126,7 +126,7 @@ const agendaItems = [
         title: "Zorluk Beyanlarının Yayınlanması",
         titleEn: "Challenge Statements Available",
         description: "Detaylı zorluk beyanları ve teknik gereksinimlerin yayınlanması.",
-        descriptionEn: "Detailed challenge statements and technical requirements are published."
+        descriptionEn: "Detailed challenge statements and technical requirements are published.",
       },
       {
         date: "23 Eylül",
@@ -134,9 +134,9 @@ const agendaItems = [
         title: "Space Apps Connect'in Açılması ve Katılımcı Kılavuzlarının Hazırlanması",
         titleEn: "Space Apps Connect Opens and Participant Guides Available",
         description: "Networking platformunun açılması ve katılımcılar için rehber materyallerin hazırlanması.",
-        descriptionEn: "The networking platform opens and guide materials for participants are published."
-      }
-    ]
+        descriptionEn: "The networking platform opens and guide materials for participants are published.",
+      },
+    ],
   },
   {
     month: "Ekim",
@@ -148,7 +148,7 @@ const agendaItems = [
         title: "Küresel Tekliflerin Sunulması",
         titleEn: "Global Offers Available",
         description: "Katılımcılar için özel fırsatların ve küresel tekliflerin sunulması.",
-        descriptionEn: "Special opportunities and global offers for participants are announced."
+        descriptionEn: "Special opportunities and global offers for participants are announced.",
       },
       {
         date: "4-5 Ekim",
@@ -156,9 +156,9 @@ const agendaItems = [
         title: "NASA Space Apps Challenge Etkinliğinin Gerçekleşmesi",
         titleEn: "NASA Space Apps Challenge Event",
         description: "48 saatlik hackathon etkinliğinin gerçekleşmesi! Ekiplerin projelerini geliştirmesi.",
-        descriptionEn: "The 48-hour hackathon event takes place! Teams develop their projects."
-      }
-    ]
+        descriptionEn: "The 48-hour hackathon event takes place! Teams develop their projects.",
+      },
+    ],
   },
   {
     month: "Hackathon Sonrası",
@@ -170,7 +170,7 @@ const agendaItems = [
         title: "Jüri Değerlendirmesinin Yapılması",
         titleEn: "Expert Evaluation",
         description: "NASA, Uzay Ajansı Ortakları ve endüstri liderlerinden uzmanların projeleri değerlendirmesi.",
-        descriptionEn: "Experts from NASA, Space Agency Partners, and industry leaders evaluate the projects."
+        descriptionEn: "Experts from NASA, Space Agency Partners, and industry leaders evaluate the projects.",
       },
       {
         date: "Sonuçların Açıklanması",
@@ -178,10 +178,10 @@ const agendaItems = [
         title: "Küresel Kazananların Açıklanması!",
         titleEn: "Global Winners Announced!",
         description: "Küresel düzeyde kazanan projelerin ve ekiplerin açıklanması.",
-        descriptionEn: "Global winning projects and teams are announced."
-      }
-    ]
-  }
+        descriptionEn: "Global winning projects and teams are announced.",
+      },
+    ],
+  },
 ]
 
 const judges = [
@@ -204,7 +204,7 @@ const judges = [
     name: "Dr. James Wilson",
     role: "ESA Technology Director",
     avatar: "https://picsum.photos/id/65/200/200",
-  }
+  },
 ]
 
 const faqs = [
@@ -316,9 +316,9 @@ export default function Page() {
               <div className="space-y-6 lg:space-y-8 text-center lg:text-left">
                 {/* <div className="flex items-center justify-center lg:justify-start gap-2">
                   <svg width="16" height="20" viewBox="0 0 34 34" className="flex-shrink-0">
-                    <path 
-                      d="M16,6c-3,3-7.58,8.01-11.15,11.44-3.43-3.43-8.01-8.44-11.15-11.44-6.15-6.01-6.15-15.87,0-21.88,6.15-6.01,16.16-6.01,22.31,0,6.15,6.15,6.15,15.87,0,21.88Z" 
-                      fill="#db240b" 
+                    <path
+                      d="M16,6c-3,3-7.58,8.01-11.15,11.44-3.43-3.43-8.01-8.44-11.15-11.44-6.15-6.01-6.15-15.87,0-21.88,6.15-6.01,16.16-6.01,22.31,0,6.15,6.15,6.15,15.87,0,21.88Z"
+                      fill="#db240b"
                       transform="translate(12, 16)"
                     />
                   </svg>
@@ -333,10 +333,10 @@ export default function Page() {
                   {t.heroSubtitle}
                 </p>
 
-                <Button 
-                  className="px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-overpass-bold text-black rounded-lg hover:opacity-90 transition-opacity" 
+                <Button
+                  className="px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-overpass-bold text-black rounded-lg hover:opacity-90 transition-opacity"
                   style={{ backgroundColor: "var(--accent-yellow)" }}
-                  onClick={() => window.open('https://www.spaceappschallenge.org/2025/local-events/bolu/', '_blank')}
+                  onClick={() => window.open("https://www.spaceappschallenge.org/2025/local-events/bolu/", "_blank")}
                 >
                   {t.registerNow}
                 </Button>
@@ -631,7 +631,10 @@ export default function Page() {
                   <div className="px-4 sm:px-6 pb-4 sm:pb-6 pt-2 sm:pt-4">
                     <div className="space-y-4">
                       {monthItem.events.map((event, eventIndex) => (
-                        <div key={eventIndex} className="grid grid-cols-1 sm:grid-cols-12 gap-4 py-3 sm:py-4 border-b border-gray-800 last:border-b-0">
+                        <div
+                          key={eventIndex}
+                          className="grid grid-cols-1 sm:grid-cols-12 gap-4 py-3 sm:py-4 border-b border-gray-800 last:border-b-0"
+                        >
                           <div className="sm:col-span-3 text-gray-300 font-overpass-bold text-sm sm:text-base">
                             {language === "tr" ? event.date : event.dateEn}
                           </div>
@@ -657,35 +660,40 @@ export default function Page() {
       {/* Judges Section */}
       <section id="speakers" className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 bg-white relative overflow-hidden">
         {/* Background Pattern */}
-        <div 
+        <div
           className="absolute inset-0 opacity-100"
           style={{
             backgroundImage: "url('https://assets.spaceappschallenge.org/media/images/rose-pattern.original.png')",
             backgroundRepeat: "repeat",
-            backgroundSize: "auto"
+            backgroundSize: "auto",
           }}
         />
-        
+
         <div className="max-w-6xl mx-auto relative z-10">
-          <h2 className="text-4xl sm:text-5xl md:text-6xl font-fira-black text-center mb-4 text-gray-900">{t.speakersTitle}</h2>
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-fira-black text-center mb-4 text-gray-900">
+            {t.speakersTitle}
+          </h2>
           <p className="text-lg sm:text-xl text-gray-600 text-center mb-12 sm:mb-16 font-overpass-regular">
             {t.speakersSubtitle}
           </p>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 sm:gap-6">
             {judges.map((judge, index) => (
-              <div key={index} className="text-center bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100">
+              <div
+                key={index}
+                className="text-center bg-white rounded-xl p-4 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100"
+              >
                 <div className="relative mb-4">
                   <Image
                     src={judge.avatar || "/placeholder.svg"}
                     alt={judge.name}
                     width={200}
                     height={200}
-                    className="rounded-2xl mx-auto transition-all duration-300 w-full max-w-[150px] h-[150px] object-cover"
+                    className="rounded-2xl mx-auto transition-all duration-300 w-full max-w-[120px] h-[120px] object-cover"
                   />
                 </div>
-                <h3 className="text-lg sm:text-xl font-fira-bold mb-2 text-gray-900">{judge.name}</h3>
-                <p className="text-gray-600 font-overpass-regular text-sm">{judge.role}</p>
+                <h3 className="text-base sm:text-lg font-fira-bold mb-2 text-gray-900">{judge.name}</h3>
+                <p className="text-gray-600 font-overpass-regular text-xs sm:text-sm">{judge.role}</p>
               </div>
             ))}
           </div>
@@ -731,5 +739,3 @@ export default function Page() {
     </div>
   )
 }
-
-// COPYRIGHT 2025
