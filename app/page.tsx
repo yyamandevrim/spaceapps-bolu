@@ -109,9 +109,9 @@ const agendaItems = [
       {
         date: "21 Ağustos",
         dateEn: "August 21",
-        title: "Zorluk Özetlerinin Yayınlanması ve Takım Oluşturmanın Başlaması",
+        title: "Görev Özetlerinin Yayınlanması ve Takım Oluşturmanın Başlaması",
         titleEn: "Challenge Summaries Available and Team Formation Opens",
-        description: "Yarışma zorluklarının özetlerinin yayınlanması ve takım oluşturma sürecinin başlaması.",
+        description: "Görev özetlerinin yayınlanması ve takım oluşturma sürecinin başlaması.",
         descriptionEn: "Challenge summaries are published and the team formation process begins.",
       },
     ],
