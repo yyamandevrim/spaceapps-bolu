@@ -125,7 +125,7 @@ export default function Page() {
                 <Button
                   className="px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-overpass-bold text-black rounded-lg hover:opacity-90 transition-opacity"
                   style={{ backgroundColor: "var(--accent-yellow)" }}
-                  onClick={() => window.open("https://www.spaceappschallenge.org/2025/local-events/bolu/", "_blank")}
+                  onClick={() => window.location.href = "/redirect/register"}
                 >
                   {t.registerNow}
                 </Button>
