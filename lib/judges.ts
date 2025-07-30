@@ -1,7 +1,7 @@
 export const judges = [
   {
     name: "Prof. Dr. Okan Külköylüoğlu",
-    role: "NASA Ames Research Center",
+    role: "Jüri Heyeti Başkanı",
     avatar: "/judges/okan-hoca.png",
   },
   {
