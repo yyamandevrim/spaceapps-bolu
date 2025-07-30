@@ -209,7 +209,7 @@ const judges = [
     name: "Yaman Devrim",
     role: "Lorem Ipsum Dolor",
     avatar: "https://picsum.photos/id/40/200/200",
-  }
+  },
 ]
 
 const faqs = [
@@ -682,25 +682,67 @@ export default function Page() {
             {t.speakersSubtitle}
           </p>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 sm:gap-6">
-            {judges.map((judge, index) => (
-              <div
-                key={index}
-                className="text-center bg-white rounded-xl p-4 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100"
-              >
+          <div className="space-y-6">
+            {/* First row - 1 judge */}
+            <div className="flex justify-center">
+              <div className="text-center bg-white rounded-xl p-4 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 w-full max-w-xs">
                 <div className="relative mb-4">
                   <Image
-                    src={judge.avatar || "/placeholder.svg"}
-                    alt={judge.name}
+                    src={judges[0].avatar || "/placeholder.svg"}
+                    alt={judges[0].name}
                     width={200}
                     height={200}
-                    className="rounded-2xl mx-auto transition-all duration-300 w-full max-w-[120px] h-[120px] object-cover"
+                    className="rounded-2xl mx-auto transition-all duration-300 object-cover w-full max-w-[200px] h-[200px] sm:max-w-[120px] sm:h-[120px]"
                   />
                 </div>
-                <h3 className="text-base sm:text-lg font-fira-bold mb-2 text-gray-900">{judge.name}</h3>
-                <p className="text-gray-600 font-overpass-regular text-xs sm:text-sm">{judge.role}</p>
+                <h3 className="font-fira-bold mb-2 text-gray-900 text-xl sm:text-lg">{judges[0].name}</h3>
+                <p className="text-gray-600 font-overpass-regular text-base sm:text-sm">{judges[0].role}</p>
               </div>
-            ))}
+            </div>
+
+            {/* Second row - 2 judges */}
+            <div className="flex justify-center gap-4 sm:gap-6">
+              {judges.slice(1, 3).map((judge, index) => (
+                <div
+                  key={index + 1}
+                  className="text-center bg-white rounded-xl p-4 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 w-full max-w-xs"
+                >
+                  <div className="relative mb-4">
+                    <Image
+                      src={judge.avatar || "/placeholder.svg"}
+                      alt={judge.name}
+                      width={200}
+                      height={200}
+                      className="rounded-2xl mx-auto transition-all duration-300 object-cover w-full max-w-[120px] h-[120px]"
+                    />
+                  </div>
+                  <h3 className="font-fira-bold mb-2 text-gray-900 text-base sm:text-lg">{judge.name}</h3>
+                  <p className="text-gray-600 font-overpass-regular text-xs sm:text-sm">{judge.role}</p>
+                </div>
+              ))}
+            </div>
+
+            {/* Third row - 2 judges */}
+            <div className="flex justify-center gap-4 sm:gap-6">
+              {judges.slice(3, 5).map((judge, index) => (
+                <div
+                  key={index + 3}
+                  className="text-center bg-white rounded-xl p-4 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 w-full max-w-xs"
+                >
+                  <div className="relative mb-4">
+                    <Image
+                      src={judge.avatar || "/placeholder.svg"}
+                      alt={judge.name}
+                      width={200}
+                      height={200}
+                      className="rounded-2xl mx-auto transition-all duration-300 object-cover w-full max-w-[120px] h-[120px]"
+                    />
+                  </div>
+                  <h3 className="font-fira-bold mb-2 text-gray-900 text-base sm:text-lg">{judge.name}</h3>
+                  <p className="text-gray-600 font-overpass-regular text-xs sm:text-sm">{judge.role}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
