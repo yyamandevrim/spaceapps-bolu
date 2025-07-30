@@ -1,6 +1,7 @@
 "use client"
 
 import type React from "react"
+import { useState, useEffect } from "react"
 
 import { Button } from "@/components/ui/button"
 import { Header } from "@/components/Header"
@@ -10,7 +11,6 @@ import { agendaItems } from "@/lib/agenda"
 import { judges } from "@/lib/judges"
 import { faqs } from "@/lib/faqs"
 import Image from "next/image"
-import { useState } from "react"
 import { ChevronDown, ChevronUp } from "lucide-react"
 import Link from "next/link"
 
@@ -21,8 +21,22 @@ export default function Page() {
   const [heroBackground, setHeroBackground] = useState<string>("")
   const [showLocation, setShowLocation] = useState<boolean>(false)
   const [showAwards, setShowAwards] = useState<boolean>(false)
-  const [showCookieNotice, setShowCookieNotice] = useState<boolean>(true) // Add this state
+  const [showCookieNotice, setShowCookieNotice] = useState<boolean>(false) // Start with false
   const t = translations[language]
+
+  // Check if cookie notice was previously dismissed
+  useEffect(() => {
+    const cookieDismissed = localStorage.getItem('cookieNoticeDismissed')
+    if (!cookieDismissed) {
+      setShowCookieNotice(true)
+    }
+  }, [])
+
+  // Function to dismiss cookie notice
+  const dismissCookieNotice = () => {
+    setShowCookieNotice(false)
+    localStorage.setItem('cookieNoticeDismissed', 'true')
+  }
 
   const toggleFaq = (index: number) => {
     setOpenFaq(openFaq === index ? null : index)
@@ -697,13 +711,13 @@ export default function Page() {
       
       {/* Cookie Notice - Fixed to bottom */}
       {showCookieNotice && (
-        <div className="fixed inset-x-0 w-11/12 p-4 mx-auto space-y-1 rounded-xl shadow-lg select-none bottom-4 lg:w-1/4 ring-1 ring-white/20 lg:mx-0 lg:left-4 bg-white/10 backdrop-blur-xl z-50">
+        <div className="fixed inset-x-0 w-11/12 p-4 mx-auto space-y-1 rounded-lg shadow-lg select-none bottom-4 lg:w-1/4 ring-1 ring-white/20 lg:mx-0 lg:left-4 bg-white/10 backdrop-blur-xl z-50">
           <div className="flex items-center justify-between gap-2">
             <h3 className="font-medium leading-tight text-white font-fira-bold">
               {language === "tr" ? "Çerezler 🍪" : "Cookies 🍪"}
             </h3>
             <button 
-              onClick={() => setShowCookieNotice(false)}
+              onClick={dismissCookieNotice}
               className="p-1 transition-colors rounded-xl hover:bg-white/20 bg-white/10 text-white"
             >
               <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
