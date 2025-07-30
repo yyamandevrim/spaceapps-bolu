@@ -5,79 +5,10 @@ import type React from "react"
 import { Button } from "@/components/ui/button"
 import { Header } from "@/components/Header"
 import { Footer } from "@/components/Footer"
+import { translations, type Language } from "@/lib/translations"
 import Image from "next/image"
 import { useState } from "react"
 import { ChevronDown, ChevronUp } from "lucide-react"
-
-const translations = {
-  tr: {
-    about: "Hakkında",
-    speakers: "Jüri Üyeleri",
-    agenda: "Takvim",
-    faqs: "S.S.S.",
-    whatIsMaze: "Space Apps Challenge Nedir?",
-    virtualOnDemand: "Bolu 50.⁠ ⁠Yıl İzzet Baysal Ortaokulu",
-    heroTitle: "2025 NASA Space Apps Challenge için kayıtlar açıldı!",
-    heroSubtitle: "4-5 Ekim tarihlerinde dünyanın en büyük yıllık hackathon etkinliğinin bir parçası olun.",
-    registerNow: "ŞİMDİ KAYIT OL",
-    inPartnershipWith: "Destekçilerimiz",
-    agendaTitle: "Etkinlik Takvimi",
-    agendaSubtitle: "Space Apps Challenge 2025 etkinlik programınız.",
-    speakersTitle: "Jüri Üyelerimiz",
-    speakersSubtitle: "Space Apps Challenge jüri üyelerimizle tanışın",
-    faqsTitle: "Sıkça Sorulan Sorular",
-    company: "Lorem ipsum",
-    aboutUs: "Lorem ipsum",
-    customers: "Lorem ipsum",
-    careers: "Lorem ipsum",
-    product: "Lorem ipsum",
-    pricing: "Lorem ipsum",
-    integrations: "Lorem ipsum",
-    spaceAppsAI: "Lorem ipsum",
-    resourcesAndTools: "Lorem ipsum",
-    contentHub: "Lorem ipsum",
-    collections: "Lorem ipsum",
-    guidesReports: "Lorem ipsum",
-    copyright:
-      "© 2025 NASA Space Apps Bolu. Tüm hakları saklıdır. NASA Space Apps Challange, NASA'nın ticari markasıdır.",
-    language: "Dil",
-    turkish: "Türkçe",
-    english: "English",
-  },
-  en: {
-    about: "About",
-    speakers: "Judges",
-    agenda: "Agenda",
-    faqs: "FAQs",
-    whatIsMaze: "What is Space Apps Challenge?",
-    virtualOnDemand: "Bolu 50.⁠ ⁠Yıl İzzet Baysal Middle School",
-    heroTitle: "Registration for the 2025 NASA Space Apps Challenge is now open!",
-    heroSubtitle: "Be a part of the largest annual global hackathon on October 4-5.",
-    registerNow: "REGISTER NOW",
-    inPartnershipWith: "In partnership with",
-    agendaTitle: "Agenda",
-    agendaSubtitle: "Your session line-up for Space Apps Challenge 2025.",
-    speakersTitle: "Our Judges",
-    speakersSubtitle: "Meet our Space Apps Challenge judge lineup",
-    faqsTitle: "Frequently Asked Questions",
-    company: "Lorem ipsum",
-    aboutUs: "Lorem ipsum",
-    customers: "Lorem ipsum",
-    careers: "Lorem ipsum",
-    product: "Lorem ipsum",
-    pricing: "Lorem ipsum",
-    integrations: "Lorem ipsum",
-    spaceAppsAI: "Lorem ipsum",
-    resourcesAndTools: "Lorem ipsum",
-    contentHub: "Lorem ipsum",
-    collections: "Lorem ipsum",
-    guidesReports: "Lorem ipsum",
-    copyright: "© 2025 NASA Space Apps Bolu. All rights reserved. NASA Space Apps Challenge is a trademark of NASA.",
-    language: "Language",
-    turkish: "Türkçe",
-    english: "English",
-  },
-}
 
 const agendaItems = [
   {
@@ -250,10 +181,11 @@ const faqs = [
 ]
 
 export default function Page() {
-  const [language, setLanguage] = useState<"tr" | "en">("tr")
+  const [language, setLanguage] = useState<Language>("tr")
   const [openFaq, setOpenFaq] = useState<number | null>(null)
   const [openMonth, setOpenMonth] = useState<number | null>(null)
   const [heroBackground, setHeroBackground] = useState<string>("")
+  const [showLocation, setShowLocation] = useState<boolean>(false)
   const t = translations[language]
 
   const toggleFaq = (index: number) => {
@@ -319,16 +251,18 @@ export default function Page() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
               {/* Left side - Content */}
               <div className="space-y-6 lg:space-y-8 text-center lg:text-left">
-                {/* <div className="flex items-center justify-center lg:justify-start gap-2">
-                  <svg width="16" height="20" viewBox="0 0 34 34" className="flex-shrink-0">
-                    <path
-                      d="M16,6c-3,3-7.58,8.01-11.15,11.44-3.43-3.43-8.01-8.44-11.15-11.44-6.15-6.01-6.15-15.87,0-21.88,6.15-6.01,16.16-6.01,22.31,0,6.15,6.15,6.15,15.87,0,21.88Z"
-                      fill="#db240b"
-                      transform="translate(12, 16)"
-                    />
-                  </svg>
-                  <p className="text-lg sm:text-xl text-white/90 font-overpass-regular">{t.virtualOnDemand}</p>
-                </div> */}
+                {showLocation && (
+                  <div className="flex items-center justify-center lg:justify-start gap-2">
+                    <svg width="16" height="20" viewBox="0 0 34 34" className="flex-shrink-0">
+                      <path
+                        d="M16,6c-3,3-7.58,8.01-11.15,11.44-3.43-3.43-8.01-8.44-11.15-11.44-6.15-6.01-6.15-15.87,0-21.88,6.15-6.01,16.16-6.01,22.31,0,6.15,6.15,6.15,15.87,0,21.88Z"
+                        fill="#db240b"
+                        transform="translate(12, 16)"
+                      />
+                    </svg>
+                    <p className="text-lg sm:text-xl text-white/90 font-overpass-regular">{t.location}</p>
+                  </div>
+                )}
 
                 <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-fira-black leading-tight text-white">
                   {t.heroTitle}
