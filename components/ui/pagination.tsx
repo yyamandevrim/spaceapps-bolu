@@ -1,3 +1,8 @@
+/**
+ * Copyright (c) 2025 Yaman Devrim
+ * All rights reserved. NASA Space Apps Challenge 2025 Bolu
+ */
+
 import * as React from "react"
 import { ChevronLeft, ChevronRight, MoreHorizontal } from "lucide-react"
 

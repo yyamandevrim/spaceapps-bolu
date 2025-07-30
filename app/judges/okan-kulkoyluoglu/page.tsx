@@ -1,3 +1,8 @@
+/**
+ * Copyright (c) 2025 Yaman Devrim
+ * All rights reserved. NASA Space Apps Challenge 2025 Bolu
+ */
+
 import { Header } from "@/components/Header"
 import { Footer } from "@/components/Footer" 
 import Image from "next/image"

@@ -1,3 +1,8 @@
+/**
+ * Copyright (c) 2025 Yaman Devrim
+ * All rights reserved. NASA Space Apps Challenge 2025 Bolu
+ */
+
 import type { Config } from "tailwindcss";
 
 // all in fixtures is set to tailwind v3 as interims solutions
