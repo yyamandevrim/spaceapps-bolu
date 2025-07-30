@@ -26,6 +26,8 @@ interface ConfigMenuProps {
   showFaqs: boolean
   setShowFaqs: (show: boolean) => void
   commandSequence: string
+  showNewsletter: boolean
+  setShowNewsletter: (show: boolean) => void
 }
 
 export function ConfigMenu({
@@ -47,7 +49,9 @@ export function ConfigMenu({
   setShowJudges,
   showFaqs,
   setShowFaqs,
-  commandSequence
+  commandSequence,
+  showNewsletter,
+  setShowNewsletter
 }: ConfigMenuProps) {
   
   const saveConfig = () => {
@@ -59,7 +63,8 @@ export function ConfigMenu({
       showSponsors,
       showAgenda,
       showJudges,
-      showFaqs
+      showFaqs,
+      showNewsletter
     }
     localStorage.setItem('siteConfig', JSON.stringify(config))
     alert('Configuration saved!')
@@ -77,6 +82,7 @@ export function ConfigMenu({
       setShowAgenda(config.showAgenda ?? true)
       setShowJudges(config.showJudges ?? true)
       setShowFaqs(config.showFaqs ?? true)
+      setShowNewsletter(config.showNewsletter ?? true)
       alert('Configuration loaded!')
     }
   }
@@ -90,6 +96,7 @@ export function ConfigMenu({
     setShowAgenda(true)
     setShowJudges(true)
     setShowFaqs(true)
+    setShowNewsletter(true)
     localStorage.removeItem('siteConfig')
     localStorage.removeItem('cookieNoticeDismissed')
     alert('Configuration reset!')
@@ -202,6 +209,16 @@ export function ConfigMenu({
                 type="checkbox"
                 checked={showCookieNotice}
                 onChange={(e) => setShowCookieNotice(e.target.checked)}
+                className="w-4 h-4 text-blue-600 bg-gray-800 border-gray-600 rounded focus:ring-blue-500"
+              />
+            </label>
+
+            <label className="flex items-center justify-between">
+              <span className="text-sm text-gray-300">Show Newsletter Section</span>
+              <input
+                type="checkbox"
+                checked={showNewsletter}
+                onChange={(e) => setShowNewsletter(e.target.checked)}
                 className="w-4 h-4 text-blue-600 bg-gray-800 border-gray-600 rounded focus:ring-blue-500"
               />
             </label>

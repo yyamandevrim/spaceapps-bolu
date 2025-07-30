@@ -1,7 +1,3 @@
-/**
- * Copyright (c) 2025 Yaman Devrim
- * All rights reserved. NASA Space Apps Challenge 2025 Bolu
- */
 
 "use client"
 
@@ -54,7 +50,7 @@ export function Header({ translations }: HeaderProps) {
           {t.about}
         </Link>
         <Link
-          href="/#speakers"
+          href="/#judges"
           className="text-white hover:text-blue-300 transition-colors font-overpass-regular text-sm lg:text-base"
         >
           {t.speakers}

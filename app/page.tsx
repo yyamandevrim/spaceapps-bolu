@@ -19,6 +19,7 @@ import { faqs } from "@/lib/faqs"
 import Image from "next/image"
 import { ChevronDown, ChevronUp } from "lucide-react"
 import Link from "next/link"
+import { NewsletterForm } from "@/components/NewsletterForm"
 
 export default function Page() {
   const [language, setLanguage] = useState<Language>("tr")
@@ -524,7 +525,7 @@ export default function Page() {
 
       {/* Judges Section - Conditional */}
       {showJudges && (
-        <section id="speakers" className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 bg-white relative overflow-hidden">
+        <section id="judges" className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 bg-white relative overflow-hidden">
           {/* Background Pattern */}
           <div
             className="absolute inset-0 opacity-100"
@@ -785,6 +786,33 @@ export default function Page() {
           </div>
         </section>
       )}
+
+      {/* Newsletter Section */}
+      <section 
+        className={`py-16 sm:py-20 px-4 sm:px-6 lg:px-8 ${showAwards ? '' : 'bg-white'}`}
+        style={showAwards ? { backgroundColor: 'var(--brand-deepblue)' } : {}}
+      >
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-12">
+        <h2 className={`text-4xl sm:text-5xl md:text-6xl font-fira-black mb-6 ${showAwards ? 'text-white' : 'text-gray-900'}`}>
+          {t.newsletterTitle}
+        </h2>
+        <p className={`text-lg sm:text-xl font-overpass-regular max-w-3xl mx-auto ${showAwards ? 'text-white/90' : 'text-gray-600'}`}>
+          {t.newsletterSubtitle}
+        </p>
+          </div>
+      
+          <NewsletterForm 
+        translations={t}
+        isBlueBackground={showAwards}
+        buttonClassName={
+          showAwards
+            ? "bg-white text-blue-900 hover:bg-blue-100"
+            : "bg-blue-900 text-white hover:bg-blue-800"
+        }
+          />
+        </div>
+      </section>
 
       {/* Footer */}
       <Footer translations={t} language={language} setLanguage={setLanguage} />

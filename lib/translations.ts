@@ -37,6 +37,19 @@ export const translations = {
     language: "Dil",
     turkish: "Türkçe",
     english: "English",
+
+    // Newsletter section
+    newsletterTitle: "Haber Bültenimize Kayıt Olun",
+    newsletterSubtitle:
+      "Etkinlik güncellemeleri, önemli duyurular ve NASA Space Apps Challenge hakkında en son haberleri doğrudan e-postanızdan takip edin.",
+    newsletterFirstName: "Ad",
+    newsletterLastName: "Soyad",
+    newsletterEmail: "E-posta Adresi",
+    newsletterSubmit: "Kayıt Ol",
+    newsletterSuccess: "Başarıyla kayıt oldunuz! Teşekkür ederiz.",
+    newsletterError: "Kayıt sırasında bir hata oluştu. Lütfen tekrar deneyin.",
+    newsletterPrivacy:
+      "E-posta adresiniz güvende. Spam göndermiyoruz ve dilediğiniz zaman abonelikten çıkabilirsiniz.",
   },
   en: {
     about: "About",
@@ -66,10 +79,24 @@ export const translations = {
     contentHub: "Lorem ipsum",
     collections: "Lorem ipsum",
     guidesReports: "Lorem ipsum",
-    copyright: "© 2025 NASA Space Apps Bolu. All rights reserved. NASA Space Apps Challenge is a trademark of NASA.",
+    copyright:
+      "© 2025 NASA Space Apps Bolu. All rights reserved. NASA Space Apps Challenge is a trademark of NASA.",
     language: "Language",
     turkish: "Türkçe",
     english: "English",
+
+    // Newsletter section
+    newsletterTitle: "Subscribe to Our Newsletter",
+    newsletterSubtitle:
+      "Stay updated with event announcements, important updates, and the latest news about NASA Space Apps Challenge directly in your inbox.",
+    newsletterFirstName: "First Name",
+    newsletterLastName: "Last Name",
+    newsletterEmail: "Email Address",
+    newsletterSubmit: "Subscribe",
+    newsletterSuccess: "Successfully subscribed! Thank you.",
+    newsletterError: "An error occurred during registration. Please try again.",
+    newsletterPrivacy:
+      "Your email is safe with us. We don't spam and you can unsubscribe at any time.",
   },
 }
 

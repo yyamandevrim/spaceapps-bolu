@@ -1,12 +1,8 @@
-/**
- * Copyright (c) 2025 Yaman Devrim
- * All rights reserved. NASA Space Apps Challenge 2025 Bolu
- */
-
 import { Header } from "@/components/Header"
 import { Footer } from "@/components/Footer" 
 import Image from "next/image"
 import Link from "next/link"
+
 
 export default function OkanKulkoyluogluPage() {
   return (
@@ -18,7 +14,7 @@ export default function OkanKulkoyluogluPage() {
           {/* Back Button */}
           <div className="mb-8">
             <Link 
-              href="/#speakers"
+              href="/#judges"
               className="inline-flex items-center px-4 py-2 text-white border border-white rounded-lg hover:bg-white hover:text-black transition-colors"
             >
               ← Jüri Üyelerine Dön
@@ -139,7 +135,7 @@ export default function OkanKulkoyluogluPage() {
           {/* Back to Judges Button */}
           <div className="mt-12 text-center">
             <Link 
-              href="/#speakers"
+              href="/#judges"
               className="inline-block px-8 py-4 text-lg font-overpass-bold text-black rounded-lg hover:opacity-90 transition-opacity"
               style={{ backgroundColor: "var(--accent-yellow)" }}
             >
