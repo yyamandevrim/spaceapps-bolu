@@ -344,25 +344,25 @@ export default function Page() {
                 <div className="flex animate-slide space-x-8 sm:space-x-12 items-center">
                   {/* First set of logos */}
                   <Image
-                    src="/logo-dark.svg?height=60&width=120"
+                    src="https://www.bolu.bel.tr/wp-content/uploads/2021/07/Boluyu-Seviyorum-Logo-Beyaz.png"
                     alt="CONAE"
-                    width={120}
-                    height={60}
-                    className="flex-shrink-0 h-12 sm:h-15 w-auto"
+                    width={220}
+                    height={220}
+                    className="flex-shrink-0 h-12 sm:h-16 w-auto"
                   />
                   <Image
-                    src="/logo-dark.svg?height=60&width=120"
+                    src="https://turkroket.space/assets/baslikcss.webp"
                     alt="Agencia Espacial del Paraguay"
                     width={120}
                     height={60}
-                    className="flex-shrink-0 h-12 sm:h-15 w-auto"
+                    className="flex-shrink-0 h-5 sm:h-8 w-auto"
                   />
                   <Image
-                    src="/logo-dark.svg?height=60&width=120"
+                    src="https://www.bolu.bel.tr/wp-content/uploads/2020/01/logo-1.png"
                     alt="SANSA"
-                    width={120}
-                    height={60}
-                    className="flex-shrink-0 h-12 sm:h-15 w-auto"
+                    width={220}
+                    height={220}
+                    className="rounded-full w-16 h-16 sm:w-20 sm:h-20 hidden sm:block"
                   />
                   <Image
                     src="/logo-dark.svg?height=60&width=120"
