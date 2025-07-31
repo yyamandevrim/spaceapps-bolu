@@ -387,8 +387,8 @@ export default function Page() {
                   </div>
                   <div className="flex flex-shrink-0 items-center space-x-3">
                     <Image
-                      src="http://www.bolu.gov.tr/kurumlar/bolu.gov.tr/yeni%20site/valilik/tan%C4%B1t%C4%B1c%C4%B1bayrak.png"
-                      alt="ÇYDD"
+                      src="/partners/bolu-valilik.png"
+                      alt="Bolu Valiliği"
                       width={120}
                       height={60}
                       className="flex-shrink-0 h-12 sm:h-16 w-auto"
@@ -448,8 +448,8 @@ export default function Page() {
                   </div>
                   <div className="flex flex-shrink-0 items-center space-x-3">
                     <Image
-                      src="http://www.bolu.gov.tr/kurumlar/bolu.gov.tr/yeni%20site/valilik/tan%C4%B1t%C4%B1c%C4%B1bayrak.png"
-                      alt="ÇYDD"
+                      src="/partners/bolu-valilik.png"
+                      alt="Bolu Valiliği"
                       width={120}
                       height={60}
                       className="flex-shrink-0 h-12 sm:h-16 w-auto"
