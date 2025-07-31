@@ -343,119 +343,132 @@ export default function Page() {
               <div className="flex-1 overflow-hidden ml-0 sm:ml-8 w-full sm:w-auto mt-4 sm:mt-0">
                 <div className="flex animate-slide space-x-8 sm:space-x-12 items-center">
                   {/* First set of logos */}
-                  <Image
+                  {/*<Image
                     src="https://www.bolu.bel.tr/wp-content/uploads/2021/07/Boluyu-Seviyorum-Logo-Beyaz.png"
-                    alt="CONAE"
+                    alt="Bolu'yu Seviyorum - Bolu Belediyesi"
                     width={220}
                     height={220}
                     className="flex-shrink-0 h-12 sm:h-16 w-auto"
-                  />
+                  />*/}
+                  <div className="flex flex-shrink-0 items-center space-x-3">
+                    <Image
+                      src="https://www.bolu.bel.tr/wp-content/uploads/2020/01/logo-1.png"
+                      alt="Bolu Belediyesi"
+                      width={220}
+                      height={220}
+                      className="h-12 sm:h-16 w-auto"
+                    />
+                    <div className="flex flex-col">
+                      <span className="text-gray-700 font-overpass-regular text-base sm:text-lg whitespace-nowrap leading-none">
+                        Türkiye Cumhuriyeti
+                      </span>
+                      <span className="text-gray-700 font-overpass-bold text-base sm:text-lg whitespace-nowrap ">
+                        Bolu Belediyesi
+                      </span>
+                    </div>
+
+                  </div>
+                  <div className="flex flex-shrink-0 items-center space-x-3">
+                    <Image
+                      src="/partners/cydd.svg"
+                      alt="ÇYDD"
+                      width={120}
+                      height={60}
+                      className="flex-shrink-0 h-12 sm:h-16 w-auto"
+                      />
+                    <div className="flex flex-col">
+                      <span className="text-gray-700 font-overpass-semibold text-base sm:text-lg whitespace-nowrap leading-none">
+                        Çağdaş Yaşamı
+                      </span>
+                      <span className="text-gray-700 font-overpass-semibold text-base sm:text-lg whitespace-nowrap ">
+                        Destekleme Derneği  
+                      </span>
+                    </div>
+                  </div>
+                  <div className="flex flex-shrink-0 items-center space-x-3">
+                    <Image
+                      src="http://www.bolu.gov.tr/kurumlar/bolu.gov.tr/yeni%20site/valilik/tan%C4%B1t%C4%B1c%C4%B1bayrak.png"
+                      alt="ÇYDD"
+                      width={120}
+                      height={60}
+                      className="flex-shrink-0 h-12 sm:h-16 w-auto"
+                    />
+                    <div className="flex flex-col">
+                      <span className="text-gray-700 font-overpass-regular text-base sm:text-lg whitespace-nowrap leading-none">
+                        Türkiye Cumhuriyeti
+                      </span>
+                      <span className="text-gray-700 font-overpass-bold text-base sm:text-lg whitespace-nowrap ">
+                        Bolu Valiliği
+                      </span>
+                    </div>
+                  </div>
                   <Image
                     src="https://turkroket.space/assets/baslikcss.webp"
-                    alt="Agencia Espacial del Paraguay"
+                    alt="TurkRoket"
                     width={120}
                     height={60}
                     className="flex-shrink-0 h-5 sm:h-8 w-auto"
                   />
-                  <Image
-                    src="https://www.bolu.bel.tr/wp-content/uploads/2020/01/logo-1.png"
-                    alt="SANSA"
-                    width={220}
-                    height={220}
-                    className="rounded-full w-16 h-16 sm:w-20 sm:h-20 hidden sm:block"
-                  />
-                  <Image
-                    src="/logo-dark.svg?height=60&width=120"
-                    alt="AEB"
-                    width={120}
-                    height={60}
-                    className="flex-shrink-0 h-12 sm:h-15 w-auto"
-                  />
-                  <Image
-                    src="/logo-dark.svg?height=60&width=120"
-                    alt="Turkish Space Agency"
-                    width={120}
-                    height={60}
-                    className="flex-shrink-0 h-12 sm:h-15 w-auto"
-                  />
-                  <Image
-                    src="/logo-dark.svg?height=60&width=120"
-                    alt="ESA"
-                    width={120}
-                    height={60}
-                    className="flex-shrink-0 h-12 sm:h-15 w-auto"
-                  />
-                  <Image
-                    src="/logo-dark.svg?height=60&width=120"
-                    alt="JAXA"
-                    width={120}
-                    height={60}
-                    className="flex-shrink-0 h-12 sm:h-15 w-auto"
-                  />
-                  <Image
-                    src="/logo-dark.svg?height=60&width=120"
-                    alt="CSA"
-                    width={120}
-                    height={60}
-                    className="flex-shrink-0 h-12 sm:h-15 w-auto"
-                  />
 
                   {/* Duplicate set for seamless loop */}
+                  <div className="flex flex-shrink-0 items-center space-x-3">
+                    <Image
+                      src="https://www.bolu.bel.tr/wp-content/uploads/2020/01/logo-1.png"
+                      alt="Bolu Belediyesi"
+                      width={220}
+                      height={220}
+                      className="h-12 sm:h-16 w-auto"
+                    />
+                    <div className="flex flex-col">
+                      <span className="text-gray-700 font-overpass-regular text-base sm:text-lg whitespace-nowrap leading-none">
+                        Türkiye Cumhuriyeti
+                      </span>
+                      <span className="text-gray-700 font-overpass-bold text-base sm:text-lg whitespace-nowrap ">
+                        Bolu Belediyesi
+                      </span>
+                    </div>
+
+                  </div>
+                  <div className="flex flex-shrink-0 items-center space-x-3">
+                    <Image
+                      src="/partners/cydd.svg"
+                      alt="ÇYDD"
+                      width={120}
+                      height={60}
+                      className="flex-shrink-0 h-12 sm:h-16 w-auto"
+                      />
+                    <div className="flex flex-col">
+                      <span className="text-gray-700 font-overpass-semibold text-base sm:text-lg whitespace-nowrap leading-none">
+                        Çağdaş Yaşamı
+                      </span>
+                      <span className="text-gray-700 font-overpass-semibold text-base sm:text-lg whitespace-nowrap ">
+                        Destekleme Derneği  
+                      </span>
+                    </div>
+                  </div>
+                  <div className="flex flex-shrink-0 items-center space-x-3">
+                    <Image
+                      src="http://www.bolu.gov.tr/kurumlar/bolu.gov.tr/yeni%20site/valilik/tan%C4%B1t%C4%B1c%C4%B1bayrak.png"
+                      alt="ÇYDD"
+                      width={120}
+                      height={60}
+                      className="flex-shrink-0 h-12 sm:h-16 w-auto"
+                    />
+                    <div className="flex flex-col">
+                      <span className="text-gray-700 font-overpass-regular text-base sm:text-lg whitespace-nowrap leading-none">
+                        Türkiye Cumhuriyeti
+                      </span>
+                      <span className="text-gray-700 font-overpass-bold text-base sm:text-lg whitespace-nowrap ">
+                        Bolu Valiliği
+                      </span>
+                    </div>
+                  </div>
                   <Image
-                    src="/logo-dark.svg?height=60&width=120"
-                    alt="CONAE"
+                    src="https://turkroket.space/assets/baslikcss.webp"
+                    alt="TurkRoket"
                     width={120}
                     height={60}
-                    className="flex-shrink-0 h-12 sm:h-15 w-auto"
-                  />
-                  <Image
-                    src="/logo-dark.svg?height=60&width=120"
-                    alt="Agencia Espacial del Paraguay"
-                    width={120}
-                    height={60}
-                    className="flex-shrink-0 h-12 sm:h-15 w-auto"
-                  />
-                  <Image
-                    src="/logo-dark.svg?height=60&width=120"
-                    alt="SANSA"
-                    width={120}
-                    height={60}
-                    className="flex-shrink-0 h-12 sm:h-15 w-auto"
-                  />
-                  <Image
-                    src="/logo-dark.svg?height=60&width=120"
-                    alt="AEB"
-                    width={120}
-                    height={60}
-                    className="flex-shrink-0 h-12 sm:h-15 w-auto"
-                  />
-                  <Image
-                    src="/logo-dark.svg?height=60&width=120"
-                    alt="Turkish Space Agency"
-                    width={120}
-                    height={60}
-                    className="flex-shrink-0 h-12 sm:h-15 w-auto"
-                  />
-                  <Image
-                    src="/logo-dark.svg?height=60&width=120"
-                    alt="ESA"
-                    width={120}
-                    height={60}
-                    className="flex-shrink-0 h-12 sm:h-15 w-auto"
-                  />
-                  <Image
-                    src="/logo-dark.svg?height=60&width=120"
-                    alt="JAXA"
-                    width={120}
-                    height={60}
-                    className="flex-shrink-0 h-12 sm:h-15 w-auto"
-                  />
-                  <Image
-                    src="/logo-dark.svg?height=60&width=120"
-                    alt="CSA"
-                    width={120}
-                    height={60}
-                    className="flex-shrink-0 h-12 sm:h-15 w-auto"
+                    className="flex-shrink-0 h-5 sm:h-8 w-auto"
                   />
                 </div>
               </div>
