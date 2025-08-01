@@ -29,7 +29,7 @@ const sponsors = (
         alt="Bolu Belediyesi"
         width={220}
         height={220}
-        className="h-12 sm:h-16 w-auto"
+        className="h-16 sm:h-12 w-auto"
       />
       <div className="flex flex-col">
         <span className="text-gray-700 font-overpass-regular text-base sm:text-lg whitespace-nowrap leading-none">
@@ -47,7 +47,7 @@ const sponsors = (
         alt="ÇYDD"
         width={120}
         height={60}
-        className="flex-shrink-0 h-12 sm:h-16 w-auto"
+        className="flex-shrink-0 h-16 sm:h-12 w-auto"
       />
       <div className="flex flex-col">
         <span className="text-gray-700 font-overpass-semibold text-base sm:text-lg whitespace-nowrap leading-none">
@@ -65,7 +65,7 @@ const sponsors = (
         alt="Bolu Valiliği"
         width={120}
         height={60}
-        className="flex-shrink-0 h-12 sm:h-16 w-auto"
+        className="flex-shrink-0 h-16 sm:h-12 w-auto"
       />
       <div className="flex flex-col">
         <span className="text-gray-700 font-overpass-regular text-base sm:text-lg whitespace-nowrap leading-none">
@@ -82,7 +82,7 @@ const sponsors = (
       alt="TurkRoket"
       width={120}
       height={60}
-      className="flex-shrink-0 h-5 sm:h-8 w-auto"
+      className="flex-shrink-0 h-10 sm:h-5 w-auto"
     />
 
     <Image
@@ -90,7 +90,7 @@ const sponsors = (
       alt="Bolu'yu Seviyorum - Bolu Belediyesi"
       width={220}
       height={220}
-      className="flex-shrink-0 h-12 sm:h-16 w-auto"
+      className="flex-shrink-0 h-16 sm:h-12 w-auto"
     />
   </>
 )
