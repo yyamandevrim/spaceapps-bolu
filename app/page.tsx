@@ -12,88 +12,15 @@ import { Button } from "@/components/ui/button"
 import { Header } from "@/components/Header"
 import { Footer } from "@/components/Footer"
 import { ConfigMenu } from "@/components/ConfigMenu"
+import { NewsletterForm } from "@/components/NewsletterForm"
 import { translations, type Language } from "@/lib/translations"
 import { agendaItems } from "@/lib/agenda"
 import { judges } from "@/lib/judges"
 import { faqs } from "@/lib/faqs"
+import { SponsorsCarousel } from "@/lib/sponsors"
 import Image from "next/image"
 import { ChevronDown, ChevronUp } from "lucide-react"
 import Link from "next/link"
-import { NewsletterForm } from "@/components/NewsletterForm"
-
-const sponsors = (
-  <>
-    <div className="flex flex-shrink-0 items-center space-x-3">
-      <Image
-        src="https://www.bolu.bel.tr/wp-content/uploads/2020/01/logo-1.png"
-        alt="Bolu Belediyesi"
-        width={220}
-        height={220}
-        className="h-16 sm:h-12 w-auto"
-      />
-      <div className="flex flex-col">
-        <span className="text-gray-700 font-overpass-regular text-base sm:text-lg whitespace-nowrap leading-none">
-          Türkiye Cumhuriyeti
-        </span>
-        <span className="text-gray-700 font-overpass-bold text-base sm:text-lg whitespace-nowrap ">
-          Bolu Belediyesi
-        </span>
-      </div>
-    </div>
-
-    <div className="flex flex-shrink-0 items-center space-x-3">
-      <Image
-        src="/partners/cydd.svg"
-        alt="ÇYDD"
-        width={120}
-        height={60}
-        className="flex-shrink-0 h-16 sm:h-12 w-auto"
-      />
-      <div className="flex flex-col">
-        <span className="text-gray-700 font-overpass-semibold text-base sm:text-lg whitespace-nowrap leading-none">
-          Çağdaş Yaşamı
-        </span>
-        <span className="text-gray-700 font-overpass-semibold text-base sm:text-lg whitespace-nowrap ">
-          Destekleme Derneği
-        </span>
-      </div>
-    </div>
-
-    <div className="flex flex-shrink-0 items-center space-x-3">
-      <Image
-        src="/partners/bolu-valilik.png"
-        alt="Bolu Valiliği"
-        width={120}
-        height={60}
-        className="flex-shrink-0 h-16 sm:h-12 w-auto"
-      />
-      <div className="flex flex-col">
-        <span className="text-gray-700 font-overpass-regular text-base sm:text-lg whitespace-nowrap leading-none">
-          Türkiye Cumhuriyeti
-        </span>
-        <span className="text-gray-700 font-overpass-bold text-base sm:text-lg whitespace-nowrap ">
-          Bolu Valiliği
-        </span>
-      </div>
-    </div>
-
-    <Image
-      src="https://turkroket.space/assets/baslikcss.webp"
-      alt="TurkRoket"
-      width={120}
-      height={60}
-      className="flex-shrink-0 h-10 sm:h-5 w-auto"
-    />
-
-    <Image
-      src="https://www.bolu.bel.tr/wp-content/uploads/2021/07/Boluyu-Seviyorum-Logo-Beyaz.png"
-      alt="Bolu'yu Seviyorum - Bolu Belediyesi"
-      width={220}
-      height={220}
-      className="flex-shrink-0 h-16 sm:h-12 w-auto"
-    />
-  </>
-)
 
 export default function Page() {
   const [language, setLanguage] = useState<Language>("tr")
@@ -416,8 +343,8 @@ export default function Page() {
               {/* Sliding Sponsors Carousel */}
               <div className="flex-1 overflow-hidden ml-0 sm:ml-8 w-full sm:w-auto mt-4 sm:mt-0">
                 <div className="flex animate-slide space-x-8 sm:space-x-12 items-center w-max">
-                  {sponsors}
-                  {sponsors}
+                  <SponsorsCarousel />
+                  <SponsorsCarousel />
                 </div>
               </div>
 

@@ -90,48 +90,6 @@ export function Footer({ translations, language = "tr", setLanguage }: FooterPro
               </li>
             </ul>
           </div>
-
-          <div>
-            <h4 className="font-overpass-bold text-lg mb-4">{t.product}</h4>
-            <ul className="space-y-2 font-overpass-regular text-gray-300">
-              <li>
-                <Link href="#" className="hover:text-white transition-colors text-sm sm:text-base">
-                  {t.pricing}
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="hover:text-white transition-colors text-sm sm:text-base">
-                  {t.integrations}
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="hover:text-white transition-colors text-sm sm:text-base">
-                  {t.spaceAppsAI}
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="font-overpass-bold text-lg mb-4">{t.resourcesAndTools}</h4>
-            <ul className="space-y-2 font-overpass-regular text-gray-300">
-              <li>
-                <Link href="#" className="hover:text-white transition-colors text-sm sm:text-base">
-                  {t.contentHub}
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="hover:text-white transition-colors text-sm sm:text-base">
-                  {t.collections}
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="hover:text-white transition-colors text-sm sm:text-base">
-                  {t.guidesReports}
-                </Link>
-              </li>
-            </ul>
-          </div>
         </div>
 
         <div className="mt-8 sm:mt-12 pt-6 sm:pt-8 border-t border-gray-700 flex flex-col sm:flex-row justify-between items-center gap-4">
