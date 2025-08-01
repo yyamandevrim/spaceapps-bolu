@@ -3,10 +3,10 @@
 
 "use client"
 
+import type React from "react"
+
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
-const ipRes = await fetch('https://api.ipify.org?format=json')
-const ipJson = await ipRes.json()
 
 interface NewsletterFormProps {
   translations: {
@@ -19,9 +19,10 @@ interface NewsletterFormProps {
     newsletterPrivacy: string
   }
   isBlueBackground: boolean
+  buttonClassName?: string
 }
 
-export function NewsletterForm({ translations: t, isBlueBackground }: NewsletterFormProps) {
+export function NewsletterForm({ translations: t, isBlueBackground, buttonClassName }: NewsletterFormProps) {
   const [firstName, setFirstName] = useState("")
   const [lastName, setLastName] = useState("")
   const [email, setEmail] = useState("")
@@ -35,19 +36,23 @@ export function NewsletterForm({ translations: t, isBlueBackground }: Newsletter
     setMessage("")
 
     try {
-      const formData = new FormData()
-      formData.append('firstName', firstName)
-      formData.append('lastName', lastName)
-      formData.append('email', email)
-      formData.append('deviceInfo', window.navigator.userAgent)
-      formData.append('ip', ipJson.ip)
+      // Get IP address
+      const ipRes = await fetch("https://api.ipify.org?format=json")
+      const ipJson = await ipRes.json()
 
-      const response = await fetch('https://formspree.io/f/xdkddeby', {
-        method: 'POST',
+      const formData = new FormData()
+      formData.append("firstName", firstName)
+      formData.append("lastName", lastName)
+      formData.append("email", email)
+      formData.append("deviceInfo", window.navigator.userAgent)
+      formData.append("ip", ipJson.ip)
+
+      const response = await fetch("https://formspree.io/f/xdkddeby", {
+        method: "POST",
         body: formData,
         headers: {
-          'Accept': 'application/json'
-        }
+          Accept: "application/json",
+        },
       })
 
       if (response.ok) {
@@ -57,7 +62,7 @@ export function NewsletterForm({ translations: t, isBlueBackground }: Newsletter
         setLastName("")
         setEmail("")
       } else {
-        throw new Error('Network response was not ok')
+        throw new Error("Network response was not ok")
       }
     } catch (error) {
       setMessage(t.newsletterError)
@@ -68,14 +73,16 @@ export function NewsletterForm({ translations: t, isBlueBackground }: Newsletter
   }
 
   return (
-    <div className={`rounded-2xl p-8 sm:p-10 shadow-xl ${isBlueBackground ? 'bg-white/10 backdrop-blur-lg border border-white/20' : 'bg-gray-50 border border-gray-200'}`}>
+    <div
+      className={`rounded-2xl p-8 sm:p-10 shadow-xl ${isBlueBackground ? "bg-white/10 backdrop-blur-lg border border-white/20" : "bg-gray-50 border border-gray-200"}`}
+    >
       <form onSubmit={handleSubmit} className="space-y-6">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {/* First Name */}
           <div>
-            <label 
-              htmlFor="firstName" 
-              className={`block text-sm font-medium mb-2 ${isBlueBackground ? 'text-white' : 'text-gray-700'}`}
+            <label
+              htmlFor="firstName"
+              className={`block text-sm font-medium mb-2 ${isBlueBackground ? "text-white" : "text-gray-700"}`}
             >
               {t.newsletterFirstName}
             </label>
@@ -86,26 +93,34 @@ export function NewsletterForm({ translations: t, isBlueBackground }: Newsletter
               onChange={(e) => setFirstName(e.target.value)}
               required
               className={`w-full px-4 py-3 rounded-lg border transition-colors font-overpass-regular ${
-                isBlueBackground 
-                  ? 'bg-white/20 border-white/30 text-white placeholder-white/70 focus:border-white focus:ring-2 focus:ring-white/50' 
-                  : 'bg-white border-gray-300 text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-offset-2'
+                isBlueBackground
+                  ? "bg-white/20 border-white/30 text-white placeholder-white/70 focus:border-white focus:ring-2 focus:ring-white/50"
+                  : "bg-white border-gray-300 text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-offset-2"
               }`}
-              style={!isBlueBackground ? { 
-                '--tw-ring-color': 'var(--brand-deepblue)',
-                borderColor: 'var(--brand-deepblue)'
-              } as React.CSSProperties : {}}
-              onFocus={!isBlueBackground ? (e) => {
-                e.target.style.borderColor = 'var(--brand-deepblue)'
-              } : undefined}
+              style={
+                !isBlueBackground
+                  ? ({
+                      "--tw-ring-color": "var(--brand-deepblue)",
+                      borderColor: "var(--brand-deepblue)",
+                    } as React.CSSProperties)
+                  : {}
+              }
+              onFocus={
+                !isBlueBackground
+                  ? (e) => {
+                      e.target.style.borderColor = "var(--brand-deepblue)"
+                    }
+                  : undefined
+              }
               placeholder={t.newsletterFirstName}
             />
           </div>
 
           {/* Last Name */}
           <div>
-            <label 
-              htmlFor="lastName" 
-              className={`block text-sm font-medium mb-2 ${isBlueBackground ? 'text-white' : 'text-gray-700'}`}
+            <label
+              htmlFor="lastName"
+              className={`block text-sm font-medium mb-2 ${isBlueBackground ? "text-white" : "text-gray-700"}`}
             >
               {t.newsletterLastName}
             </label>
@@ -116,17 +131,25 @@ export function NewsletterForm({ translations: t, isBlueBackground }: Newsletter
               onChange={(e) => setLastName(e.target.value)}
               required
               className={`w-full px-4 py-3 rounded-lg border transition-colors font-overpass-regular ${
-                isBlueBackground 
-                  ? 'bg-white/20 border-white/30 text-white placeholder-white/70 focus:border-white focus:ring-2 focus:ring-white/50' 
-                  : 'bg-white border-gray-300 text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-offset-2'
+                isBlueBackground
+                  ? "bg-white/20 border-white/30 text-white placeholder-white/70 focus:border-white focus:ring-2 focus:ring-white/50"
+                  : "bg-white border-gray-300 text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-offset-2"
               }`}
-              style={!isBlueBackground ? { 
-                '--tw-ring-color': 'var(--brand-deepblue)',
-                borderColor: 'var(--brand-deepblue)'
-              } as React.CSSProperties : {}}
-              onFocus={!isBlueBackground ? (e) => {
-                e.target.style.borderColor = 'var(--brand-deepblue)'
-              } : undefined}
+              style={
+                !isBlueBackground
+                  ? ({
+                      "--tw-ring-color": "var(--brand-deepblue)",
+                      borderColor: "var(--brand-deepblue)",
+                    } as React.CSSProperties)
+                  : {}
+              }
+              onFocus={
+                !isBlueBackground
+                  ? (e) => {
+                      e.target.style.borderColor = "var(--brand-deepblue)"
+                    }
+                  : undefined
+              }
               placeholder={t.newsletterLastName}
             />
           </div>
@@ -134,9 +157,9 @@ export function NewsletterForm({ translations: t, isBlueBackground }: Newsletter
 
         {/* Email */}
         <div>
-          <label 
-            htmlFor="email" 
-            className={`block text-sm font-medium mb-2 ${isBlueBackground ? 'text-white' : 'text-gray-700'}`}
+          <label
+            htmlFor="email"
+            className={`block text-sm font-medium mb-2 ${isBlueBackground ? "text-white" : "text-gray-700"}`}
           >
             {t.newsletterEmail}
           </label>
@@ -147,17 +170,25 @@ export function NewsletterForm({ translations: t, isBlueBackground }: Newsletter
             onChange={(e) => setEmail(e.target.value)}
             required
             className={`w-full px-4 py-3 rounded-lg border transition-colors font-overpass-regular ${
-              isBlueBackground 
-                ? 'bg-white/20 border-white/30 text-white placeholder-white/70 focus:border-white focus:ring-2 focus:ring-white/50' 
-                : 'bg-white border-gray-300 text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-offset-2'
+              isBlueBackground
+                ? "bg-white/20 border-white/30 text-white placeholder-white/70 focus:border-white focus:ring-2 focus:ring-white/50"
+                : "bg-white border-gray-300 text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-offset-2"
             }`}
-            style={!isBlueBackground ? { 
-              '--tw-ring-color': 'var(--brand-deepblue)',
-              borderColor: 'var(--brand-deepblue)'
-            } as React.CSSProperties : {}}
-            onFocus={!isBlueBackground ? (e) => {
-              e.target.style.borderColor = 'var(--brand-deepblue)'
-            } : undefined}
+            style={
+              !isBlueBackground
+                ? ({
+                    "--tw-ring-color": "var(--brand-deepblue)",
+                    borderColor: "var(--brand-deepblue)",
+                  } as React.CSSProperties)
+                : {}
+            }
+            onFocus={
+              !isBlueBackground
+                ? (e) => {
+                    e.target.style.borderColor = "var(--brand-deepblue)"
+                  }
+                : undefined
+            }
             placeholder={t.newsletterEmail}
           />
         </div>
@@ -166,35 +197,19 @@ export function NewsletterForm({ translations: t, isBlueBackground }: Newsletter
         <Button
           type="submit"
           disabled={isSubmitting}
-          className="w-full py-3 px-6 rounded-lg font-overpass-bold text-lg transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 border-2"
-          style={{
-            borderColor: isBlueBackground ? 'white' : 'var(--brand-deepblue)',
-            backgroundColor: isBlueBackground ? 'white' : 'var(--brand-neonyellow)',
-            color: isBlueBackground ? 'var(--brand-deepblue)' : 'black'
-          }}
-          onMouseEnter={(e) => {
-            if (!isSubmitting) {
-              const target = e.target as HTMLElement
-              target.style.backgroundColor = 'var(--brand-neonyellow)'
-              target.style.color = 'black'
-            }
-          }}
-          onMouseLeave={(e) => {
-            if (!isSubmitting) {
-              const target = e.target as HTMLElement
-              target.style.backgroundColor = isBlueBackground ? 'white' : 'var(--brand-neonyellow)'
-              target.style.color = isBlueBackground ? 'var(--brand-deepblue)' : 'black'
-              target.style.borderColor = isBlueBackground ? 'white' : 'var(--brand-deepblue)'
-            }
-          }}
+          className={`w-full py-3 px-6 rounded-lg font-overpass-bold text-lg transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 border-2 ${
+            isBlueBackground
+              ? "bg-white text-blue-900 border-white hover:bg-yellow-400 hover:text-black hover:border-yellow-400"
+              : "bg-blue-900 text-white border-blue-900 hover:bg-yellow-400 hover:text-black hover:border-yellow-400"
+          }`}
         >
           {isSubmitting ? (
             <div className="flex items-center justify-center gap-2">
-              <div 
+              <div
                 className="animate-spin rounded-full h-4 w-4 border-b-2"
-                style={{ borderColor: isBlueBackground ? 'white' : 'var(--brand-deepblue)' }}
+                style={{ borderColor: isBlueBackground ? "var(--brand-deepblue)" : "white" }}
               ></div>
-              {isBlueBackground ? 'Gönderiliyor...' : 'Sending...'}
+              {isBlueBackground ? "Gönderiliyor..." : "Sending..."}
             </div>
           ) : (
             t.newsletterSubmit
@@ -203,21 +218,25 @@ export function NewsletterForm({ translations: t, isBlueBackground }: Newsletter
 
         {/* Message */}
         {message && (
-          <div className={`text-center p-4 rounded-lg ${
-            messageType === "success"
-              ? isBlueBackground 
-                ? 'bg-green-500/20 text-green-100 border border-green-400/30'
-                : 'bg-green-50 text-green-700 border border-green-200'
-              : isBlueBackground
-                ? 'bg-red-500/20 text-red-100 border border-red-400/30'
-                : 'bg-red-50 text-red-700 border border-red-200'
-          }`}>
+          <div
+            className={`text-center p-4 rounded-lg ${
+              messageType === "success"
+                ? isBlueBackground
+                  ? "bg-green-500/20 text-green-100 border border-green-400/30"
+                  : "bg-green-50 text-green-700 border border-green-200"
+                : isBlueBackground
+                  ? "bg-red-500/20 text-red-100 border border-red-400/30"
+                  : "bg-red-50 text-red-700 border border-red-200"
+            }`}
+          >
             <p className="font-overpass-regular">{message}</p>
           </div>
         )}
 
         {/* Privacy Notice */}
-        <p className={`text-sm text-center font-overpass-regular ${isBlueBackground ? 'text-white/80' : 'text-gray-500'}`}>
+        <p
+          className={`text-sm text-center font-overpass-regular ${isBlueBackground ? "text-white/80" : "text-gray-500"}`}
+        >
           {t.newsletterPrivacy}
         </p>
       </form>

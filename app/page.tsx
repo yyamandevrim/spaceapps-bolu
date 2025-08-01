@@ -30,17 +30,17 @@ export default function Page() {
   const [showLocation, setShowLocation] = useState<boolean>(false)
   const [showAwards, setShowAwards] = useState<boolean>(false)
   const [showCookieNotice, setShowCookieNotice] = useState<boolean>(false)
-  
+
   // Add new section toggles
   const [showSponsors, setShowSponsors] = useState<boolean>(true)
   const [showAgenda, setShowAgenda] = useState<boolean>(true)
   const [showJudges, setShowJudges] = useState<boolean>(true)
   const [showFaqs, setShowFaqs] = useState<boolean>(true)
-  
+
   // Config menu states
   const [showConfigMenu, setShowConfigMenu] = useState<boolean>(false)
   const [commandSequence, setCommandSequence] = useState<string>("")
-  
+
   const t = translations[language]
 
   // Command sequence detection
@@ -48,21 +48,21 @@ export default function Page() {
     const handleKeyPress = (event: KeyboardEvent) => {
       const newSequence = commandSequence + event.key.toLowerCase()
       setCommandSequence(newSequence)
-      
+
       // Check for config command: "config2025"
       if (newSequence.includes("config2025")) {
         setShowConfigMenu(true)
         setCommandSequence("")
       }
-      
+
       // Reset sequence if it gets too long
       if (newSequence.length > 20) {
         setCommandSequence("")
       }
     }
 
-    window.addEventListener('keydown', handleKeyPress)
-    return () => window.removeEventListener('keydown', handleKeyPress)
+    window.addEventListener("keydown", handleKeyPress)
+    return () => window.removeEventListener("keydown", handleKeyPress)
   }, [commandSequence])
 
   // Reset command sequence after 3 seconds of inactivity
@@ -77,7 +77,7 @@ export default function Page() {
 
   // Check if cookie notice was previously dismissed
   useEffect(() => {
-    const cookieDismissed = localStorage.getItem('cookieNoticeDismissed')
+    const cookieDismissed = localStorage.getItem("cookieNoticeDismissed")
     if (!cookieDismissed) {
       setShowCookieNotice(true)
     }
@@ -86,7 +86,7 @@ export default function Page() {
   // Function to dismiss cookie notice
   const dismissCookieNotice = () => {
     setShowCookieNotice(false)
-    localStorage.setItem('cookieNoticeDismissed', 'true')
+    localStorage.setItem("cookieNoticeDismissed", "true")
   }
 
   const toggleFaq = (index: number) => {
@@ -199,7 +199,7 @@ export default function Page() {
                 <Button
                   className="px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-overpass-bold text-black rounded-lg hover:opacity-90 transition-opacity"
                   style={{ backgroundColor: "var(--accent-yellow)" }}
-                  onClick={() => window.location.href = "/redirect/register"}
+                  onClick={() => (window.location.href = "/redirect/register")}
                 >
                   {t.registerNow}
                 </Button>
@@ -347,7 +347,6 @@ export default function Page() {
                   <SponsorsCarousel />
                 </div>
               </div>
-
             </div>
           </div>
         </section>
@@ -503,7 +502,7 @@ export default function Page() {
 
               {/* Desktop Layout - All cards same size */}
               <div className="hidden md:grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
-                {judges.map((judge, index) => (
+                {judges.map((judge, index) =>
                   index === 0 ? (
                     <Link href="/judges/okan-kulkoyluoglu" key={index}>
                       <div className="text-center bg-white rounded-xl p-4 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 cursor-pointer hover:scale-105">
@@ -538,8 +537,8 @@ export default function Page() {
                       <h3 className="font-fira-bold mb-2 text-gray-900 text-lg">{judge.name}</h3>
                       <p className="text-gray-600 font-overpass-regular text-sm">{judge.role}</p>
                     </div>
-                  )
-                ))}
+                  ),
+                )}
               </div>
             </div>
           </div>
@@ -548,7 +547,11 @@ export default function Page() {
 
       {/* Awards Section - Conditional */}
       {showAwards && (
-        <section id="awards" className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden" style={{ backgroundColor: "var(--bg-primary)" }}>
+        <section
+          id="awards"
+          className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden"
+          style={{ backgroundColor: "var(--bg-primary)" }}
+        >
           {/* Background Pattern */}
           <div
             className="absolute inset-0 opacity-10"
@@ -566,8 +569,8 @@ export default function Page() {
               {language === "tr" ? "Ödüller" : "Awards"}
             </h2>
             <p className="text-lg sm:text-xl text-white/90 text-center mb-12 sm:mb-16 font-overpass-regular">
-              {language === "tr" 
-                ? "Kazanan takımlar için büyük ödüller sizi bekliyor!" 
+              {language === "tr"
+                ? "Kazanan takımlar için büyük ödüller sizi bekliyor!"
                 : "Great prizes await the winning teams!"}
             </p>
 
@@ -614,17 +617,17 @@ export default function Page() {
             <div className="text-center mt-12">
               {/* Sponsor Thank You Note */}
               <button
-                onClick={() => document.getElementById('supporters')?.scrollIntoView({ behavior: 'smooth' })}
+                onClick={() => document.getElementById("supporters")?.scrollIntoView({ behavior: "smooth" })}
                 className="text-white/80 font-overgipass-regular text-sm hover:text-white transition-colors cursor-pointer underline decoration-dotted underline-offset-4"
               >
-                {language === "tr" 
-                  ? "Ödül sponsoru XX Şirketine teşekkür ederiz. →" 
+                {language === "tr"
+                  ? "Ödül sponsoru XX Şirketine teşekkür ederiz. →"
                   : "Thanks to award sponsor XX Company →"}
               </button>
 
-                <p className="text-white/70 font-overpass-regular text-sm sm:text-base mt-6">
-                {language === "tr" 
-                  ? "Ödüller kazanan takım üyeleri arasında eşit olarak paylaştırılacaktır." 
+              <p className="text-white/70 font-overpass-regular text-sm sm:text-base mt-6">
+                {language === "tr"
+                  ? "Ödüller kazanan takım üyeleri arasında eşit olarak paylaştırılacaktır."
                   : "Awards will be shared equally among winning team members."}
               </p>
             </div>
@@ -634,37 +637,48 @@ export default function Page() {
 
       {/* FAQs Section - Conditional */}
       {showFaqs && (
-        <section id="faqs" className={`py-16 sm:py-20 px-4 sm:px-6 lg:px-8 ${showAwards ? 'bg-white' : ''}`}>
+        <section id="faqs" className={`py-16 sm:py-20 px-4 sm:px-6 lg:px-8 ${showAwards ? "bg-white" : ""}`}>
           <div className="max-w-6xl mx-auto">
-            <h2 className={`text-4xl sm:text-5xl md:text-6xl font-fira-black text-center mb-12 sm:mb-16 ${showAwards ? 'text-gray-900' : 'text-white'}`}>
+            <h2
+              className={`text-4xl sm:text-5xl md:text-6xl font-fira-black text-center mb-12 sm:mb-16 ${showAwards ? "text-gray-900" : "text-white"}`}
+            >
               {t.faqsTitle}
             </h2>
 
             <div className="space-y-4">
               {faqs.map((faq, index) => (
-                <div key={index} className={`border rounded-lg overflow-hidden ${showAwards ? 'border-gray-300 bg-white' : 'border-gray-700'}`}>
+                <div
+                  key={index}
+                  className={`border rounded-lg overflow-hidden ${showAwards ? "border-gray-300 bg-white" : "border-gray-700"}`}
+                >
                   <button
                     onClick={() => toggleFaq(index)}
                     className={`w-full px-4 sm:px-6 py-4 sm:py-5 text-left flex items-center justify-between transition-colors ${
-                      showAwards 
-                        ? 'hover:bg-gray-50 text-gray-900' 
-                        : 'hover:bg-gray-800/50 text-white'
+                      showAwards ? "hover:bg-gray-50 text-gray-900" : "hover:bg-gray-800/50 text-white"
                     }`}
                   >
-                    <h3 className={`text-lg sm:text-xl font-fira-bold pr-4 ${showAwards ? 'text-gray-900' : 'text-white'}`}>
+                    <h3
+                      className={`text-lg sm:text-xl font-fira-bold pr-4 ${showAwards ? "text-gray-900" : "text-white"}`}
+                    >
                       {language === "tr" ? faq.question : faq.questionEn}
                     </h3>
                     {openFaq === index ? (
-                      <ChevronUp className={`w-5 h-5 flex-shrink-0 ${showAwards ? 'text-gray-600' : 'text-gray-400'}`} />
+                      <ChevronUp
+                        className={`w-5 h-5 flex-shrink-0 ${showAwards ? "text-gray-600" : "text-gray-400"}`}
+                      />
                     ) : (
-                      <ChevronDown className={`w-5 h-5 flex-shrink-0 ${showAwards ? 'text-gray-600' : 'text-gray-400'}`} />
+                      <ChevronDown
+                        className={`w-5 h-5 flex-shrink-0 ${showAwards ? "text-gray-600" : "text-gray-400"}`}
+                      />
                     )}
                   </button>
                   {openFaq === index && (
                     <div className="px-4 sm:px-6 pb-4 sm:pb-5">
-                      <p className={`font-overpass-regular leading-relaxed text-sm sm:text-base ${
-                        showAwards ? 'text-gray-700' : 'text-gray-300'
-                      }`}>
+                      <p
+                        className={`font-overpass-regular leading-relaxed text-sm sm:text-base ${
+                          showAwards ? "text-gray-700" : "text-gray-300"
+                        }`}
+                      >
                         {language === "tr" ? faq.answer : faq.answerEn}
                       </p>
                     </div>
@@ -677,35 +691,31 @@ export default function Page() {
       )}
 
       {/* Newsletter Section */}
-      <section 
-        className={`py-16 sm:py-20 px-4 sm:px-6 lg:px-8 ${showAwards ? '' : 'bg-white'}`}
-        style={showAwards ? { backgroundColor: 'var(--brand-deepblue)' } : {}}
+      <section
+        className={`py-16 sm:py-20 px-4 sm:px-6 lg:px-8 ${showAwards ? "" : "bg-white"}`}
+        style={showAwards ? { backgroundColor: "var(--brand-deepblue)" } : {}}
       >
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
-        <h2 className={`text-4xl sm:text-5xl md:text-6xl font-fira-black mb-6 ${showAwards ? 'text-white' : 'text-gray-900'}`}>
-          {t.newsletterTitle}
-        </h2>
-        <p className={`text-lg sm:text-xl font-overpass-regular max-w-3xl mx-auto ${showAwards ? 'text-white/90' : 'text-gray-600'}`}>
-          {t.newsletterSubtitle}
-        </p>
+            <h2
+              className={`text-4xl sm:text-5xl md:text-6xl font-fira-black mb-6 ${showAwards ? "text-white" : "text-gray-900"}`}
+            >
+              {t.newsletterTitle}
+            </h2>
+            <p
+              className={`text-lg sm:text-xl font-overpass-regular max-w-3xl mx-auto ${showAwards ? "text-white/90" : "text-gray-600"}`}
+            >
+              {t.newsletterSubtitle}
+            </p>
           </div>
-      
-          <NewsletterForm 
-        translations={t}
-        isBlueBackground={showAwards}
-        buttonClassName={
-          showAwards
-            ? "bg-white text-blue-900 hover:bg-blue-100"
-            : "bg-blue-900 text-white hover:bg-blue-800"
-        }
-          />
+
+          <NewsletterForm translations={t} isBlueBackground={showAwards} />
         </div>
       </section>
 
       {/* Footer */}
-      <Footer translations={t} language={language} setLanguage={setLanguage} />
-      
+      <Footer translations={t} language={language} setLanguage={setLanguage} showAwards={showAwards} />
+
       {/* Cookie Notice - Conditional */}
       {showCookieNotice && (
         <div className="fixed inset-x-0 w-11/12 p-4 mx-auto space-y-1 rounded-lg shadow-lg select-none bottom-4 lg:w-1/4 ring-1 ring-white/20 lg:mx-0 lg:left-4 bg-white/10 backdrop-blur-xl z-50">
@@ -713,18 +723,22 @@ export default function Page() {
             <h3 className="font-medium leading-tight text-white font-fira-bold">
               {language === "tr" ? "Çerezler 🍪" : "Cookies 🍪"}
             </h3>
-            <button 
+            <button
               onClick={dismissCookieNotice}
               className="p-1 transition-colors rounded-xl hover:bg-white/20 bg-white/10 text-white"
             >
               <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
+                <path
+                  fillRule="evenodd"
+                  d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                  clipRule="evenodd"
+                />
               </svg>
             </button>
           </div>
           <p className="text-sm text-white/80 font-overpass-regular">
-            {language === "tr" 
-              ? "Deneyiminizi daha da iyi hale getirmek için çerezler kullanıyoruz." 
+            {language === "tr"
+              ? "Deneyiminizi daha da iyi hale getirmek için çerezler kullanıyoruz."
               : "We use cookies to make your experience here even better."}
           </p>
         </div>
