@@ -1,8 +1,3 @@
-/**
- * Copyright (c) 2025 Yaman Devrim
- * All rights reserved. NASA Space Apps Challenge 2025 Bolu
- */
-
 import type React from "react"
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
@@ -17,7 +12,8 @@ export const metadata: Metadata = {
     icon: 'https://assets.spaceappschallenge.org/media/images/favicon2x.2e16d0ba.fill-192x192.png',
     shortcut: 'https://assets.spaceappschallenge.org/media/images/favicon2x.2e16d0ba.fill-192x192.png',
     apple: 'https://assets.spaceappschallenge.org/media/images/favicon2x.2e16d0ba.fill-192x192.png',
-  }
+  },
+    generator: 'v0.dev'
 }
 
 export default function RootLayout({

@@ -7,6 +7,7 @@
 
 import Image from "next/image"
 import Link from "next/link"
+import { Facebook, Twitter, Instagram, Linkedin } from "lucide-react"
 
 interface FooterProps {
   translations?: {
@@ -24,12 +25,18 @@ interface FooterProps {
     language: string
     turkish: string
     english: string
+    homepage: string
+    privacy: string
+    codeOfConduct: string
+    sponsors: string
+    contact: string
   }
   language?: "tr" | "en"
   setLanguage?: (lang: "tr" | "en") => void
+  showAwards?: boolean
 }
 
-export function Footer({ translations, language = "tr", setLanguage }: FooterProps) {
+export function Footer({ translations, language = "tr", setLanguage, showAwards = false }: FooterProps) {
   const t = translations || {
     company: "Şirket",
     aboutUs: "Hakkımızda",
@@ -41,70 +48,124 @@ export function Footer({ translations, language = "tr", setLanguage }: FooterPro
     contentHub: "İçerik Merkezi",
     collections: "Koleksiyonlar",
     guidesReports: "Kılavuzlar ve Raporlar",
-    copyright: "© 2025 NASA Space Apps Bolu. Tüm hakları saklıdır. NASA Space Apps Challange, NASA'nın ticari markasıdır.",
+    copyright:
+      "© 2025 NASA Space Apps Bolu. Tüm hakları saklıdır. NASA Space Apps Challange, NASA'nın ticari markasıdır.",
     language: "Dil",
     turkish: "Türkçe",
-    english: "English"
+    english: "English",
+    homepage: "Ana Sayfa",
+    privacy: "Gizlilik Politikası",
+    codeOfConduct: "Davranış Kuralları",
+    sponsors: "Sponsorlar",
+    contact: "İletişim",
   }
 
-  return (
-    <footer className="py-12 sm:py-16 px-4 sm:px-6 lg:px-8 border-t border-gray-700">
-      <div className="max-w-6xl mx-auto">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
-          <div>
-            {/* Mobile logo */}
-            <Image
-              src="/logo-white.svg?height=400&width=400"
-              alt="Space Apps Challenge"
-              width={140}
-              height={140}
-              className="mb-6 h-25 sm:h-36 lg:h-42 xl:h-50 w-auto block sm:hidden"
-            />
-            {/* Desktop logo */}
-            <Image
-              src="/logo-circular-white.svg?height=400&width=400"
-              alt="Space Apps Challenge"
-              width={140}
-              height={140}
-              className="mb-6 h-25 sm:h-36 lg:h-42 xl:h-50 w-auto hidden sm:block"
-            />
-          </div>
+  const isWhiteFooter = showAwards
+  const logoSrc = isWhiteFooter ? "/logo-dark.svg" : "/logo-white.svg"
+  const textColor = isWhiteFooter ? "text-gray-900" : "text-white"
+  const hoverColor = isWhiteFooter ? "hover:text-blue-600" : "hover:text-yellow-400"
+  const mutedTextColor = isWhiteFooter ? "text-gray-600" : "text-gray-400"
+  const mutedHoverColor = isWhiteFooter ? "hover:text-gray-900" : "hover:text-white"
+  const borderColor = isWhiteFooter ? "border-gray-300" : "border-gray-700"
+  const backgroundColor = isWhiteFooter ? "bg-white" : ""
 
-          <div>
-            <h4 className="font-overpass-bold text-lg mb-4">{t.company}</h4>
-            <ul className="space-y-2 font-overpass-regular text-gray-300">
-              <li>
-                <Link href="#" className="hover:text-white transition-colors text-sm sm:text-base">
-                  {t.aboutUs}
-                </Link>
-              </li>
-              <li>
-                <Link href="/privacy" className="hover:text-white transition-colors text-sm sm:text-base">
-                  Gizlilik Politikası
-                </Link>
-              </li>
-              <li>
-                <Link href="/code-of-conduct" className="hover:text-white transition-colors text-sm sm:text-base">
-                  Davranış Kuralları
-                </Link>
-              </li>
-            </ul>
-          </div>
+  return (
+    <footer
+      className={`py-16 px-4 sm:px-6 lg:px-8 ${backgroundColor}`}
+      style={!isWhiteFooter ? { backgroundColor: "var(--bg-primary)" } : {}}
+    >
+      <div className="max-w-6xl mx-auto">
+        {/* Logo */}
+        <div className="flex justify-center mb-12">
+          <Image
+            src={logoSrc || "/placeholder.svg"}
+            alt="Space Apps Challenge"
+            width={300}
+            height={120}
+            className="h-24 w-auto"
+          />
         </div>
 
-        <div className="mt-8 sm:mt-12 pt-6 sm:pt-8 border-t border-gray-700 flex flex-col sm:flex-row justify-between items-center gap-4">
-          <p className="text-gray-400 font-overpass-regular text-sm sm:text-base text-center sm:text-left">
+        {/* Navigation Links */}
+        <nav className="flex flex-wrap justify-center gap-8 mb-12">
+          <Link
+            href="/"
+            className={`${isWhiteFooter ? "text-gray-900 hover:text-blue-600" : "text-white hover:text-yellow-400"} transition-colors font-overpass-regular text-lg font-medium`}
+          >
+            {t.homepage}
+          </Link>
+          <Link
+            href="/privacy"
+            className={`${isWhiteFooter ? "text-gray-900 hover:text-blue-600" : "text-white hover:text-yellow-400"} transition-colors font-overpass-regular text-lg font-medium`}
+          >
+            {t.privacy}
+          </Link>
+          <Link
+            href="/code-of-conduct"
+            className={`${isWhiteFooter ? "text-gray-900 hover:text-blue-600" : "text-white hover:text-yellow-400"} transition-colors font-overpass-regular text-lg font-medium`}
+          >
+            {t.codeOfConduct}
+          </Link>
+          <Link
+            href="#sponsors"
+            className={`${isWhiteFooter ? "text-gray-900 hover:text-blue-600" : "text-white hover:text-yellow-400"} transition-colors font-overpass-regular text-lg font-medium`}
+          >
+            {t.sponsors}
+          </Link>
+          <Link
+            href="#contact"
+            className={`${isWhiteFooter ? "text-gray-900 hover:text-blue-600" : "text-white hover:text-yellow-400"} transition-colors font-overpass-regular text-lg font-medium`}
+          >
+            {t.contact}
+          </Link>
+        </nav>
+
+        {/* Social Media Icons */}
+        <div className="flex justify-center gap-6 mb-12">
+          <Link
+            href="#"
+            className={`${isWhiteFooter ? "text-gray-600 hover:text-gray-900" : "text-gray-400 hover:text-white"} transition-colors`}
+            aria-label="Facebook"
+          >
+            <Facebook size={24} />
+          </Link>
+          <Link
+            href="#"
+            className={`${isWhiteFooter ? "text-gray-600 hover:text-gray-900" : "text-gray-400 hover:text-white"} transition-colors`}
+            aria-label="Twitter"
+          >
+            <Twitter size={24} />
+          </Link>
+          <Link
+            href="#"
+            className={`${isWhiteFooter ? "text-gray-600 hover:text-gray-900" : "text-gray-400 hover:text-white"} transition-colors`}
+            aria-label="Instagram"
+          >
+            <Instagram size={24} />
+          </Link>
+          <Link
+            href="#"
+            className={`${isWhiteFooter ? "text-gray-600 hover:text-gray-900" : "text-gray-400 hover:text-white"} transition-colors`}
+            aria-label="LinkedIn"
+          >
+            <Linkedin size={24} />
+          </Link>
+        </div>
+
+        {/* Bottom Section with Copyright and Language Selector */}
+        <div className={`pt-8 border-t ${borderColor} flex flex-col sm:flex-row justify-between items-center gap-4`}>
+          <p className={`${mutedTextColor} font-overpass-regular text-sm sm:text-base text-center sm:text-left`}>
             {t.copyright}
           </p>
 
           {/* Language Toggle - only show if setLanguage is provided */}
           {setLanguage && (
             <div className="flex items-center space-x-2">
-              <span className="text-gray-400 font-overpass-regular text-sm">{t.language}:</span>
+              <span className={`${mutedTextColor} font-overpass-regular text-sm`}>{t.language}:</span>
               <button
                 onClick={() => setLanguage("tr")}
                 className={`px-3 py-1 rounded text-sm font-overpass-regular transition-colors ${
-                  language === "tr" ? "" : "text-gray-400 hover:text-white"
+                  language === "tr" ? "" : `${mutedTextColor} ${mutedHoverColor}`
                 }`}
                 style={language === "tr" ? { backgroundColor: "var(--accent-yellow)", color: "var(--bg-primary)" } : {}}
               >
@@ -113,7 +174,7 @@ export function Footer({ translations, language = "tr", setLanguage }: FooterPro
               <button
                 onClick={() => setLanguage("en")}
                 className={`px-3 py-1 rounded text-sm font-overpass-regular transition-colors ${
-                  language === "en" ? "" : "text-gray-400 hover:text-white"
+                  language === "en" ? "" : `${mutedTextColor} ${mutedHoverColor}`
                 }`}
                 style={language === "en" ? { backgroundColor: "var(--accent-yellow)", color: "var(--bg-primary)" } : {}}
               >
