@@ -9,8 +9,13 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Header } from "@/components/Header"
 import { Footer } from "@/components/Footer"
+import { translations, type Language } from "@/lib/translations"
+import { useState } from "react"
 
 export default function PrivacyPolicy() {
+  const [language, setLanguage] = useState<Language>("tr")
+  const t = translations[language]
+
   return (
     <div className="min-h-screen text-white" style={{ backgroundColor: "var(--bg-primary)" }}>
       {/* Header */}
@@ -103,7 +108,7 @@ export default function PrivacyPolicy() {
       </main>
 
       {/* Footer */}
-      <Footer />
+      <Footer translations={t} language={language} setLanguage={setLanguage} />
     </div>
   )
 }

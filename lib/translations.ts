@@ -50,6 +50,13 @@ export const translations = {
     newsletterError: "Kayıt sırasında bir hata oluştu. Lütfen tekrar deneyin.",
     newsletterPrivacy:
       "E-posta adresiniz güvende. Spam göndermiyoruz ve dilediğiniz zaman abonelikten çıkabilirsiniz.",
+    
+    // Footer translations
+    footerDescription: "NASA Space Apps Challenge, dünyanın en büyük yıllık global hackathon etkinliğidir. Bolu'da gerçekleşen bu etkinlikte, uzay ve yer bilimleri konularında yaratıcı çözümler geliştiriyoruz.",
+    quickLinks: "Hızlı Linkler",
+    privacy: "Gizlilik Politikası",
+    codeOfConduct: "Davranış Kuralları",
+    followUs: "Bizi Takip Edin",
   },
   en: {
     about: "About",
@@ -97,6 +104,13 @@ export const translations = {
     newsletterError: "An error occurred during registration. Please try again.",
     newsletterPrivacy:
       "Your email is safe with us. We don't spam and you can unsubscribe at any time.",
+    
+    // Footer translations
+    footerDescription: "NASA Space Apps Challenge is the world's largest annual global hackathon. Join us in Bolu to develop creative solutions for space and earth science challenges.",
+    quickLinks: "Quick Links",
+    privacy: "Privacy Policy",
+    codeOfConduct: "Code of Conduct",
+    followUs: "Follow Us",
   },
 }
 
