@@ -35,7 +35,7 @@ export function Header({ translations, showAwards = false }: HeaderProps) {
       <div className="flex items-center">
         <Link href="/">
           <Image
-            src="/placeholder.svg?height=50&width=190"
+            src="/logo-white.webp"
             alt="Space Apps Challenge Bolu"
             width={190}
             height={50}

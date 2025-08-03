@@ -7,27 +7,27 @@ export const judges = [
   {
     name: "Prof. Dr. Okan Külköylüoğlu",
     role: "Jüri Heyeti Başkanı",
-    avatar: "/judges/okan-hoca.png",
+    avatar: "/judges/okan-hoca.webp",
   },
   {
     name: "Çok Yakında!",
     role: "",
-    avatar: "/logo-circular-dark.svg",
+    avatar: "/logo-circular-dark.webp",
   },
   {
     name: "Çok Yakında!",
     role: "",
-    avatar: "/logo-circular-dark.svg",
+    avatar: "/logo-circular-dark.webp",
   },
   {
     name: "Çok Yakında!",
     role: "",
-    avatar: "/logo-circular-dark.svg",
+    avatar: "/logo-circular-dark.webp",
   },
   {
     name: "Çok Yakında!",
     role: "",
-    avatar: "/logo-circular-dark.svg",
+    avatar: "/logo-circular-dark.webp",
   },
 ]
 

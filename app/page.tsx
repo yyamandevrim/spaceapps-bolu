@@ -232,7 +232,7 @@ export default function Page() {
               <div className="flex items-center space-x-4 sm:space-x-6 flex-shrink-0">
                 {/* Mobile logo */}
                 <Image
-                  src="/logo-dark.svg?height=220&width=220"
+                  src="/logo-dark.webp"
                   alt="NASA"
                   width={220}
                   height={220}
@@ -240,7 +240,7 @@ export default function Page() {
                 />
                 {/* Desktop logo */}
                 <Image
-                  src="/logo-circular-dark.svg?height=220&width=220"
+                  src="/logo-circular-dark.webp"
                   alt="NASA"
                   width={220}
                   height={220}

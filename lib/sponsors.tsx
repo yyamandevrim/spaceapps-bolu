@@ -30,7 +30,7 @@ export const sponsors: Sponsor[] = [
   {
     id: "cydd",
     name: "ÇYDD",
-    logo: "/partners/cydd.svg",
+    logo: "/partners/cydd.webp",
     width: 120,
     height: 60,
     className: "flex-shrink-0 h-16 sm:h-12 w-auto",
@@ -41,7 +41,7 @@ export const sponsors: Sponsor[] = [
   {
     id: "bolu-valilik",
     name: "Bolu Valiliği",
-    logo: "/partners/bolu-valilik.png",
+    logo: "/partners/bolu-valilik.webp",
     width: 120,
     height: 60,
     className: "flex-shrink-0 h-16 sm:h-12 w-auto",

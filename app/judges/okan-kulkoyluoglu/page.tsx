@@ -34,7 +34,7 @@ export default function OkanKulkoyluogluPage() {
               {/* Profile Image */}
               <div className="flex-shrink-0">
                 <Image
-                  src="/judges/okan-hoca.png"
+                  src="/judges/okan-hoca.webp"
                   alt="Prof. Dr. Okan Külköylüoğlu"
                   width={200}
                   height={200}

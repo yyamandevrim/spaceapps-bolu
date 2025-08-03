@@ -22,7 +22,7 @@ export function Footer({ translations: t, language, setLanguage, showAwards = fa
           <div className="md:col-span-2">
             <div className="flex items-center justify-center md:justify-start mb-4">
               <Image
-                src={showAwards ? "/logo-dark.svg" : "/logo-white.svg"}
+                src={showAwards ? "/logo-dark.webp" : "/logo-white.webp"}
                 alt="NASA Space Apps Challenge"
                 width={120}
                 height={120}
