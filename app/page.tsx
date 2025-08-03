@@ -134,7 +134,7 @@ export default function Page() {
       />
 
       {/* Header */}
-      <Header translations={t} />
+      <Header translations={t} showAwards={showAwards} />
 
       {/* Hero Section - With Electric Blue Gradients */}
       <main className="relative min-h-screen overflow-hidden" style={{ backgroundColor: "var(--bg-primary)" }}>

@@ -1,3 +1,6 @@
+//COPYRIGHT 2025, NASA SPACE APPS CHALLENGE BOLU
+// BY YAMANDEVRIM
+
 "use client"
 
 import Image from "next/image"
@@ -9,19 +12,20 @@ interface HeaderProps {
     about: string
     speakers: string
     agenda: string
+    awards: string
     faqs: string
-    whatIsMaze: string
     registerNow: string
   }
+  showAwards?: boolean
 }
 
-export function Header({ translations }: HeaderProps) {
+export function Header({ translations, showAwards = false }: HeaderProps) {
   const t = translations || {
     about: "Hakkında",
     speakers: "Jüriler",
     agenda: "Takvim",
+    awards: "Ödüller",
     faqs: "S.S.S.",
-    whatIsMaze: "Space Apps Challenge Nedir?",
     registerNow: "Şimdi Kayıt Ol"
   }
 
@@ -60,17 +64,19 @@ export function Header({ translations }: HeaderProps) {
         >
           {t.agenda}
         </Link>
+        {showAwards && (
+          <Link
+            href="/#awards"
+            className="text-white hover:text-blue-300 transition-colors font-overpass-regular text-sm lg:text-base"
+          >
+            {t.awards}
+          </Link>
+        )}
         <Link
           href="/#faqs"
           className="text-white hover:text-blue-300 transition-colors font-overpass-regular text-sm lg:text-base"
         >
           {t.faqs}
-        </Link>
-        <Link
-          href="#"
-          className="text-white hover:text-blue-300 transition-colors font-overpass-regular text-sm lg:text-base"
-        >
-          {t.whatIsMaze}
         </Link>
       </nav>
 
