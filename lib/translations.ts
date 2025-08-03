@@ -13,7 +13,7 @@ export const translations = {
     location: "Bolu 50.⁠ ⁠Yıl İzzet Baysal Ortaokulu",
     heroTitle: "2025 NASA Space Apps Challenge için kayıtlar açıldı!",
     heroSubtitle: "4-5 Ekim tarihlerinde dünyanın en büyük yıllık hackathon etkinliğinin bir parçası olun.",
-    registerNow: "ŞİMDİ KAYIT OL",
+    registerNow: "Şimdi Kayıt Ol",
     inPartnershipWith: "Destekçilerimiz",
     agendaTitle: "Etkinlik Takvimi",
     agendaSubtitle: "Space Apps Challenge 2025 etkinlik programınız.",

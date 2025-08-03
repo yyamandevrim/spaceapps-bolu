@@ -22,7 +22,7 @@ export function Header({ translations }: HeaderProps) {
     agenda: "Takvim",
     faqs: "S.S.S.",
     whatIsMaze: "Space Apps Challenge Nedir?",
-    registerNow: "ŞİMDİ KAYIT OL"
+    registerNow: "Şimdi Kayıt Ol"
   }
 
   return (
