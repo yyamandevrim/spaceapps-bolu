@@ -1,187 +1,136 @@
-/**
- * Copyright (c) 2025 Yaman Devrim
- * All rights reserved. NASA Space Apps Challenge 2025 Bolu
- */
-
 "use client"
 
+import type { translations, Language } from "@/lib/translations"
 import Image from "next/image"
 import Link from "next/link"
-import { Facebook, Twitter, Instagram, Linkedin } from "lucide-react"
+import { Globe } from "lucide-react"
 
 interface FooterProps {
-  translations?: {
-    company: string
-    aboutUs: string
-    product: string
-    pricing: string
-    integrations: string
-    spaceAppsAI: string
-    resourcesAndTools: string
-    contentHub: string
-    collections: string
-    guidesReports: string
-    copyright: string
-    language: string
-    turkish: string
-    english: string
-    homepage: string
-    privacy: string
-    codeOfConduct: string
-    sponsors: string
-    contact: string
-  }
-  language?: "tr" | "en"
-  setLanguage?: (lang: "tr" | "en") => void
+  translations: typeof translations.tr
+  language: Language
+  setLanguage: (lang: Language) => void
   showAwards?: boolean
 }
 
-export function Footer({ translations, language = "tr", setLanguage, showAwards = false }: FooterProps) {
-  const t = translations || {
-    company: "Şirket",
-    aboutUs: "Hakkımızda",
-    product: "Ürün",
-    pricing: "Fiyatlandırma",
-    integrations: "Entegrasyonlar",
-    spaceAppsAI: "Space Apps AI",
-    resourcesAndTools: "Kaynaklar ve Araçlar",
-    contentHub: "İçerik Merkezi",
-    collections: "Koleksiyonlar",
-    guidesReports: "Kılavuzlar ve Raporlar",
-    copyright:
-      "© 2025 NASA Space Apps Bolu. Tüm hakları saklıdır. NASA Space Apps Challange, NASA'nın ticari markasıdır.",
-    language: "Dil",
-    turkish: "Türkçe",
-    english: "English",
-    homepage: "Ana Sayfa",
-    privacy: "Gizlilik Politikası",
-    codeOfConduct: "Davranış Kuralları",
-    sponsors: "Sponsorlar",
-    contact: "İletişim",
-  }
-
-  const isWhiteFooter = showAwards
-  const logoSrc = isWhiteFooter ? "/logo-dark.svg" : "/logo-white.svg"
-  const textColor = isWhiteFooter ? "text-gray-900" : "text-white"
-  const hoverColor = isWhiteFooter ? "hover:text-blue-600" : "hover:text-yellow-400"
-  const mutedTextColor = isWhiteFooter ? "text-gray-600" : "text-gray-400"
-  const mutedHoverColor = isWhiteFooter ? "hover:text-gray-900" : "hover:text-white"
-  const borderColor = isWhiteFooter ? "border-gray-300" : "border-gray-700"
-  const backgroundColor = isWhiteFooter ? "bg-white" : ""
-
+export function Footer({ translations: t, language, setLanguage, showAwards = false }: FooterProps) {
   return (
-    <footer
-      className={`py-16 px-4 sm:px-6 lg:px-8 ${backgroundColor}`}
-      style={!isWhiteFooter ? { backgroundColor: "var(--bg-primary)" } : {}}
-    >
+    <footer className={`py-12 px-4 sm:px-6 lg:px-8 ${showAwards ? "bg-white" : "bg-gray-900"}`}>
       <div className="max-w-6xl mx-auto">
-        {/* Logo */}
-        <div className="flex justify-center mb-12">
-          <Image
-            src={logoSrc || "/placeholder.svg"}
-            alt="Space Apps Challenge"
-            width={300}
-            height={120}
-            className="h-24 w-auto"
-          />
-        </div>
-
-        {/* Navigation Links */}
-        <nav className="flex flex-wrap justify-center gap-8 mb-12">
-          <Link
-            href="/"
-            className={`${isWhiteFooter ? "text-gray-900 hover:text-blue-600" : "text-white hover:text-yellow-400"} transition-colors font-overpass-regular text-lg font-medium`}
-          >
-            {t.homepage}
-          </Link>
-          <Link
-            href="/privacy"
-            className={`${isWhiteFooter ? "text-gray-900 hover:text-blue-600" : "text-white hover:text-yellow-400"} transition-colors font-overpass-regular text-lg font-medium`}
-          >
-            {t.privacy}
-          </Link>
-          <Link
-            href="/code-of-conduct"
-            className={`${isWhiteFooter ? "text-gray-900 hover:text-blue-600" : "text-white hover:text-yellow-400"} transition-colors font-overpass-regular text-lg font-medium`}
-          >
-            {t.codeOfConduct}
-          </Link>
-          <Link
-            href="#sponsors"
-            className={`${isWhiteFooter ? "text-gray-900 hover:text-blue-600" : "text-white hover:text-yellow-400"} transition-colors font-overpass-regular text-lg font-medium`}
-          >
-            {t.sponsors}
-          </Link>
-          <Link
-            href="#contact"
-            className={`${isWhiteFooter ? "text-gray-900 hover:text-blue-600" : "text-white hover:text-yellow-400"} transition-colors font-overpass-regular text-lg font-medium`}
-          >
-            {t.contact}
-          </Link>
-        </nav>
-
-        {/* Social Media Icons */}
-        <div className="flex justify-center gap-6 mb-12">
-          <Link
-            href="#"
-            className={`${isWhiteFooter ? "text-gray-600 hover:text-gray-900" : "text-gray-400 hover:text-white"} transition-colors`}
-            aria-label="Facebook"
-          >
-            <Facebook size={24} />
-          </Link>
-          <Link
-            href="#"
-            className={`${isWhiteFooter ? "text-gray-600 hover:text-gray-900" : "text-gray-400 hover:text-white"} transition-colors`}
-            aria-label="Twitter"
-          >
-            <Twitter size={24} />
-          </Link>
-          <Link
-            href="#"
-            className={`${isWhiteFooter ? "text-gray-600 hover:text-gray-900" : "text-gray-400 hover:text-white"} transition-colors`}
-            aria-label="Instagram"
-          >
-            <Instagram size={24} />
-          </Link>
-          <Link
-            href="#"
-            className={`${isWhiteFooter ? "text-gray-600 hover:text-gray-900" : "text-gray-400 hover:text-white"} transition-colors`}
-            aria-label="LinkedIn"
-          >
-            <Linkedin size={24} />
-          </Link>
-        </div>
-
-        {/* Bottom Section with Copyright and Language Selector */}
-        <div className={`pt-8 border-t ${borderColor} flex flex-col sm:flex-row justify-between items-center gap-4`}>
-          <p className={`${mutedTextColor} font-overpass-regular text-sm sm:text-base text-center sm:text-left`}>
-            {t.copyright}
-          </p>
-
-          {/* Language Toggle - only show if setLanguage is provided */}
-          {setLanguage && (
-            <div className="flex items-center space-x-2">
-              <span className={`${mutedTextColor} font-overpass-regular text-sm`}>{t.language}:</span>
-              <button
-                onClick={() => setLanguage("tr")}
-                className={`px-3 py-1 rounded text-sm font-overpass-regular transition-colors ${
-                  language === "tr" ? "" : `${mutedTextColor} ${mutedHoverColor}`
-                }`}
-                style={language === "tr" ? { backgroundColor: "var(--accent-yellow)", color: "var(--bg-primary)" } : {}}
-              >
-                {t.turkish}
-              </button>
-              <button
-                onClick={() => setLanguage("en")}
-                className={`px-3 py-1 rounded text-sm font-overpass-regular transition-colors ${
-                  language === "en" ? "" : `${mutedTextColor} ${mutedHoverColor}`
-                }`}
-                style={language === "en" ? { backgroundColor: "var(--accent-yellow)", color: "var(--bg-primary)" } : {}}
-              >
-                {t.english}
-              </button>
+        {/* Main Footer Content */}
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+          {/* Logo and Description */}
+          <div className="md:col-span-2">
+            <div className="flex items-center mb-4">
+              <Image
+                src={showAwards ? "/logo-dark.svg" : "/logo-white.svg"}
+                alt="NASA Space Apps Challenge"
+                width={120}
+                height={120}
+                className="h-16 w-auto"
+              />
             </div>
-          )}
+            <p className={`text-sm leading-relaxed max-w-md ${showAwards ? "text-gray-600" : "text-gray-300"}`}>
+              {t.footerDescription}
+            </p>
+          </div>
+
+          {/* Quick Links */}
+          <div>
+            <h3 className={`font-fira-bold text-lg mb-4 ${showAwards ? "text-gray-900" : "text-white"}`}>
+              {t.quickLinks}
+            </h3>
+            <ul className="space-y-2">
+              <li>
+                <Link
+                  href="/privacy"
+                  className={`text-sm font-medium hover:underline transition-colors ${
+                    showAwards ? "text-gray-700 hover:text-gray-900" : "text-gray-300 hover:text-white"
+                  }`}
+                >
+                  {t.privacy}
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/code-of-conduct"
+                  className={`text-sm font-medium hover:underline transition-colors ${
+                    showAwards ? "text-gray-700 hover:text-gray-900" : "text-gray-300 hover:text-white"
+                  }`}
+                >
+                  {t.codeOfConduct}
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Social Media */}
+          <div>
+            <h3 className={`font-fira-bold text-lg mb-4 ${showAwards ? "text-gray-900" : "text-white"}`}>
+              {t.followUs}
+            </h3>
+            <div className="flex space-x-4">
+              <a
+                href="#"
+                className={`p-2 rounded-full transition-colors ${
+                  showAwards
+                    ? "bg-gray-100 hover:bg-gray-200 text-gray-600"
+                    : "bg-gray-800 hover:bg-gray-700 text-gray-300"
+                }`}
+              >
+                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" />
+                </svg>
+              </a>
+              <a
+                href="#"
+                className={`p-2 rounded-full transition-colors ${
+                  showAwards
+                    ? "bg-gray-100 hover:bg-gray-200 text-gray-600"
+                    : "bg-gray-800 hover:bg-gray-700 text-gray-300"
+                }`}
+              >
+                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M22.46 6c-.77.35-1.6.58-2.46.69.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07 4.28 4.28 0 0 0 4 2.98 8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21 16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56.84-.6 1.56-1.36 2.14-2.23z" />
+                </svg>
+              </a>
+              <a
+                href="#"
+                className={`p-2 rounded-full transition-colors ${
+                  showAwards
+                    ? "bg-gray-100 hover:bg-gray-200 text-gray-600"
+                    : "bg-gray-800 hover:bg-gray-700 text-gray-300"
+                }`}
+              >
+                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom Bar */}
+        <div
+          className={`pt-8 border-t flex flex-col sm:flex-row justify-between items-center gap-4 ${
+            showAwards ? "border-gray-200" : "border-gray-800"
+          }`}
+        >
+          <p className={`text-sm ${showAwards ? "text-gray-600" : "text-gray-400"}`}>{t.copyright}</p>
+
+          {/* Language Selector */}
+          <div className="flex items-center gap-2">
+            <Globe className={`w-4 h-4 ${showAwards ? "text-gray-600" : "text-gray-400"}`} />
+            <select
+              value={language}
+              onChange={(e) => setLanguage(e.target.value as Language)}
+              className={`text-sm border-none bg-transparent focus:outline-none cursor-pointer ${
+                showAwards ? "text-gray-600" : "text-gray-400"
+              }`}
+            >
+              <option value="tr">Türkçe</option>
+              <option value="en">English</option>
+            </select>
+          </div>
         </div>
       </div>
     </footer>

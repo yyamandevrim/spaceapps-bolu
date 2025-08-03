@@ -136,177 +136,89 @@ export default function Page() {
       {/* Header */}
       <Header translations={t} />
 
-      {/* Hero Section */}
-      <main className="relative min-h-[calc(100vh-80px)] overflow-hidden">
-        {/* Background Image Upload
-        <div className="absolute top-4 right-4 z-20">
-          <input type="file" accept="image/*" onChange={handleImageUpload} className="hidden" id="hero-bg-upload" />
-          <label
-            htmlFor="hero-bg-upload"
-            className="bg-white/20 backdrop-blur-sm text-white px-3 py-1 rounded cursor-pointer text-sm hover:bg-white/30 transition-colors"
-          >
-            Upload Background
-          </label>
-        </div>
- */}
-        {/* Background */}
-        <div
-          className={`absolute inset-0 hero-bg ${heroBackground ? "" : "bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900"}`}
-          style={heroBackground ? { backgroundImage: `url(${heroBackground})` } : {}}
-        />
+      {/* Hero Section - With Electric Blue Gradients */}
+      <main className="relative min-h-screen overflow-hidden" style={{ backgroundColor: "var(--bg-primary)" }}>
+        {/* Sparkle Stars Background */}
+        <div className="sparkle-stars" />
 
-        {/* Overlay */}
-        <div className="absolute inset-0 bg-black/40" />
+        {/* Electric Blue Gradients */}
+        <div className="electric-gradient-1" />
+        <div className="electric-gradient-2" />
 
-        {/* Geometric pattern overlay */}
-        <div
-          className="absolute inset-0 opacity-10"
-          style={{
-            backgroundImage: `
-        radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 0%, transparent 50%),
-        radial-gradient(circle at 80% 20%, rgba(255,255,255,0.1) 0%, transparent 50%),
-        radial-gradient(circle at 40% 80%, rgba(255,255,255,0.1) 0%, transparent 50%)
-      `,
-          }}
-        />
-
-        <div className="relative z-10 flex items-center min-h-[calc(100vh-80px)] px-4 sm:px-6 lg:px-8">
-          <div className="max-w-6xl mx-auto w-full">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-              {/* Left side - Content */}
-              <div className="space-y-6 lg:space-y-8 text-center lg:text-left">
-                {showLocation && (
-                  <div className="flex items-center justify-center lg:justify-start gap-2">
-                    <svg width="16" height="20" viewBox="0 0 34 34" className="flex-shrink-0">
-                      <path
-                        d="M16,6c-3,3-7.58,8.01-11.15,11.44-3.43-3.43-8.01-8.44-11.15-11.44-6.15-6.01-6.15-15.87,0-21.88,6.15-6.01,16.16-6.01,22.31,0,6.15,6.15,6.15,15.87,0,21.88Z"
-                        fill="#db240b"
-                        transform="translate(12, 16)"
-                      />
-                    </svg>
-                    <p className="text-lg sm:text-xl text-white/90 font-overpass-regular">{t.location}</p>
-                  </div>
-                )}
-
-                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-fira-black leading-tight text-white">
-                  {t.heroTitle}
-                </h1>
-
-                <p className="text-lg sm:text-xl text-white/90 font-overpass-regular max-w-lg mx-auto lg:mx-0">
-                  {t.heroSubtitle}
-                </p>
-
-                <Button
-                  className="px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-overpass-bold text-black rounded-lg hover:opacity-90 transition-opacity"
-                  style={{ backgroundColor: "var(--accent-yellow)" }}
-                  onClick={() => (window.location.href = "/redirect/register")}
-                >
-                  {t.registerNow}
-                </Button>
+        {/* Main content */}
+        <div className="relative z-10 flex items-center justify-center min-h-screen px-4 sm:px-6 lg:px-8">
+          <div className="max-w-5xl mx-auto text-center">
+            {/* Location badge */}
+            {showLocation && (
+              <div className="inline-flex items-center gap-2 mb-8 px-4 py-2 rounded-full border border-white/20 bg-white/5 backdrop-blur-sm">
+                <svg width="16" height="20" viewBox="0 0 34 34" className="flex-shrink-0">
+                  <path
+                    d="M16,6c-3,3-7.58,8.01-11.15,11.44-3.43-3.43-8.01-8.44-11.15-11.44-6.15-6.01-6.15-15.87,0-21.88,6.15-6.01,16.16-6.01,22.31,0,6.15,6.15,6.15,15.87,0,21.88Z"
+                    fill="var(--accent-red)"
+                    transform="translate(12, 16)"
+                  />
+                </svg>
+                <span className="text-white/90 font-overpass-regular text-sm">{t.location}</span>
               </div>
+            )}
 
-              {/* Right side - Globe */}
-              <div className="relative hidden lg:flex justify-center lg:justify-end">
-                <div className="relative w-80 h-80 sm:w-96 sm:h-96 lg:w-[500px] lg:h-[500px]">
-                  {/* Globe base */}
-                  <div
-                    className="absolute inset-0 rounded-full"
-                    style={{
-                      background:
-                        "radial-gradient(circle at 30% 30%, rgba(59, 130, 246, 0.8) 0%, rgba(29, 78, 216, 0.9) 70%)",
-                      boxShadow: "inset -20px -20px 60px rgba(0,0,0,0.3), 0 0 100px rgba(59, 130, 246, 0.3)",
-                    }}
-                  />
+            {/* Main title */}
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-fira-black leading-tight text-white mb-8">
+              <span className="block">{t.heroTitle.split(" ").slice(0, 2).join(" ")}</span>
+              <span className="block" style={{ color: "var(--accent-yellow)" }}>
+                {t.heroTitle.split(" ").slice(2).join(" ")}
+              </span>
+            </h1>
 
-                  {/* Continents overlay */}
-                  <div className="absolute inset-4 rounded-full opacity-60">
-                    <Image
-                      src="/Globe.png?height=400&width=400"
-                      alt="World Map"
-                      width={400}
-                      height={400}
-                      className="w-full h-full object-cover rounded-full opacity-100"
-                    />
-                  </div>
+            {/* Subtitle */}
+            <p className="text-lg sm:text-xl lg:text-2xl text-white/80 font-overpass-regular max-w-3xl mx-auto mb-12 leading-relaxed">
+              {t.heroSubtitle}
+            </p>
 
-                  {/* Location markers */}
-                  <div className="absolute inset-0">
-                    {/* Sample location markers positioned around the globe */}
-                    <div className="absolute top-16 right-20 w-3 h-3 bg-red-500 rounded-full animate-pulse" />
-                    <div
-                      className="absolute top-24 right-32 w-2 h-2 bg-red-500 rounded-full animate-pulse"
-                      style={{ animationDelay: "0.5s" }}
-                    />
-                    <div
-                      className="absolute top-32 right-16 w-2 h-2 bg-red-500 rounded-full animate-pulse"
-                      style={{ animationDelay: "1s" }}
-                    />
-                    <div
-                      className="absolute top-40 right-28 w-3 h-3 bg-red-500 rounded-full animate-pulse"
-                      style={{ animationDelay: "1.5s" }}
-                    />
-                    <div
-                      className="absolute top-48 right-24 w-2 h-2 bg-red-500 rounded-full animate-pulse"
-                      style={{ animationDelay: "2s" }}
-                    />
-                    <div
-                      className="absolute top-56 right-36 w-2 h-2 bg-red-500 rounded-full animate-pulse"
-                      style={{ animationDelay: "0.3s" }}
-                    />
-                    <div
-                      className="absolute top-64 right-20 w-3 h-3 bg-red-500 rounded-full animate-pulse"
-                      style={{ animationDelay: "0.8s" }}
-                    />
-                    <div
-                      className="absolute top-72 right-32 w-2 h-2 bg-red-500 rounded-full animate-pulse"
-                      style={{ animationDelay: "1.3s" }}
-                    />
+            {/* CTA Buttons - Equal Size */}
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
+              <Button
+                className="w-full sm:w-auto px-8 py-4 text-lg font-overpass-bold text-black rounded-xl hover:scale-105 transition-all duration-300 shadow-lg"
+                style={{ backgroundColor: "var(--accent-yellow)" }}
+                onClick={() => (window.location.href = "/redirect/register")}
+              >
+                {t.registerNow}
+              </Button>
 
-                    {/* Left side markers */}
-                    <div
-                      className="absolute top-20 left-24 w-2 h-2 bg-red-500 rounded-full animate-pulse"
-                      style={{ animationDelay: "0.7s" }}
-                    />
-                    <div
-                      className="absolute top-36 left-16 w-3 h-3 bg-red-500 rounded-full animate-pulse"
-                      style={{ animationDelay: "1.2s" }}
-                    />
-                    <div
-                      className="absolute top-52 left-28 w-2 h-2 bg-red-500 rounded-full animate-pulse"
-                      style={{ animationDelay: "1.7s" }}
-                    />
-                    <div
-                      className="absolute top-68 left-20 w-2 h-2 bg-red-500 rounded-full animate-pulse"
-                      style={{ animationDelay: "0.4s" }}
-                    />
-
-                    {/* Bottom markers */}
-                    <div
-                      className="absolute bottom-20 left-32 w-2 h-2 bg-red-500 rounded-full animate-pulse"
-                      style={{ animationDelay: "0.9s" }}
-                    />
-                    <div
-                      className="absolute bottom-16 right-40 w-3 h-3 bg-red-500 rounded-full animate-pulse"
-                      style={{ animationDelay: "1.4s" }}
-                    />
-                    <div
-                      className="absolute bottom-24 left-40 w-2 h-2 bg-red-500 rounded-full animate-pulse"
-                      style={{ animationDelay: "1.9s" }}
-                    />
-                  </div>
-
-                  {/* Orbital rings */}
-                  <div
-                    className="absolute inset-0 rounded-full border border-white/20 animate-spin"
-                    style={{ animationDuration: "20s" }}
-                  />
-                  <div
-                    className="absolute inset-8 rounded-full border border-white/10 animate-spin"
-                    style={{ animationDuration: "30s", animationDirection: "reverse" }}
-                  />
-                </div>
-              </div>
+              {/* Secondary action - Same size */}
+              <Button
+                variant="outline"
+                onClick={() => document.getElementById("agenda")?.scrollIntoView({ behavior: "smooth" })}
+                className="w-full sm:w-auto px-8 py-4 text-lg font-overpass-regular text-white border-white/30 rounded-xl hover:bg-white/10 transition-all duration-300 bg-transparent"
+              >
+                {language === "tr" ? "Programı İncele" : "View Schedule"}
+              </Button>
             </div>
+
+            {/* Floating elements */}
+            <div
+              className="absolute top-1/4 left-1/4 w-2 h-2 rounded-full animate-pulse"
+              style={{ backgroundColor: "var(--accent-blue)" }}
+            />
+            <div
+              className="absolute top-1/3 right-1/4 w-3 h-3 rounded-full animate-pulse"
+              style={{ backgroundColor: "var(--accent-yellow)", animationDelay: "1s" }}
+            />
+            <div
+              className="absolute bottom-1/4 left-1/3 w-2 h-2 rounded-full animate-pulse"
+              style={{ backgroundColor: "var(--accent-red)", animationDelay: "2s" }}
+            />
+            <div
+              className="absolute bottom-1/3 right-1/3 w-1 h-1 rounded-full animate-pulse"
+              style={{ backgroundColor: "var(--accent-blue)", animationDelay: "0.5s" }}
+            />
+          </div>
+        </div>
+
+        {/* Scroll indicator */}
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+          <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center">
+            <div className="w-1 h-3 bg-white/50 rounded-full mt-2 animate-pulse" />
           </div>
         </div>
       </main>
