@@ -52,7 +52,7 @@ export function Footer({ translations: t, language, setLanguage, showAwards = fa
               </li>
               <li>
                 <Link
-                  href="/code-of-conduct"
+                  href="/coc"
                   className={`text-sm font-medium hover:underline transition-colors ${
                     showAwards ? "text-gray-700 hover:text-gray-900" : "text-gray-300 hover:text-white"
                   }`}

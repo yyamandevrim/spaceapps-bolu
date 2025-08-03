@@ -27,8 +27,8 @@ export const faqs = [
   {
     question: "Etkinlik kaydedilecek mi?",
     questionEn: "Will the event be recorded?",
-    answer: "Evet, tüm oturumlar kaydedilecek ve kayıtlı katılımcıların erişimine sunulacaktır.",
-    answerEn: "Yes, all sessions will be recorded and available for registered participants.",
+    answer: "Evet, etkinlik sırasında fotoğraflar ve videolar çekilecek ve kayıt altına alınacaktır. Gizlilik sözleşmemizi inceleyebilirsiniz.",
+    answerEn: "Yes, photos and videos will be taken during the event and recorded. You can review our privacy policy.",
   },
   {
     question: "Kimler katılabilir?",
