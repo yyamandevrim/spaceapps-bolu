@@ -17,10 +17,10 @@ export function Footer({ translations: t, language, setLanguage, showAwards = fa
     <footer className={`py-12 px-4 sm:px-6 lg:px-8 ${showAwards ? "bg-white" : "bg-gray-900"}`}>
       <div className="max-w-6xl mx-auto">
         {/* Main Footer Content */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8 text-center md:text-left">
           {/* Logo and Description */}
           <div className="md:col-span-2">
-            <div className="flex items-center mb-4">
+            <div className="flex items-center justify-center md:justify-start mb-4">
               <Image
                 src={showAwards ? "/logo-dark.svg" : "/logo-white.svg"}
                 alt="NASA Space Apps Challenge"
@@ -29,7 +29,7 @@ export function Footer({ translations: t, language, setLanguage, showAwards = fa
                 className="h-16 w-auto"
               />
             </div>
-            <p className={`text-sm leading-relaxed max-w-md ${showAwards ? "text-gray-600" : "text-gray-300"}`}>
+            <p className={`text-sm leading-relaxed max-w-md mx-auto md:mx-0 ${showAwards ? "text-gray-600" : "text-gray-300"}`}>
               {t.footerDescription}
             </p>
           </div>
@@ -68,7 +68,7 @@ export function Footer({ translations: t, language, setLanguage, showAwards = fa
             <h3 className={`font-fira-bold text-lg mb-4 ${showAwards ? "text-gray-900" : "text-white"}`}>
               {t.followUs}
             </h3>
-            <div className="flex space-x-4">
+            <div className="flex space-x-4 justify-center md:justify-start">
               <a
                 href="https://www.instagram.com/nasaspaceapps_bolu/?utm_source=website-footer"
                 className={`p-2 rounded-full transition-colors ${
@@ -92,14 +92,14 @@ export function Footer({ translations: t, language, setLanguage, showAwards = fa
 
         {/* Bottom Bar */}
         <div
-          className={`pt-8 border-t flex flex-col sm:flex-row justify-between items-center gap-4 ${
+          className={`pt-8 border-t flex flex-col sm:flex-row justify-between items-center gap-4 text-center sm:text-left ${
             showAwards ? "border-gray-200" : "border-gray-800"
           }`}
         >
           <p className={`text-sm ${showAwards ? "text-gray-600" : "text-gray-400"}`}>{t.copyright}</p>
 
           {/* Language Selector */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 justify-center sm:justify-start">
             <Globe className={`w-4 h-4 ${showAwards ? "text-gray-600" : "text-gray-400"}`} />
             <select
               value={language}
