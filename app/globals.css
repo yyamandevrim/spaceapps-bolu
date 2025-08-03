@@ -61,3 +61,98 @@ body {
   background-position: center;
   background-repeat: no-repeat;
 }
+
+/* Electric Blue Rotating Gradients */
+@keyframes rotateGradient1 {
+  0% {
+    transform: rotate(0deg) scale(1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: rotate(180deg) scale(1.1);
+    opacity: 0.8;
+  }
+  100% {
+    transform: rotate(360deg) scale(1);
+    opacity: 0.6;
+  }
+}
+
+@keyframes rotateGradient2 {
+  0% {
+    transform: rotate(45deg) scale(1.2);
+    opacity: 0.4;
+  }
+  50% {
+    transform: rotate(225deg) scale(0.9);
+    opacity: 0.7;
+  }
+  100% {
+    transform: rotate(405deg) scale(1.2);
+    opacity: 0.4;
+  }
+}
+
+.electric-gradient-1 {
+  position: absolute;
+  top: -50%;
+  right: -20%;
+  width: 80%;
+  height: 120%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(46, 150, 245, 0.8) 0%,
+    rgba(59, 130, 246, 0.6) 25%,
+    rgba(147, 197, 253, 0.4) 50%,
+    transparent 70%
+  );
+  animation: rotateGradient1 12s ease-in-out infinite;
+  border-radius: 50%;
+  filter: blur(40px);
+}
+
+.electric-gradient-2 {
+  position: absolute;
+  top: 20%;
+  left: -30%;
+  width: 70%;
+  height: 100%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(139, 92, 246, 0.7) 0%,
+    rgba(59, 130, 246, 0.5) 30%,
+    rgba(46, 150, 245, 0.3) 60%,
+    transparent 80%
+  );
+  animation: rotateGradient2 15s ease-in-out infinite reverse;
+  border-radius: 50%;
+  filter: blur(50px);
+}
+
+/* Sparkle stars background */
+.sparkle-stars {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(2px 2px at 20px 30px, rgba(255, 255, 255, 0.3), transparent),
+    radial-gradient(2px 2px at 40px 70px, rgba(255, 255, 255, 0.2), transparent),
+    radial-gradient(1px 1px at 90px 40px, rgba(255, 255, 255, 0.4), transparent),
+    radial-gradient(1px 1px at 130px 80px, rgba(255, 255, 255, 0.3), transparent),
+    radial-gradient(2px 2px at 160px 30px, rgba(255, 255, 255, 0.2), transparent),
+    radial-gradient(1px 1px at 200px 60px, rgba(255, 255, 255, 0.4), transparent),
+    radial-gradient(2px 2px at 240px 90px, rgba(255, 255, 255, 0.3), transparent),
+    radial-gradient(1px 1px at 280px 20px, rgba(255, 255, 255, 0.2), transparent),
+    radial-gradient(1px 1px at 320px 70px, rgba(255, 255, 255, 0.4), transparent),
+    radial-gradient(2px 2px at 360px 40px, rgba(255, 255, 255, 0.3), transparent);
+  background-repeat: repeat;
+  background-size: 400px 200px;
+  animation: sparkle 20s linear infinite;
+}
+
+@keyframes sparkle {
+  0% {
+    transform: translateY(0px);
+  }
+  100% {
+    transform: translateY(-200px);
+  }
+}

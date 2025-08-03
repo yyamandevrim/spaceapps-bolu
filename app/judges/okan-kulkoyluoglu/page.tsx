@@ -1,10 +1,17 @@
+"use client"
+
 import { Header } from "@/components/Header"
 import { Footer } from "@/components/Footer" 
+import { translations, type Language } from "@/lib/translations"
+import { useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
 
 
 export default function OkanKulkoyluogluPage() {
+  const [language, setLanguage] = useState<Language>("tr")
+  const t = translations[language]
+
   return (
     <div className="min-h-screen text-white" style={{ backgroundColor: "var(--bg-primary)" }}>
       <Header />
@@ -145,7 +152,7 @@ export default function OkanKulkoyluogluPage() {
         </div>
       </main>
 
-      <Footer />
+      <Footer translations={t} language={language} setLanguage={setLanguage} />
     </div>
   )
 }
