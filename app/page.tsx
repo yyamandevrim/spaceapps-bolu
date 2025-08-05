@@ -244,7 +244,7 @@ export default function Page() {
                   alt="NASA"
                   width={220}
                   height={220}
-                  className="rounded-full w-16 h-16 sm:w-20 sm:h-20 hidden sm:block"
+                  className="w-16 h-16 sm:w-20 sm:h-20 hidden sm:block"
                 />
                 <div className="h-20 sm:h-16 w-px bg-gray-300"></div>
                 <span className="text-gray-700 font-overpass-regular text-base sm:text-lg whitespace-nowrap">
