@@ -137,7 +137,7 @@ export default function Page() {
       <Header translations={t} showAwards={showAwards} />
 
       {/* Hero Section - With Electric Blue Gradients */}
-      <main className="relative overflow-hidden" style={{ backgroundColor: "var(--bg-primary)", minHeight: "calc(100vh - 4rem)" }}>
+      <main className="relative overflow-hidden" style={{ backgroundColor: "var(--bg-primary)", minHeight: "calc(100vh - 5.55rem)" }}>
         {/* Sparkle Stars Background */}
         <div className="sparkle-stars" />
 
@@ -146,7 +146,7 @@ export default function Page() {
         <div className="electric-gradient-2" />
 
         {/* Main content */}
-        <div className="relative z-10 flex items-center justify-center px-4 sm:px-6 lg:px-8" style={{ minHeight: "calc(100vh - 4rem)" }}>
+        <div className="relative z-10 flex items-center justify-center px-4 sm:px-6 lg:px-8" style={{ minHeight: "calc(100vh - 5.55rem)" }}>
           <div className="max-w-5xl mx-auto text-center">
             {/* Location badge */}
             {showLocation && (
