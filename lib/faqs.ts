@@ -34,9 +34,9 @@ export const faqs = [
     question: "Kimler katılabilir?",
     questionEn: "Who can participate?",
     answer:
-      "Space Apps Challenge, 7'den 70'e meraklılar, yazılım geliştiriciler, tasarımcılar, mühendisler ve uzay teknolojisi ile ilgilenen herkes için uygundur.",
+      "Space Apps Challenge; uzay, havacılık, teknoloji ve sürdürülebilirlik temalarında yenilikçi çözümler geliştirmek isteyen birey ve takımların katılabileceği ulusal çapta düzenlenen yaratıcı bir proje yarışmasıdır. Öğrencilerden profesyonellere, girişimcilerden araştırmacılara kadar herkes katılabilir.",
     answerEn:
-      "Space Apps Challenge is perfect for everyone without age limits who are curious, software developers, designers, engineers, and anyone interested in space technology.",
+      "Space Apps Challenge is a nationwide creative project competition open to individuals and teams who want to develop innovative solutions in the fields of space, aviation, technology, and sustainability. Everyone from students to professionals, entrepreneurs to researchers can participate.",
   },
 ]
 
