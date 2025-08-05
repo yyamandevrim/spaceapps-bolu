@@ -552,7 +552,7 @@ export default function Page() {
               {/* 2nd Place */}
               <div className="text-center">
                 <div className="bg-gradient-to-t from-gray-400 to-gray-300 rounded-t-lg p-6 sm:p-8 mb-4 shadow-lg transform hover:scale-105 transition-transform duration-300">
-                  <div className="text-3xl sm:text-4xl mb-2">🥈</div>
+                  <div className="text-3xl sm:text-4xl mb-2 drop-shadow-md">🥈</div>
                   <div className="text-lg sm:text-xl font-fira-bold text-gray-800 mb-2">
                     {language === "tr" ? "2. Takım" : "2nd Team"}
                   </div>
@@ -564,7 +564,7 @@ export default function Page() {
               {/* 1st Place - Highest */}
               <div className="text-center">
                 <div className="bg-gradient-to-t from-yellow-500 to-yellow-400 rounded-t-lg p-6 sm:p-8 mb-4 shadow-lg transform hover:scale-105 transition-transform duration-300">
-                  <div className="text-4xl sm:text-5xl mb-2">🥇</div>
+                  <div className="text-4xl sm:text-5xl mb-2 drop-shadow-lg">🥇</div>
                   <div className="text-xl sm:text-2xl font-fira-bold text-gray-800 mb-2">
                     {language === "tr" ? "1. Takım" : "1st Team"}
                   </div>
@@ -576,7 +576,7 @@ export default function Page() {
               {/* 3rd Place */}
               <div className="text-center">
                 <div className="bg-gradient-to-t from-amber-600 to-amber-500 rounded-t-lg p-6 sm:p-8 mb-4 shadow-lg transform hover:scale-105 transition-transform duration-300">
-                  <div className="text-3xl sm:text-4xl mb-2">🥉</div>
+                  <div className="text-3xl sm:text-4xl mb-2 drop-shadow-md">🥉</div>
                   <div className="text-lg sm:text-xl font-fira-bold text-gray-800 mb-2">
                     {language === "tr" ? "3. Takım" : "3rd Team"}
                   </div>
@@ -594,13 +594,13 @@ export default function Page() {
                 className="text-white/80 font-overgipass-regular text-sm hover:text-white transition-colors cursor-pointer underline decoration-dotted underline-offset-4"
               >
                 {language === "tr"
-                  ? "Ödül sponsoru XX Şirketine teşekkür ederiz. →"
+                  ? "Ödül sponsoru Bolu Tanıtma ve Kalkındırma Vakfı'na teşekkür ederiz. →"
                   : "Thanks to award sponsor XX Company →"}
               </button>
 
               <p className="text-white/70 font-overpass-regular text-sm sm:text-base mt-6">
                 {language === "tr"
-                  ? "Ödüller kazanan takım üyeleri arasında eşit olarak paylaştırılacaktır."
+                  ? "Ödüller kazanan takımın üyeleri arasında eşit olarak paylaştırılacaktır."
                   : "Awards will be shared equally among winning team members."}
               </p>
             </div>
