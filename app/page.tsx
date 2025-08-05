@@ -234,9 +234,9 @@ export default function Page() {
                 <Image
                   src="/logo-dark.webp"
                   alt="NASA"
-                  width={220}
+                  width={260}
                   height={220}
-                  className="w-32 h-32 sm:w-20 sm:h-20 block sm:hidden"
+                  className="w-32 h-auto sm:w-25 sm:h-auto block sm:hidden"
                 />
                 {/* Desktop logo */}
                 <Image

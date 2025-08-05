@@ -13,6 +13,7 @@ export interface Sponsor {
   hasText?: boolean
   textLines?: string[]
   textClassName?: string
+  textWeights?: ('normal' | 'bold')[] // Her satır için ayrı weight
 }
 
 export const sponsors: Sponsor[] = [
@@ -25,7 +26,8 @@ export const sponsors: Sponsor[] = [
     className: "h-16 sm:h-12 w-auto",
     hasText: true,
     textLines: ["Türkiye Cumhuriyeti", "Bolu Belediyesi"],
-    textClassName: "text-gray-700"
+    textClassName: "text-gray-700",
+    textWeights: ['normal', 'bold'] // Üst normal, alt bold
   },
   {
     id: "cydd",
@@ -36,7 +38,8 @@ export const sponsors: Sponsor[] = [
     className: "flex-shrink-0 h-16 sm:h-12 w-auto",
     hasText: true,
     textLines: ["Çağdaş Yaşamı", "Destekleme Derneği"],
-    textClassName: "text-gray-700"
+    textClassName: "text-gray-700",
+    textWeights: ['bold', 'bold'] // Her ikisi de bold
   },
   {
     id: "bolu-valilik",
@@ -47,7 +50,8 @@ export const sponsors: Sponsor[] = [
     className: "flex-shrink-0 h-16 sm:h-12 w-auto",
     hasText: true,
     textLines: ["Türkiye Cumhuriyeti", "Bolu Valiliği"],
-    textClassName: "text-gray-700"
+    textClassName: "text-gray-700",
+    textWeights: ['normal', 'bold'] // Üst normal, alt bold
   },
   {
     id: "turkroket",
@@ -57,6 +61,18 @@ export const sponsors: Sponsor[] = [
     height: 60,
     className: "flex-shrink-0 h-10 sm:h-5 w-auto",
     hasText: false
+  },
+  {
+    id: "bolu-kvtv",
+    name: "Bolu Kalkınma ve Tanıtma Vakfı",
+    logo: "/partners/bolu-kvtv.webp",
+    width: 120,
+    height: 60,
+    className: "flex-shrink-0 h-16 sm:h-12 w-auto",
+    hasText: true,
+    textLines: ["Bolu Kalkınma", "ve Tanıtma Vakfı"],
+    textClassName: "text-gray-700",
+    textWeights: ['bold', 'bold'] // Her ikisi de bold
   },
   {
     id: "bolu-seviyorum",
@@ -72,7 +88,7 @@ export const sponsors: Sponsor[] = [
 export const SponsorItem = ({ sponsor }: { sponsor: Sponsor }) => {
   if (sponsor.hasText && sponsor.textLines) {
     return (
-      <div className="flex flex-shrink-0 items-center space-x-3 gap-2">
+      <div className="flex flex-shrink-0 items-center space-x-4">
         <Image
           src={sponsor.logo}
           alt={sponsor.name}
@@ -81,14 +97,17 @@ export const SponsorItem = ({ sponsor }: { sponsor: Sponsor }) => {
           className={sponsor.className}
         />
         <div className="flex flex-col">
-          {sponsor.textLines.map((line, index) => (
-            <span 
-              key={index}
-              className={`${sponsor.textClassName} font-overpass-${index === 0 ? 'regular' : 'bold'} text-base sm:text-lg whitespace-nowrap ${index === 0 ? 'leading-none' : ''}`}
-            >
-              {line}
-            </span>
-          ))}
+          {sponsor.textLines.map((line, index) => {
+            const weight = sponsor.textWeights?.[index] || 'normal'
+            return (
+              <span 
+                key={index}
+                className={`${sponsor.textClassName} font-overpass-${weight} text-base sm:text-lg whitespace-nowrap ${index === 0 ? 'leading-none' : ''}`}
+              >
+                {line}
+              </span>
+            )
+          })}
         </div>
       </div>
     )
