@@ -137,7 +137,7 @@ export default function Page() {
       <Header translations={t} showAwards={showAwards} />
 
       {/* Hero Section - With Electric Blue Gradients */}
-      <main className="relative min-h-screen overflow-hidden" style={{ backgroundColor: "var(--bg-primary)" }}>
+      <main className="relative overflow-hidden" style={{ backgroundColor: "var(--bg-primary)", minHeight: "calc(100vh - 4rem)" }}>
         {/* Sparkle Stars Background */}
         <div className="sparkle-stars" />
 
@@ -146,7 +146,7 @@ export default function Page() {
         <div className="electric-gradient-2" />
 
         {/* Main content */}
-        <div className="relative z-10 flex items-center justify-center min-h-screen px-4 sm:px-6 lg:px-8">
+        <div className="relative z-10 flex items-center justify-center px-4 sm:px-6 lg:px-8" style={{ minHeight: "calc(100vh - 4rem)" }}>
           <div className="max-w-5xl mx-auto text-center">
             {/* Location badge */}
             {showLocation && (
@@ -163,16 +163,77 @@ export default function Page() {
             )}
 
             {/* Main title */}
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-fira-black leading-tight text-white mb-8">
-              <span className="block">{t.heroTitle.split(" ").slice(0, 2).join(" ")}</span>
-              <span className="block" style={{ color: "var(--accent-yellow)" }}>
-                {t.heroTitle.split(" ").slice(2).join(" ")}
+            <h1
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-fira-black leading-tight text-white mb-8"
+              style={{ lineHeight: 1.09 }}
+            >
+              {language === "en"
+              ? t.heroTitle.split(" ").slice(0, 3).join(" ")
+              : (
+                <>
+                <span style={{ color: "var(--accent-yellow)" }}>
+                  {t.heroTitle.split(" ").slice(0, 3).join(" ")}
+                </span>
+                <br />
+                <span style={{ color: "var(--accent-yellow)" }}>
+                  {t.heroTitle.split(" ").slice(3, 5).join(" ")}
+                </span>
+                <span style={{ color: "white" }}>
+                  {" "}{t.heroTitle.split(" ").slice(5).join(" ")}
+                </span>
+                </>
+              )
+              }
+              <span className="block">
+              {language === "en"
+                ? (
+                <>
+                  <span style={{ color: "var(--accent-yellow)" }}>
+                  {t.heroTitle.split(" ").slice(3, 8).join(" ")}
+                  </span>{" "}
+                  <span style={{ color: "white" }}>
+                  {t.heroTitle.split(" ").slice(8).join(" ")}
+                  </span>
+                </>
+                )
+                : null
+              }
               </span>
             </h1>
 
             {/* Subtitle */}
             <p className="text-lg sm:text-xl lg:text-2xl text-white/80 font-overpass-regular max-w-3xl mx-auto mb-12 leading-relaxed">
-              {t.heroSubtitle}
+              {language === "tr"
+                ? (
+                    (() => {
+                      const words = t.heroSubtitle.split(" ");
+                      return (
+                        <>
+                          {words.map((word, idx) => {
+                            if (idx === 3) {
+                              return <b key={idx}>{word} </b>;
+                            }
+                            return <span key={idx}>{word} </span>;
+                          })}
+                        </>
+                      );
+                    })()
+                  )
+                : (
+                    (() => {
+                      const words = t.heroSubtitle.split(" ");
+                      const lastWord = words[words.length - 1];
+                      const lastWordClean = lastWord.replace(/\.$/, "");
+                      const ending = lastWord.endsWith(".") ? "." : "";
+                      return (
+                        <>
+                          {words.slice(0, -1).join(" ") + " "}
+                          <b>{lastWordClean}</b>{ending}
+                        </>
+                      );
+                    })()
+                  )
+              }
             </p>
 
             {/* CTA Buttons - Equal Size */}
