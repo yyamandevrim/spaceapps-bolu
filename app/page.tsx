@@ -27,7 +27,7 @@ export default function Page() {
   const [openFaq, setOpenFaq] = useState<number | null>(null)
   const [openMonth, setOpenMonth] = useState<number | null>(null)
   const [heroBackground, setHeroBackground] = useState<string>("")
-  const [showLocation, setShowLocation] = useState<boolean>(false)
+  const [showLocation, setShowLocation] = useState<boolean>(true)
   const [showAwards, setShowAwards] = useState<boolean>(true)
   const [showCookieNotice, setShowCookieNotice] = useState<boolean>(false)
 
