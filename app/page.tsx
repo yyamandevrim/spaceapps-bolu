@@ -28,7 +28,7 @@ export default function Page() {
   const [openMonth, setOpenMonth] = useState<number | null>(null)
   const [heroBackground, setHeroBackground] = useState<string>("")
   const [showLocation, setShowLocation] = useState<boolean>(false)
-  const [showAwards, setShowAwards] = useState<boolean>(false)
+  const [showAwards, setShowAwards] = useState<boolean>(true)
   const [showCookieNotice, setShowCookieNotice] = useState<boolean>(false)
 
   // Add new section toggles
@@ -543,7 +543,7 @@ export default function Page() {
             </h2>
             <p className="text-lg sm:text-xl text-white/90 text-center mb-12 sm:mb-16 font-overpass-regular">
               {language === "tr"
-                ? "Kazanan takımlar için büyük ödüller sizi bekliyor!"
+                ? "Büyük ödüller sizi bekliyor!"
                 : "Great prizes await the winning teams!"}
             </p>
 
@@ -588,7 +588,7 @@ export default function Page() {
 
             {/* Additional Info */}
             <div className="text-center mt-12">
-              {/* Sponsor Thank You Note */}
+              {/* Sponsor Thank You Note 
               <button
                 onClick={() => document.getElementById("supporters")?.scrollIntoView({ behavior: "smooth" })}
                 className="text-white/80 font-overgipass-regular text-sm hover:text-white transition-colors cursor-pointer underline decoration-dotted underline-offset-4"
@@ -596,7 +596,7 @@ export default function Page() {
                 {language === "tr"
                   ? "Ödül sponsoru Bolu Tanıtma ve Kalkındırma Vakfı'na teşekkür ederiz. →"
                   : "Thanks to award sponsor XX Company →"}
-              </button>
+              </button>*/}
 
               <p className="text-white/70 font-overpass-regular text-sm sm:text-base mt-6">
                 {language === "tr"
