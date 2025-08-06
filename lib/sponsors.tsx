@@ -75,14 +75,26 @@ export const sponsors: Sponsor[] = [
     textWeights: ['bold', 'bold'] // Her ikisi de bold
   },
   {
-    id: "bolu-seviyorum",
-    name: "Bolu'yu Seviyorum - Bolu Belediyesi",
-    logo: "https://www.bolu.bel.tr/wp-content/uploads/2021/07/Boluyu-Seviyorum-Logo-Beyaz.png",
+    id: "folpa-reklam",
+    name: "Folpa Reklam",
+    logo: "/partners/folpa.webp",
     width: 220,
     height: 220,
     className: "flex-shrink-0 h-16 sm:h-12 w-auto",
     hasText: false
-  }
+  },
+    {
+    id: "kika",
+    name: "Kika Kitap Kafe - Bolu",
+    logo: "/partners/kika.webp",
+    width: 120,
+    height: 60,
+    className: "flex-shrink-0 h-16 sm:h-12 w-auto",
+    hasText: true,
+    textLines: ["Bolu"],
+    textClassName: "text-gray-700",
+    textWeights: ['normal']
+  },
 ]
 
 export const SponsorItem = ({ sponsor }: { sponsor: Sponsor }) => {
