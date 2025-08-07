@@ -536,69 +536,74 @@ export default function Page() {
               `,
             }}
           />
-
           <div className="max-w-6xl mx-auto relative z-10">
             <h2 className="text-4xl sm:text-5xl md:text-6xl font-fira-black text-center mb-4 text-white">
               {language === "tr" ? "Ödüller" : "Awards"}
             </h2>
-            <p className="text-lg sm:text-xl text-white/90 text-center mb-12 sm:mb-16 font-overpass-regular">
+            <p className="text-lg sm:text-xl text-white/90  text-center mb-12 sm:mb-16 font-overpass-regular">
               {language === "tr"
                 ? "Büyük ödüller sizi bekliyor!"
                 : "Great prizes await the winning teams!"}
             </p>
 
-            {/* Podium Design */}
-            <div className="flex items-end justify-center gap-4 sm:gap-8 max-w-4xl mx-auto">
+            {/* Podium Design - Only desktop */}
+            <div className="hidden sm:flex flex-row items-end justify-center gap-8 max-w-4xl mx-auto">
               {/* 2nd Place */}
-              <div className="text-center">
-                <div className="bg-gradient-to-t from-gray-400 to-gray-300 rounded-t-lg p-6 sm:p-8 mb-4 shadow-lg transform hover:scale-105 transition-transform duration-300">
-                  <div className="text-3xl sm:text-4xl mb-2 drop-shadow-md">🥈</div>
-                  <div className="text-lg sm:text-xl font-fira-bold text-gray-800 mb-2">
+              <div className="flex-1 flex flex-col items-center">
+                <div className="bg-gradient-to-t from-gray-400 to-gray-300 rounded-t-lg p-8 mb-4 shadow-lg transform hover:scale-105 transition-transform duration-300 w-full flex flex-col items-center">
+                  <div className="text-4xl mb-2 drop-shadow-md">🥈</div>
+                  <div className="text-xl font-fira-bold text-black mb-2">
                     {language === "tr" ? "2. Takım" : "2nd Team"}
                   </div>
-                  <div className="text-2xl sm:text-3xl font-fira-black text-gray-900">20.000₺</div>
+                  <div className="text-3xl font-fira-black text-black">20.000₺</div>
                 </div>
-                <div className="bg-gray-300 h-24 sm:h-32 w-full rounded-b-lg shadow-md"></div>
+                <div className="bg-gray-300 h-32 w-full rounded-b-lg shadow-md"></div>
               </div>
-
-              {/* 1st Place - Highest */}
-              <div className="text-center">
-                <div className="bg-gradient-to-t from-yellow-500 to-yellow-400 rounded-t-lg p-6 sm:p-8 mb-4 shadow-lg transform hover:scale-105 transition-transform duration-300">
-                  <div className="text-4xl sm:text-5xl mb-2 drop-shadow-lg">🥇</div>
-                  <div className="text-xl sm:text-2xl font-fira-bold text-gray-800 mb-2">
+              {/* 1st Place */}
+              <div className="flex-1 flex flex-col items-center">
+                <div className="bg-gradient-to-t from-yellow-500 to-yellow-400 rounded-t-lg p-8 mb-4 shadow-lg transform hover:scale-105 transition-transform duration-300 w-full flex flex-col items-center">
+                  <div className="text-5xl mb-2 drop-shadow-lg">🥇</div>
+                  <div className="text-2xl font-fira-bold text-black mb-2">
                     {language === "tr" ? "1. Takım" : "1st Team"}
                   </div>
-                  <div className="text-3xl sm:text-4xl font-fira-black text-gray-900">30.000₺</div>
+                  <div className="text-4xl font-fira-black text-black">30.000₺</div>
                 </div>
-                <div className="bg-yellow-400 h-32 sm:h-40 w-full rounded-b-lg shadow-md"></div>
+                <div className="bg-yellow-400 h-40 w-full rounded-b-lg shadow-md"></div>
               </div>
-
               {/* 3rd Place */}
-              <div className="text-center">
-                <div className="bg-gradient-to-t from-amber-600 to-amber-500 rounded-t-lg p-6 sm:p-8 mb-4 shadow-lg transform hover:scale-105 transition-transform duration-300">
-                  <div className="text-3xl sm:text-4xl mb-2 drop-shadow-md">🥉</div>
-                  <div className="text-lg sm:text-xl font-fira-bold text-gray-800 mb-2">
+              <div className="flex-1 flex flex-col items-center">
+                <div className="bg-gradient-to-t from-amber-600 to-amber-500 rounded-t-lg p-8 mb-4 shadow-lg transform hover:scale-105 transition-transform duration-300 w-full flex flex-col items-center">
+                  <div className="text-4xl mb-2 drop-shadow-md">🥉</div>
+                  <div className="text-xl font-fira-bold text-black mb-2">
                     {language === "tr" ? "3. Takım" : "3rd Team"}
                   </div>
-                  <div className="text-2xl sm:text-3xl font-fira-black text-gray-900">10.000₺</div>
+                  <div className="text-3xl font-fira-black text-black">10.000₺</div>
                 </div>
-                <div className="bg-amber-500 h-20 sm:h-28 w-full rounded-b-lg shadow-md"></div>
+                <div className="bg-amber-500 h-28 w-full rounded-b-lg shadow-md"></div>
               </div>
+            </div>
+
+            {/* Mobile version (uses same gradient etc.) */}
+            <div className="sm:hidden flex flex-col gap-8 items-center">
+              {[1, 2, 3].map((rank, i) => {
+                const medal = ["🥇", "🥈", "🥉"][rank - 1];
+                const team = language === "tr" ? `${rank}. Takım` : `${rank}st Team`;
+                const amount = ["30.000₺", "20.000₺", "10.000₺"][rank - 1];
+                const from = ["from-yellow-500", "from-gray-400", "from-amber-600"][rank - 1];
+                const to = ["to-yellow-400", "to-gray-300", "to-amber-500"][rank - 1];
+                return (
+                  <div key={rank} className={`bg-gradient-to-t ${from} ${to} rounded-lg p-6 w-full max-w-md shadow-lg flex flex-col items-center`}>
+                    <div className="text-4xl mb-2">{medal}</div>
+                    <div className="text-xl font-fira-bold text-black mb-2">{team}</div>
+                    <div className="text-3xl font-fira-black text-black">{amount}</div>
+                  </div>
+                );
+              })}
             </div>
 
             {/* Additional Info */}
             <div className="text-center mt-12">
-              {/* Sponsor Thank You Note 
-              <button
-                onClick={() => document.getElementById("supporters")?.scrollIntoView({ behavior: "smooth" })}
-                className="text-white/80 font-overgipass-regular text-sm hover:text-white transition-colors cursor-pointer underline decoration-dotted underline-offset-4"
-              >
-                {language === "tr"
-                  ? "Ödül sponsoru Bolu Tanıtma ve Kalkındırma Vakfı'na teşekkür ederiz. →"
-                  : "Thanks to award sponsor XX Company →"}
-              </button>*/}
-
-              <p className="text-white/70 font-overpass-regular text-sm sm:text-base mt-6">
+              <p className="text-white/90  font-overpass-regular text-sm sm:text-base mt-6">
                 {language === "tr"
                   ? "Ödüller kazanan takımın üyeleri arasında eşit olarak paylaştırılacaktır."
                   : "Awards will be shared equally among winning team members."}
@@ -608,7 +613,8 @@ export default function Page() {
         </section>
       )}
 
-      {/* FAQs Section - Conditional */}
+
+
       {showFaqs && (
         <section id="faqs" className={`py-16 sm:py-20 px-4 sm:px-6 lg:px-8 ${showAwards ? "bg-white" : ""}`}>
           <div className="max-w-6xl mx-auto">
