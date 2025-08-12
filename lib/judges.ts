@@ -12,7 +12,7 @@ export const judges = [
   {
     name: "Doç. Dr. Erhan Budak",
     role: "Jüri Üyesi",
-    avatar: "/judges/Erhan-Budak.webp",
+    avatar: "/judges/e77d65cb-3bd8-416e-b68b-490119831696.jpeg",
   },
   {
     name: "Prof. Dr. İsmail Uğur Tiryaki",
