@@ -435,7 +435,7 @@ export default function Page() {
                       href={index === 0 ? "/judges/erhan-budak" : "/judges/ismail-ugur-tiryaki"}
                       key={index + 1}
                     >
-                      <div className="text-center bg-white rounded-xl p-4 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 w-full max-w-xs cursor-pointer hover:scale-105">
+                      <div className="text-center bg-white rounded-xl p-4 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 w-full max-w-xs cursor-pointer hover:scale-105 min-h-[320px] flex flex-col flex-1">
                         <div className="relative mb-4">
                           <Image
                             src={judge.avatar || "/placeholder.svg"}
@@ -445,17 +445,15 @@ export default function Page() {
                             className="rounded-2xl mx-auto transition-all duration-300 object-cover w-full max-w-[120px] h-[120px]"
                           />
                         </div>
-                        <h3 className="font-fira-bold mb-2 text-gray-900 text-base">
-                          {index === 0 && judge.name === "Doç. Dr. Erhan Budak" ? (
-                            <>
-                              Doç. Dr. <br />Erhan Budak
-                            </>
-                          ) : (
-                            judge.name
+                        <div className="flex-1 flex flex-col justify-between">
+                          <h3 className="font-fira-bold mb-2 text-gray-900 text-base min-h-[48px] flex items-center justify-center text-center">
+                            {judge.name}
+                          </h3>
+                          <p className="text-gray-600 font-overpass-regular text-xs mb-2 text-center min-h-[32px] flex items-center justify-center">{judge.role}</p>
+                          {judge.name !== "Çok Yakında" && (
+                            <p className="text-blue-600 font-overpass-regular text-xs mt-auto text-center">Detayları Görüntüle →</p>
                           )}
-                        </h3>
-                        <p className="text-gray-600 font-overpass-regular text-xs">{judge.role}</p>
-                        <p className="text-blue-600 font-overpass-regular text-xs mt-2">Detayları Görüntüle →</p>
+                        </div>
                       </div>
                     </Link>
                   ))}
@@ -468,7 +466,7 @@ export default function Page() {
                       href={`/judges/${judge.name.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '')}`}
                       key={index + 3}
                     >
-                      <div className="text-center bg-white rounded-xl p-4 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 w-full max-w-xs cursor-pointer hover:scale-105">
+                      <div className="text-center bg-white rounded-xl p-4 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 w-full max-w-xs cursor-pointer hover:scale-105 min-h-[320px] flex flex-col flex-1">
                         <div className="relative mb-4">
                           <Image
                             src={judge.avatar || "/placeholder.svg"}
@@ -478,9 +476,13 @@ export default function Page() {
                             className="rounded-2xl mx-auto transition-all duration-300 object-cover w-full max-w-[120px] h-[120px]"
                           />
                         </div>
-                        <h3 className="font-fira-bold mb-2 text-gray-900 text-base">{judge.name}</h3>
-                        <p className="text-gray-600 font-overpass-regular text-xs">{judge.role}</p>
-                        <p className="text-blue-600 font-overpass-regular text-xs mt-2">Detayları Görüntüle →</p>
+                        <div className="flex-1 flex flex-col justify-between">
+                          <h3 className="font-fira-bold mb-2 text-gray-900 text-base min-h-[48px] flex items-center justify-center text-center">{judge.name}</h3>
+                          <p className="text-gray-600 font-overpass-regular text-xs mb-2 text-center min-h-[32px] flex items-center justify-center">{judge.role}</p>
+                          {judge.name !== "Çok Yakında" && index < 2 && (
+                            <p className="text-blue-600 font-overpass-regular text-xs mt-auto text-center">Detayları Görüntüle →</p>
+                          )}
+                        </div>
                       </div>
                     </Link>
                   ))}
@@ -492,7 +494,7 @@ export default function Page() {
                 {judges.map((judge, index) =>
                   index === 0 ? (
                     <Link href="/judges/okan-kulkoyluoglu" key={index}>
-                      <div className="text-center bg-white rounded-xl p-4 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 cursor-pointer hover:scale-105">
+                      <div className="text-center bg-white rounded-xl p-4 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 cursor-pointer hover:scale-105 h-[280px] flex flex-col">
                         <div className="relative mb-4">
                           <Image
                             src={judge.avatar || "/placeholder.svg"}
@@ -502,14 +504,18 @@ export default function Page() {
                             className="rounded-2xl mx-auto transition-all duration-300 object-cover w-full max-w-[120px] h-[120px]"
                           />
                         </div>
-                        <h3 className="font-fira-bold mb-2 text-gray-900 text-lg">{judge.name}</h3>
-                        <p className="text-gray-600 font-overpass-regular text-sm">{judge.role}</p>
-                        <p className="text-blue-600 font-overpass-regular text-xs mt-2">Detayları Görüntüle →</p>
+                        <div className="flex-1 flex flex-col justify-between">
+                          <h3 className="font-fira-bold mb-2 text-gray-900 text-lg min-h-[56px] flex items-center justify-center text-center">{judge.name}</h3>
+                          <p className="text-gray-600 font-overpass-regular text-sm min-h-[40px] flex items-center justify-center text-center">{judge.role}</p>
+                          {judge.name !== "Çok Yakında" && (
+                            <p className="text-blue-600 font-overpass-regular text-xs mt-auto text-center">Detayları Görüntüle →</p>
+                          )}
+                        </div>
                       </div>
                     </Link>
                   ) : index === 1 ? (
                     <Link href="/judges/erhan-budak" key={index}>
-                      <div className="text-center bg-white rounded-xl p-4 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 cursor-pointer hover:scale-105">
+                      <div className="text-center bg-white rounded-xl p-4 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 cursor-pointer hover:scale-105 h-[280px] flex flex-col">
                         <div className="relative mb-4">
                           <Image
                             src={judge.avatar || "/placeholder.svg"}
@@ -519,22 +525,20 @@ export default function Page() {
                             className="rounded-2xl mx-auto transition-all duration-300 object-cover w-full max-w-[120px] h-[120px]"
                           />
                         </div>
-                        <h3 className="font-fira-bold mb-2 text-gray-900 text-lg">
-                          {judge.name === "Doç. Dr. Erhan Budak" ? (
-                            <>
-                              Doç. Dr. Erhan Budak
-                            </>
-                          ) : (
-                            judge.name
+                        <div className="flex-1 flex flex-col justify-between">
+                          <h3 className="font-fira-bold mb-2 text-gray-900 text-lg min-h-[56px] flex items-center justify-center text-center">
+                            {judge.name}
+                          </h3>
+                          <p className="text-gray-600 font-overpass-regular text-sm min-h-[40px] flex items-center justify-center text-center">{judge.role}</p>
+                          {judge.name !== "Çok Yakında" && (
+                            <p className="text-blue-600 font-overpass-regular text-xs mt-auto text-center">Detayları Görüntüle →</p>
                           )}
-                        </h3>
-                        <p className="text-gray-600 font-overpass-regular text-sm">{judge.role}</p>
-                        <p className="text-blue-600 font-overpass-regular text-xs mt-2">Detayları Görüntüle →</p>
+                        </div>
                       </div>
                     </Link>
                   ) : index === 2 ? (
                     <Link href="/judges/ismail-ugur-tiryaki" key={index}>
-                      <div className="text-center bg-white rounded-xl p-4 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 cursor-pointer hover:scale-105">
+                      <div className="text-center bg-white rounded-xl p-4 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 cursor-pointer hover:scale-105 h-[280px] flex flex-col">
                         <div className="relative mb-4">
                           <Image
                             src={judge.avatar || "/placeholder.svg"}
@@ -544,9 +548,13 @@ export default function Page() {
                             className="rounded-2xl mx-auto transition-all duration-300 object-cover w-full max-w-[120px] h-[120px]"
                           />
                         </div>
-                        <h3 className="font-fira-bold mb-2 text-gray-900 text-lg">{judge.name}</h3>
-                        <p className="text-gray-600 font-overpass-regular text-sm">{judge.role}</p>
-                        <p className="text-blue-600 font-overpass-regular text-xs mt-2">Detayları Görüntüle →</p>
+                        <div className="flex-1 flex flex-col justify-between">
+                          <h3 className="font-fira-bold mb-2 text-gray-900 text-lg min-h-[56px] flex items-center justify-center text-center">{judge.name}</h3>
+                          <p className="text-gray-600 font-overpass-regular text-sm min-h-[40px] flex items-center justify-center text-center">{judge.role}</p>
+                          {judge.name !== "Çok Yakında" && (
+                            <p className="text-blue-600 font-overpass-regular text-xs mt-auto text-center">Detayları Görüntüle →</p>
+                          )}
+                        </div>
                       </div>
                     </Link>
                   ) : (
@@ -554,7 +562,7 @@ export default function Page() {
                       href={`/judges/${judge.name.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '')}`}
                       key={index}
                     >
-                      <div className="text-center bg-white rounded-xl p-4 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 cursor-pointer hover:scale-105">
+                      <div className="text-center bg-white rounded-xl p-4 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 cursor-pointer hover:scale-105 h-[280px] flex flex-col">
                         <div className="relative mb-4">
                           <Image
                             src={judge.avatar || "/placeholder.svg"}
@@ -564,9 +572,13 @@ export default function Page() {
                             className="rounded-2xl mx-auto transition-all duration-300 object-cover w-full max-w-[120px] h-[120px]"
                           />
                         </div>
-                        <h3 className="font-fira-bold mb-2 text-gray-900 text-lg">{judge.name}</h3>
-                        <p className="text-gray-600 font-overpass-regular text-sm">{judge.role}</p>
-                        <p className="text-blue-600 font-overpass-regular text-xs mt-2">Detayları Görüntüle →</p>
+                        <div className="flex-1 flex flex-col justify-between">
+                          <h3 className="font-fira-bold mb-2 text-gray-900 text-lg min-h-[56px] flex items-center justify-center text-center">{judge.name}</h3>
+                          <p className="text-gray-600 font-overpass-regular text-sm min-h-[40px] flex items-center justify-center text-center">{judge.role}</p>
+                          {judge.name !== "Çok Yakında" && index < 3 && (
+                            <p className="text-blue-600 font-overpass-regular text-xs mt-auto text-center">Detayları Görüntüle →</p>
+                          )}
+                        </div>
                       </div>
                     </Link>
                   ),
@@ -682,6 +694,42 @@ export default function Page() {
             >
               {t.faqsTitle}
             </h2>
+
+            <div className="text-center mb-8 sm:mb-12">
+              <p
+                className={`text-lg sm:text-xl font-overpass-regular leading-relaxed ${showAwards ? "text-gray-700" : "text-gray-300"}`}
+              >
+                {language === "tr" ? (
+                  <>
+                    Etkinlik hakkında daha detaylı bilgi ve güncel duyurular için Space Apps Challenge'ın resmi sitesi
+                    olan{" "}
+                    <a
+                      href="https://spaceappschallenge.org"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-blue-400 hover:text-blue-300 underline transition-colors"
+                    >
+                      spaceappschallenge.org
+                    </a>{" "}
+                    adresini ziyaret edebilirsiniz.
+                  </>
+                ) : (
+                  <>
+                    For more detailed information and current announcements about the event, visit the official Space
+                    Apps Challenge site at{" "}
+                    <a
+                      href="https://spaceappschallenge.org"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-blue-400 hover:text-blue-300 underline transition-colors"
+                    >
+                      spaceappschallenge.org
+                    </a>
+                    .
+                  </>
+                )}
+              </p>
+            </div>
 
             <div className="space-y-4">
               {faqs.map((faq, index) => (
