@@ -522,7 +522,7 @@ export default function Page() {
                         <h3 className="font-fira-bold mb-2 text-gray-900 text-lg">
                           {judge.name === "Doç. Dr. Erhan Budak" ? (
                             <>
-                              Doç. Dr. <br />Erhan Budak
+                              Doç. Dr. Erhan Budak
                             </>
                           ) : (
                             judge.name
