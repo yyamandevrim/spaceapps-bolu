@@ -20,14 +20,14 @@ export const judges = [
     avatar: "/judges/ismail-ugur-tiryaki.webp",
   },
   {
-    name: "Çok Yakında!",
-    role: "",
-    avatar: "/logo-circular-dark.webp",
+    name: "Meral Ortaç",
+    role: "Jüri Üyesi",
+    avatar: "/judges/meral-ortac.webp",
   },
   {
-    name: "Çok Yakında!",
-    role: "",
-    avatar: "/logo-circular-dark.webp",
+    name: "Prof. Dr. Hakan Yetiş",
+    role: "Jüri Üyesi",
+    avatar: "/judges/hakan-yetis.webp",
   },
 ]
 

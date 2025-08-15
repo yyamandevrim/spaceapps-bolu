@@ -450,6 +450,7 @@ export default function Page() {
                             {judge.name}
                           </h3>
                           <p className="text-gray-600 font-overpass-regular text-xs mb-2 text-center min-h-[32px] flex items-center justify-center">{judge.role}</p>
+                          {/* Show for both (hide only when name is "Çok Yakında") */}
                           {judge.name !== "Çok Yakında" && (
                             <p className="text-blue-600 font-overpass-regular text-xs mt-auto text-center">Detayları Görüntüle →</p>
                           )}
@@ -462,8 +463,8 @@ export default function Page() {
                 {/* Third row - 2 judges */}
                 <div className="flex justify-center gap-4">
                   {judges.slice(3, 5).map((judge, index) => (
-                    <Link 
-                      href={`/judges/${judge.name.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '')}`}
+                    <Link
+                      href={index === 0 ? "/judges/meral-ortac" : "/judges/hakan-yetis"}
                       key={index + 3}
                     >
                       <div className="text-center bg-white rounded-xl p-4 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 w-full max-w-xs cursor-pointer hover:scale-105 min-h-[320px] flex flex-col flex-1">
@@ -479,7 +480,8 @@ export default function Page() {
                         <div className="flex-1 flex flex-col justify-between">
                           <h3 className="font-fira-bold mb-2 text-gray-900 text-base min-h-[48px] flex items-center justify-center text-center">{judge.name}</h3>
                           <p className="text-gray-600 font-overpass-regular text-xs mb-2 text-center min-h-[32px] flex items-center justify-center">{judge.role}</p>
-                          {judge.name !== "Çok Yakında" && index < 2 && (
+                          {/* Show for both (hide only when name is "Çok Yakında") */}
+                          {judge.name !== "Çok Yakında" && (
                             <p className="text-blue-600 font-overpass-regular text-xs mt-auto text-center">Detayları Görüntüle →</p>
                           )}
                         </div>
@@ -557,8 +559,52 @@ export default function Page() {
                         </div>
                       </div>
                     </Link>
+                  ) : index === 3 ? (
+                    <Link href="/judges/meral-ortac" key={index}>
+                      <div className="text-center bg-white rounded-xl p-4 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 cursor-pointer hover:scale-105 h-[280px] flex flex-col">
+                        <div className="relative mb-4">
+                          <Image
+                            src={judge.avatar || "/placeholder.svg"}
+                            alt={judge.name}
+                            width={200}
+                            height={200}
+                            className="rounded-2xl mx-auto transition-all duration-300 object-cover w-full max-w-[120px] h-[120px]"
+                          />
+                        </div>
+                        <div className="flex-1 flex flex-col justify-between">
+                          <h3 className="font-fira-bold mb-2 text-gray-900 text-lg min-h-[56px] flex items-center justify-center text-center">{judge.name}</h3>
+                          <p className="text-gray-600 font-overpass-regular text-sm min-h-[40px] flex items-center justify-center text-center">{judge.role}</p>
+                          {/* Show for 5th too (hide only when name is "Çok Yakında") */}
+                          {judge.name !== "Çok Yakında" && (
+                            <p className="text-blue-600 font-overpass-regular text-xs mt-auto text-center">Detayları Görüntüle →</p>
+                          )}
+                        </div>
+                      </div>
+                    </Link>
+                  ) : index === 4 ? (
+                    <Link href="/judges/hakan-yetis" key={index}>
+                      <div className="text-center bg-white rounded-xl p-4 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 cursor-pointer hover:scale-105 h-[280px] flex flex-col">
+                        <div className="relative mb-4">
+                          <Image
+                            src={judge.avatar || "/placeholder.svg"}
+                            alt={judge.name}
+                            width={200}
+                            height={200}
+                            className="rounded-2xl mx-auto transition-all duration-300 object-cover w-full max-w-[120px] h-[120px]"
+                          />
+                        </div>
+                        <div className="flex-1 flex flex-col justify-between">
+                          <h3 className="font-fira-bold mb-2 text-gray-900 text-lg min-h-[56px] flex items-center justify-center text-center">{judge.name}</h3>
+                          <p className="text-gray-600 font-overpass-regular text-sm min-h-[40px] flex items-center justify-center text-center">{judge.role}</p>
+                          {/* Show for 5th too (hide only when name is "Çok Yakında") */}
+                          {judge.name !== "Çok Yakında" && (
+                            <p className="text-blue-600 font-overpass-regular text-xs mt-auto text-center">Detayları Görüntüle →</p>
+                          )}
+                        </div>
+                      </div>
+                    </Link>
                   ) : (
-                    <Link 
+                    <Link
                       href={`/judges/${judge.name.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '')}`}
                       key={index}
                     >
@@ -575,13 +621,14 @@ export default function Page() {
                         <div className="flex-1 flex flex-col justify-between">
                           <h3 className="font-fira-bold mb-2 text-gray-900 text-lg min-h-[56px] flex items-center justify-center text-center">{judge.name}</h3>
                           <p className="text-gray-600 font-overpass-regular text-sm min-h-[40px] flex items-center justify-center text-center">{judge.role}</p>
-                          {judge.name !== "Çok Yakında" && index < 3 && (
+                          {/* Remove index check so it shows for 5th too */}
+                          {judge.name !== "Çok Yakında" && (
                             <p className="text-blue-600 font-overpass-regular text-xs mt-auto text-center">Detayları Görüntüle →</p>
                           )}
                         </div>
                       </div>
                     </Link>
-                  ),
+                  )
                 )}
               </div>
             </div>
