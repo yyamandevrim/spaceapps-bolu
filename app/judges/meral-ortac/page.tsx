@@ -34,7 +34,7 @@ export default function MeralOrtacPage() {
               <div className="flex-shrink-0">
                 <Image
                   src="/judges/meral-ortac.webp"
-                  alt="Prof. Dr. Meral Ortaç"
+                  alt="Dr. Öğr. Üyesi Meral Ortaç"
                   width={200}
                   height={200}
                   className="rounded-2xl object-cover w-48 h-48"
@@ -44,10 +44,10 @@ export default function MeralOrtacPage() {
               {/* Basic Info */}
               <div className="text-center md:text-left">
                 <h1 className="text-3xl sm:text-4xl font-fira-black text-white mb-4">
-                  Prof. Dr. Meral Ortaç
+                  Dr. Öğr. Üyesi Meral Ortaç
                 </h1>
                 <p className="text-xl text-yellow-400 font-overpass-bold mb-6">
-                  Profesör - Klasik Arkeoloji
+                  Doktor Öğretim Üyesi - Klasik Arkeoloji
                 </p>
                 <div className="space-y-2 text-white/80">
                   <p className="font-overpass-regular">
