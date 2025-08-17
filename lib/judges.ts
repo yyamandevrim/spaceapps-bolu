@@ -20,7 +20,7 @@ export const judges = [
     avatar: "/judges/ismail-ugur-tiryaki.webp",
   },
   {
-    name: "Meral Ortaç",
+    name: "Dr. Öğr. Üyesi Meral Ortaç",
     role: "Jüri Üyesi",
     avatar: "/judges/meral-ortac.webp",
   },
