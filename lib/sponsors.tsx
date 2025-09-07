@@ -2,6 +2,7 @@
 // BY YAMANDEVRIM
 
 import Image from "next/image"
+import { useEffect, useRef, useState } from "react"
 
 export interface Sponsor {
   id: string
@@ -42,16 +43,16 @@ export const sponsors: Sponsor[] = [
     textWeights: ['bold', 'bold'] // Her ikisi de bold
   },
   {
-    id: "bolu-valilik",
-    name: "Bolu Valiliği",
-    logo: "/partners/bolu-valilik.webp",
+    id: "ted-bolu",
+    name: "TED Bolu Koleji",
+    logo: "/partners/ted-bolu.webp",
     width: 120,
     height: 60,
     className: "flex-shrink-0 h-16 sm:h-12 w-auto",
     hasText: true,
-    textLines: ["Türkiye Cumhuriyeti", "Bolu Valiliği"],
+    textLines: ["TED", "Bolu Koleji"],
     textClassName: "text-gray-700",
-    textWeights: ['normal', 'bold'] // Üst normal, alt bold
+    textWeights: ['bold', 'bold'] // Üst normal, alt bold
   },
   {
     id: "turkroket",
@@ -73,6 +74,30 @@ export const sponsors: Sponsor[] = [
     textLines: ["Bolu Kalkınma", "ve Tanıtma Vakfı"],
     textClassName: "text-gray-700",
     textWeights: ['bold', 'bold'] // Her ikisi de bold
+  },
+    {
+    id: "bbv",
+    name: "Bolu Baǧışçılar Vakfı",
+    logo: "/partners/bbv.webp",
+    width: 120,
+    height: 60,
+    className: "flex-shrink-0 h-16 sm:h-12 w-auto",
+    hasText: false,
+    textLines: ["Bolu Baǧışçılar", "Vakfı"],
+    textClassName: "text-gray-700",
+    textWeights: ['bold', 'bold'] // Her ikisi de bold
+  },
+      {
+    id: "ibv",
+    name: "Bolu İzzet Baysal Vakfı",
+    logo: "/partners/ibv.webp",
+    width: 120,
+    height: 60,
+    className: "flex-shrink-0 h-16 sm:h-12 w-auto",
+    hasText: true,
+    textLines: ["İzzet Baysal", "Vakfı"],
+    textClassName: "text-gray-700",
+    textWeights: ['bold', 'normal'] // Her ikisi de bold
   },
   {
     id: "folpa-reklam",
@@ -107,6 +132,8 @@ export const SponsorItem = ({ sponsor }: { sponsor: Sponsor }) => {
           width={sponsor.width}
           height={sponsor.height}
           className={sponsor.className}
+          priority // Ensures images load faster
+          placeholder="empty" // Or use "blur" if you have blurDataURL
         />
         <div className="flex flex-col">
           {sponsor.textLines.map((line, index) => {
@@ -133,14 +160,40 @@ export const SponsorItem = ({ sponsor }: { sponsor: Sponsor }) => {
         width={sponsor.width}
         height={sponsor.height}
         className={sponsor.className}
+        priority
+        placeholder="empty"
       />
     </div>
   )
 }
 
 export const SponsorsCarousel = () => {
+  const carouselRef = useRef<HTMLDivElement>(null)
+  const [isVisible, setIsVisible] = useState(true)
+
+  useEffect(() => {
+    const observer = new window.IntersectionObserver(
+      ([entry]) => setIsVisible(entry.isIntersecting),
+      { threshold: 0.1 }
+    )
+    if (carouselRef.current) observer.observe(carouselRef.current)
+    return () => observer.disconnect()
+  }, [])
+
+  useEffect(() => {
+    let interval: NodeJS.Timeout | null = null
+    if (isVisible) {
+
+    } else {
+
+    }
+    return () => {
+      if (interval) clearInterval(interval)
+    }
+  }, [isVisible])
+
   return (
-    <div className="flex space-x-8 sm:space-x-12 items-center">
+    <div ref={carouselRef} className="flex space-x-8 sm:space-x-12 items-center">
       {sponsors.map((sponsor) => (
         <SponsorItem key={sponsor.id} sponsor={sponsor} />
       ))}
