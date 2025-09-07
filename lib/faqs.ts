@@ -25,10 +25,10 @@ export const faqs = [
     answerEn: "No, participation in Space Apps Challenge is completely free.",
   },
   {
-    question: "Etkinlik kaydedilecek mi?",
-    questionEn: "Will the event be recorded?",
-    answer: "Evet, etkinlik sırasında fotoğraflar ve videolar çekilecek ve kayıt altına alınacaktır. Gizlilik sözleşmemizi inceleyebilirsiniz.",
-    answerEn: "Yes, photos and videos will be taken during the event and recorded. You can review our privacy policy.",
+    question: "Etkinliğe bir grupta kaç kişi katılabilir?",
+    questionEn: "How many people can participate in a group for the event?",
+    answer: "Her grup en fazla 5 kişiden oluşabilir.",
+    answerEn: "Each group can consist of a maximum of 5 people.",
   },
   {
     question: "Kimler katılabilir?",
