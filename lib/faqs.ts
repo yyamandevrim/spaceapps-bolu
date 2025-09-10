@@ -27,8 +27,8 @@ export const faqs = [
   {
     question: "Etkinliğe bir grupta kaç kişi katılabilir?",
     questionEn: "How many people can participate in a group for the event?",
-    answer: "Her grup en fazla 5 kişiden oluşabilir.",
-    answerEn: "Each group can consist of a maximum of 5 people.",
+    answer: "Etkinliğe grubunuzda en az 1 en fazla 6 kişi olacak şekilde katılabilirsiniz.",
+    answerEn: "You can join the event with minimum 1, maximum 6 person in your group.",
   },
   {
     question: "Kimler katılabilir?",
